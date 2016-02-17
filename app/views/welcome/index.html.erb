@@ -1,0 +1,30 @@
+
+<section ng-controller="ScoresController">
+
+  <h3> {{ search }} </h3>
+
+  <form ng-submit="sendSearch()">
+    <input type="text" ng-model="search_term">
+    <input type="submit">
+  </form>
+
+  <ul>
+
+    <img ng-show="loading" src="https://media.giphy.com/media/CD1tWaGFs5teM/giphy.gif" alt="" />
+
+    <li ng-repeat="score in scores">
+      <h3>{{ score.name }}</h3>
+      <p>
+        Principal:{{ score.admin }}<br />
+        Grade Level:{{ score.level }}<br />
+        Overall Score:{{ score.grade }}
+      </p>
+    </li>
+
+    <li>
+      <button ng-click="loadMore()">Load More</button>
+    </li>
+
+  </ul>
+
+</section>
