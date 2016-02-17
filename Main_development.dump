@@ -1,0 +1,1855 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: QT; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO "QT";
+
+--
+-- Name: scores; Type: TABLE; Schema: public; Owner: QT; Tablespace: 
+--
+
+CREATE TABLE scores (
+    id integer NOT NULL,
+    name character varying,
+    admin character varying,
+    level character varying,
+    grade character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE scores OWNER TO "QT";
+
+--
+-- Name: scores_id_seq; Type: SEQUENCE; Schema: public; Owner: QT
+--
+
+CREATE SEQUENCE scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE scores_id_seq OWNER TO "QT";
+
+--
+-- Name: scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: QT
+--
+
+ALTER SEQUENCE scores_id_seq OWNED BY scores.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: QT
+--
+
+ALTER TABLE ONLY scores ALTER COLUMN id SET DEFAULT nextval('scores_id_seq'::regclass);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: QT
+--
+
+COPY schema_migrations (version) FROM stdin;
+20160215222148
+\.
+
+
+--
+-- Data for Name: scores; Type: TABLE DATA; Schema: public; Owner: QT
+--
+
+COPY scores (id, name, admin, level, grade, created_at, updated_at) FROM stdin;
+1	P.S. 015 Roberto Clemente	Irene Sanchez	\N	C	2016-02-16 15:53:36.103945	2016-02-16 15:53:36.103945
+2	P.S. 019 Asher Levy	Jacqueline Flanagan	\N	B	2016-02-16 15:53:36.127928	2016-02-16 15:53:36.127928
+3	P.S. 020 Anna Silver	James Lee	\N	B	2016-02-16 15:53:36.134547	2016-02-16 15:53:36.134547
+4	P.S. 034 Franklin D. Roosevelt	Joyce Stallings Harte	\N	C	2016-02-16 15:53:36.135793	2016-02-16 15:53:36.135793
+5	P.S. 063 William McKinley	Darlene Despeignes	\N	B	2016-02-16 15:53:36.136965	2016-02-16 15:53:36.136965
+6	P.S. 064 Robert Simon	Marlon L. Hosang	\N	C	2016-02-16 15:53:36.138673	2016-02-16 15:53:36.138673
+7	P.S. 110 Florence Nightingale	Karen Feuer	\N	C	2016-02-16 15:53:36.139934	2016-02-16 15:53:36.139934
+8	P.S. 134 Henrietta Szold	Loretta Caputo	\N	C	2016-02-16 15:53:36.141822	2016-02-16 15:53:36.141822
+9	P.S. 137 John L. Bernstein	Melissa Rodriguez	\N	F	2016-02-16 15:53:36.143087	2016-02-16 15:53:36.143087
+10	P.S. 140 Nathan Straus	Esteban Barrientos	\N	D	2016-02-16 15:53:36.144315	2016-02-16 15:53:36.144315
+11	P.S. 142 Amalia Castro	Rhonda Levy	\N	C	2016-02-16 15:53:36.145451	2016-02-16 15:53:36.145451
+12	P.S. 184m Shuang Wen	Ling Ling Chou	\N	A	2016-02-16 15:53:36.146537	2016-02-16 15:53:36.146537
+13	P.S. 188 The Island School	Mary Pree	\N	A	2016-02-16 15:53:36.147824	2016-02-16 15:53:36.147824
+14	Henry Street School for International Studies	Erin Balet	\N	C	2016-02-16 15:53:36.149612	2016-02-16 15:53:36.149612
+15	Henry Street School for International Studies	Erin Balet	\N	C	2016-02-16 15:53:36.151081	2016-02-16 15:53:36.151081
+16	Technology, Arts, and Sciences Studio	George Morgan	\N	B	2016-02-16 15:53:36.152319	2016-02-16 15:53:36.152319
+17	The East Village Community School	Robin Williams	\N	C	2016-02-16 15:53:36.153612	2016-02-16 15:53:36.153612
+18	University Neighborhood Middle School	Laura Peynado	\N	C	2016-02-16 15:53:36.1548	2016-02-16 15:53:36.1548
+19	Collaborative Academy of Science, Technology, & La	Judith De Los Santos	\N	B	2016-02-16 15:53:36.15591	2016-02-16 15:53:36.15591
+20	The Children's Workshop School	Maria Velez Clarke	\N	B	2016-02-16 15:53:36.157097	2016-02-16 15:53:36.157097
+21	Neighborhood School	Milo Novelo	\N	C	2016-02-16 15:53:36.158266	2016-02-16 15:53:36.158266
+22	Earth School	Alison Gail Hazut	\N	C	2016-02-16 15:53:36.159425	2016-02-16 15:53:36.159425
+23	School for Global Leaders	Carry Chan	\N	B	2016-02-16 15:53:36.160634	2016-02-16 15:53:36.160634
+24	University Neighborhood High School	Elizabeth Collins	\N	C	2016-02-16 15:53:36.161671	2016-02-16 15:53:36.161671
+25	East Side Community School	Mark Federman	\N	A	2016-02-16 15:53:36.162724	2016-02-16 15:53:36.162724
+26	East Side Community School	Mark Federman	\N	A	2016-02-16 15:53:36.163807	2016-02-16 15:53:36.163807
+27	Forsyth Satellite Academy	Ingrid Roberts Haynes	\N	\N	2016-02-16 15:53:36.164879	2016-02-16 15:53:36.164879
+28	Marta Valle High School	Mimi Fortunato	\N	C	2016-02-16 15:53:36.166065	2016-02-16 15:53:36.166065
+29	Lower East Side Preparatory High School	Martha Polin	\N	A	2016-02-16 15:53:36.16708	2016-02-16 15:53:36.16708
+30	New Explorations into Science, Technology and Math	Dr. Olga Livanis	\N	A	2016-02-16 15:53:36.168105	2016-02-16 15:53:36.168105
+31	New Explorations into Science, Technology and Math High School	Dr. Olga Livanis	\N	A	2016-02-16 15:53:36.169268	2016-02-16 15:53:36.169268
+32	Cascades High School	Paul Rotondo	\N	A	2016-02-16 15:53:36.170443	2016-02-16 15:53:36.170443
+33	Bard High School Early College	Michael Lerner	\N	B	2016-02-16 15:53:36.171507	2016-02-16 15:53:36.171507
+34	Tompkins Square Middle School	Sonhando Estwick	\N	B	2016-02-16 15:53:36.172791	2016-02-16 15:53:36.172791
+35	P.S. 001 Alfred E. Smith	Amy Hom	\N	B	2016-02-16 15:53:36.175036	2016-02-16 15:53:36.175036
+36	P.S. 002 Meyer London	Brett Gustafson	\N	A	2016-02-16 15:53:36.176506	2016-02-16 15:53:36.176506
+37	P.S. 003 Charrette School	Lisa Siegman	\N	C	2016-02-16 15:53:36.177811	2016-02-16 15:53:36.177811
+38	P.S. 006 Lillie D. Blake	Lauren Fontana	\N	A	2016-02-16 15:53:36.179115	2016-02-16 15:53:36.179115
+39	P.S. 011 William T. Harris	Robert Bender	\N	A	2016-02-16 15:53:36.180797	2016-02-16 15:53:36.180797
+40	P.S. 033 Chelsea Prep	Linore Lindy	\N	B	2016-02-16 15:53:36.182024	2016-02-16 15:53:36.182024
+41	P.S. 040 Augustus Saint-Gaudens	Susan Felder	\N	A	2016-02-16 15:53:36.183202	2016-02-16 15:53:36.183202
+42	P.S. 041 Greenwich Village	Kelly Shannon	\N	A	2016-02-16 15:53:36.184337	2016-02-16 15:53:36.184337
+43	P.S. 042 Benjamin Altman	Rosa Casiello O'Day	\N	A	2016-02-16 15:53:36.185581	2016-02-16 15:53:36.185581
+44	47 The American Sign Language and English Secondary School	Watfa A. Shama	\N	C	2016-02-16 15:53:36.186793	2016-02-16 15:53:36.186793
+45	P.S. 051 Elias Howe	Nancy Sing Bock	\N	B	2016-02-16 15:53:36.187987	2016-02-16 15:53:36.187987
+46	P.S. 059 Beekman Hill International	Adele Schroeter	\N	A	2016-02-16 15:53:36.189092	2016-02-16 15:53:36.189092
+47	P.S. 77 Lower Lab School	Mara Ratesic Koetke	\N	A	2016-02-16 15:53:36.190153	2016-02-16 15:53:36.190153
+48	P.S. 89	Veronica Najjar	\N	B	2016-02-16 15:53:36.191214	2016-02-16 15:53:36.191214
+49	J.H.S. 104 Simon Baruch	Rosemarie Gaetani	\N	B	2016-02-16 15:53:36.192263	2016-02-16 15:53:36.192263
+50	P.S. 111 Adolph S. Ochs	Irma Medina	\N	C	2016-02-16 15:53:36.193492	2016-02-16 15:53:36.193492
+51	East Side Middle School	David Getz	\N	A	2016-02-16 15:53:36.194618	2016-02-16 15:53:36.194618
+52	P.S. 116 Mary Lindley Murray	Jane Hsu	\N	C	2016-02-16 15:53:36.195755	2016-02-16 15:53:36.195755
+53	P.S. 124 Yung Wing	Alice Hom	\N	A	2016-02-16 15:53:36.196995	2016-02-16 15:53:36.196995
+54	P.S. 126 Jacob August Riis	Jacqueline Getz	\N	A	2016-02-16 15:53:36.198165	2016-02-16 15:53:36.198165
+55	P.S. 130 Hernando De Soto	Lily Woo	\N	A	2016-02-16 15:53:36.199326	2016-02-16 15:53:36.199326
+56	M.S. 131	Phyllis Tam	\N	A	2016-02-16 15:53:36.200575	2016-02-16 15:53:36.200575
+57	P.S. 150	Maggie Siena	\N	C	2016-02-16 15:53:36.20165	2016-02-16 15:53:36.20165
+58	P.S. 158 Bayard Taylor	Darryl Alhadeff	\N	B	2016-02-16 15:53:36.202721	2016-02-16 15:53:36.202721
+59	J.H.S. 167 Robert F. Wagner	Jennifer Rehn	\N	A	2016-02-16 15:53:36.203979	2016-02-16 15:53:36.203979
+60	P.S. 183 Robert L. Stevenson	Tara Napoleoni	\N	B	2016-02-16 15:53:36.205175	2016-02-16 15:53:36.205175
+61	P.S. 198 Isador E. Ida Straus	Sharon Jeffrey Roebuck	\N	C	2016-02-16 15:53:36.206796	2016-02-16 15:53:36.206796
+62	P.S. 212 Midtown West	Dean Ketchum	\N	B	2016-02-16 15:53:36.208251	2016-02-16 15:53:36.208251
+63	P.S./I.S. 217 Roosevelt Island	Mandana Beckman	\N	D	2016-02-16 15:53:36.209424	2016-02-16 15:53:36.209424
+64	Ella Baker School	Laura Garcia	\N	C	2016-02-16 15:53:36.21056	2016-02-16 15:53:36.21056
+65	P.S. 234 Independence School	Lisa Ripperger	\N	A	2016-02-16 15:53:36.211672	2016-02-16 15:53:36.211672
+66	M.S. 255 Salk School of Science	Rhonda Perry	\N	A	2016-02-16 15:53:36.21272	2016-02-16 15:53:36.21272
+67	M.S. 260 Clinton School Writers & Artists	Joseph Anderson	\N	B	2016-02-16 15:53:36.21401	2016-02-16 15:53:36.21401
+68	BATTERY PARK CITY SCHOOL	Theresa Ruyter	\N	A	2016-02-16 15:53:36.215332	2016-02-16 15:53:36.215332
+69	Food and Finance High School	Roger Turgeon	\N	A	2016-02-16 15:53:36.216502	2016-02-16 15:53:36.216502
+70	I.S. 289	Ellen Foote	\N	B	2016-02-16 15:53:36.21771	2016-02-16 15:53:36.21771
+71	P.S. 290 Manhattan New School	Sharon Hill	\N	A	2016-02-16 15:53:36.218846	2016-02-16 15:53:36.218846
+72	Essex Street Academy	Erin Carstensen	\N	B	2016-02-16 15:53:36.220026	2016-02-16 15:53:36.220026
+73	High School of Hospitality Management	Matthew Corallo	\N	A	2016-02-16 15:53:36.221113	2016-02-16 15:53:36.221113
+74	Pace High School	Yvette Sy	\N	A	2016-02-16 15:53:36.222251	2016-02-16 15:53:36.222251
+75	Urban Assembly School of Design and Construction, The	Matthew Willoughby	\N	B	2016-02-16 15:53:36.223455	2016-02-16 15:53:36.223455
+76	Facing History School, The	Smith, Gillian	\N	B	2016-02-16 15:53:36.224627	2016-02-16 15:53:36.224627
+77	Urban Assembly Academy of Government and Law, The	David Glasner	\N	C	2016-02-16 15:53:36.225706	2016-02-16 15:53:36.225706
+78	Lower Manhattan Arts Academy	John Wenk	\N	A	2016-02-16 15:53:36.226711	2016-02-16 15:53:36.226711
+79	New York City Lab Middle School for Collaborative	Megan Adams	\N	A	2016-02-16 15:53:36.227752	2016-02-16 15:53:36.227752
+80	James Baldwin School, The: A School for Expeditionary Learning	Elijah Hawkes	\N	C	2016-02-16 15:53:36.228925	2016-02-16 15:53:36.228925
+81	Urban Assembly School of Business for Young Women, the	Patricia Minaya	\N	B	2016-02-16 15:53:36.230124	2016-02-16 15:53:36.230124
+82	The 47 American Sign Language & English Lower Scho	David Bowell	\N	A	2016-02-16 15:53:36.231274	2016-02-16 15:53:36.231274
+83	Gramercy Arts High School	Denise Dicarlo	\N	C	2016-02-16 15:53:36.232434	2016-02-16 15:53:36.232434
+84	NYC iSchool	Alisa Berger	\N	\N	2016-02-16 15:53:36.233632	2016-02-16 15:53:36.233632
+85	MANHATTAN BUSINESS ACADEMY	Karen Polsonetti	\N	\N	2016-02-16 15:53:36.235059	2016-02-16 15:53:36.235059
+86	BUSINESS OF SPORTS SCHOOL	Joshua Solomon	\N	\N	2016-02-16 15:53:36.236224	2016-02-16 15:53:36.236224
+87	EMMA LAZARUS HIGH SCHOOL	Melody Kellogg	\N	\N	2016-02-16 15:53:36.237314	2016-02-16 15:53:36.237314
+88	THE HIGH SCHOOL FOR LANGUAGE AND DIPLOMACY	Santiago Mayol	\N	\N	2016-02-16 15:53:36.238382	2016-02-16 15:53:36.238382
+89	High School for Environmental Studies	Shirley H. Matthews	\N	B	2016-02-16 15:53:36.239423	2016-02-16 15:53:36.239423
+90	Institute for Collaborative Education	John Pettinato	\N	B	2016-02-16 15:53:36.240555	2016-02-16 15:53:36.240555
+91	Institute for Collaborative Education	John Pettinato	\N	A	2016-02-16 15:53:36.24175	2016-02-16 15:53:36.24175
+92	Professional Performing Arts High School	Keith Ryan	\N	B	2016-02-16 15:53:36.24295	2016-02-16 15:53:36.24295
+93	Professional Performing Arts High School	Keith Ryan	\N	B	2016-02-16 15:53:36.244061	2016-02-16 15:53:36.244061
+94	Baruch College Campus High School	Alicia Perez-Katz	\N	A	2016-02-16 15:53:36.245225	2016-02-16 15:53:36.245225
+95	N.Y.C. Lab School for Collaborative Studies	Brooke Jackson	\N	A	2016-02-16 15:53:36.246366	2016-02-16 15:53:36.246366
+96	School of the Future High School	Stacy Paige Goldstein	\N	A	2016-02-16 15:53:36.247473	2016-02-16 15:53:36.247473
+97	School of the Future High School	Stacy Paige Goldstein	\N	B	2016-02-16 15:53:36.248701	2016-02-16 15:53:36.248701
+98	N.Y.C. Museum School	Darlene Miller	\N	A	2016-02-16 15:53:36.249911	2016-02-16 15:53:36.249911
+99	Eleanor Roosevelt High School	Dimitri Saliani	\N	A	2016-02-16 15:53:36.251089	2016-02-16 15:53:36.251089
+100	Millennium High School	Robert Rhodes	\N	A	2016-02-16 15:53:36.252272	2016-02-16 15:53:36.252272
+101	Landmark High School	Trevor Naidoo	\N	D	2016-02-16 15:53:36.253445	2016-02-16 15:53:36.253445
+102	High School for Health Professions and Human Services	Robert Gentile	\N	B	2016-02-16 15:53:36.254635	2016-02-16 15:53:36.254635
+103	Quest to Learn	Elisa Aragon	\N	B	2016-02-16 15:53:36.255794	2016-02-16 15:53:36.255794
+104	Leadership and Public Service High School	Lawrence Pendergast	\N	C	2016-02-16 15:53:36.256946	2016-02-16 15:53:36.256946
+105	MANHATTAN ACADEMY FOR ARTS & LANGUAGE	Siv Boletsis	\N	\N	2016-02-16 15:53:36.258046	2016-02-16 15:53:36.258046
+106	Legacy School for Integrated Studies	Joan Mosely	\N	F	2016-02-16 15:53:36.259116	2016-02-16 15:53:36.259116
+107	MURRAY HILL ACADEMY	Anita Manninen Felix	\N	\N	2016-02-16 15:53:36.260332	2016-02-16 15:53:36.260332
+108	HUDSON HIGH SCHOOL OF LEARNING TECHNOLOGIES	Nancy Amling	\N	\N	2016-02-16 15:53:36.261585	2016-02-16 15:53:36.261585
+109	INTERNATIONAL HIGH SCHOOL AT UNION SQUARE	Gaylea Prichard-Silvers	\N	\N	2016-02-16 15:53:36.262807	2016-02-16 15:53:36.262807
+110	Manhattan Village Academy	Hector Geager	\N	A	2016-02-16 15:53:36.263888	2016-02-16 15:53:36.263888
+111	Bayard Rustin Educational Complex	Lisa Ostrom	\N	\N	2016-02-16 15:53:36.26504	2016-02-16 15:53:36.26504
+112	Ballet Tech, NYC Public School for Dance	Roy Oneill	\N	B	2016-02-16 15:53:36.266092	2016-02-16 15:53:36.266092
+113	Vanguard High School	Louis Delgado	\N	B	2016-02-16 15:53:36.267207	2016-02-16 15:53:36.267207
+114	Manhattan International High School	Alan Krull	\N	B	2016-02-16 15:53:36.268346	2016-02-16 15:53:36.268346
+115	Washington Irving High School	Bernardo Ascona	\N	F	2016-02-16 15:53:36.269476	2016-02-16 15:53:36.269476
+116	High School M560 - City As School	Alan Cheng	\N	C	2016-02-16 15:53:36.270679	2016-02-16 15:53:36.270679
+117	Stuyvesant High School	Stanley Teitel	\N	A	2016-02-16 15:53:36.271854	2016-02-16 15:53:36.271854
+118	High School of Economics and Finance	Michael Stanzione	\N	B	2016-02-16 15:53:36.273021	2016-02-16 15:53:36.273021
+119	Unity Center for Urban Technologies	Fausto De La Rosa	\N	A	2016-02-16 15:53:36.274211	2016-02-16 15:53:36.274211
+120	Talent Unlimited High School	Linda Hamil	\N	B	2016-02-16 15:53:36.275431	2016-02-16 15:53:36.275431
+121	Murry Bergtraum High School for Business Careers	Andrea Lewis	\N	D	2016-02-16 15:53:36.276551	2016-02-16 15:53:36.276551
+122	Jacqueline Kennedy Onassis High School	Edward Demeo	\N	C	2016-02-16 15:53:36.277662	2016-02-16 15:53:36.277662
+123	Repertory Company High School for Theatre Arts	Michael Mehmet Jr.	\N	B	2016-02-16 15:53:36.278847	2016-02-16 15:53:36.278847
+124	Manhattan Bridges High School	Mirza Sanchez Medina	\N	A	2016-02-16 15:53:36.280018	2016-02-16 15:53:36.280018
+125	New Design High School	Scott Conti	\N	A	2016-02-16 15:53:36.281311	2016-02-16 15:53:36.281311
+126	Independence High School	Ron Smolkin	\N	C	2016-02-16 15:53:36.282481	2016-02-16 15:53:36.282481
+127	High School for Dual Language and Asian Studies	Li Yan	\N	A	2016-02-16 15:53:36.283673	2016-02-16 15:53:36.283673
+128	Liberty High School Academy for Newcomers	Melodee Khristan	\N	A	2016-02-16 15:53:36.29025	2016-02-16 15:53:36.29025
+129	The Urban Assembly New York Harbor School	Nathan Dudley	\N	A	2016-02-16 15:53:36.292106	2016-02-16 15:53:36.292106
+130	Urban Academy Laboratory High School	Herb Mack	\N	B	2016-02-16 15:53:36.293914	2016-02-16 15:53:36.293914
+131	Washington Irving Yabc	Roger Bradley	\N	B	2016-02-16 15:53:36.295447	2016-02-16 15:53:36.295447
+132	Satellite Academy High School	Steven Zbaida	\N	A	2016-02-16 15:53:36.296907	2016-02-16 15:53:36.296907
+133	Manhattan Comprehensive Night and Day High School	Michael Toise	\N	B	2016-02-16 15:53:36.29834	2016-02-16 15:53:36.29834
+134	Richard R. Green High School of Teaching	David Raubvogel	\N	C	2016-02-16 15:53:36.299754	2016-02-16 15:53:36.299754
+135	Harvey Milk High School	Alan Nolan	\N	C	2016-02-16 15:53:36.301198	2016-02-16 15:53:36.301198
+136	The High School of Fashion Industries	Daryl Blank	\N	A	2016-02-16 15:53:36.302697	2016-02-16 15:53:36.302697
+137	Humanities Preparatory Academy	Julie Conason	\N	B	2016-02-16 15:53:36.304098	2016-02-16 15:53:36.304098
+138	Chelsea Career and Technical Education High School	Brian Rosenbloom	\N	B	2016-02-16 15:53:36.305443	2016-02-16 15:53:36.305443
+139	Norman Thomas High School	Philip Martin Jr	\N	\N	2016-02-16 15:53:36.307106	2016-02-16 15:53:36.307106
+140	High School of Graphic Communication Arts	Jerod Resnick	\N	F	2016-02-16 15:53:36.308628	2016-02-16 15:53:36.308628
+141	Art and Design High School	Eric Strauss	\N	B	2016-02-16 15:53:36.309882	2016-02-16 15:53:36.309882
+142	Life Sciences Secondary School	Genevieve Stanislaus	\N	C	2016-02-16 15:53:36.311001	2016-02-16 15:53:36.311001
+143	Life Sciences Secondary School	Genevieve Stanislaus	\N	B	2016-02-16 15:53:36.312105	2016-02-16 15:53:36.312105
+144	Lower Manhattan Community Middle School	Kelly Mcguire	\N	B	2016-02-16 15:53:36.313166	2016-02-16 15:53:36.313166
+145	P.S. 009 Sarah Anderson	Diane Brady	\N	A	2016-02-16 15:53:36.314321	2016-02-16 15:53:36.314321
+146	J.H.S. M044 William J. O'Shea	Liza Ortiz	\N	\N	2016-02-16 15:53:36.315619	2016-02-16 15:53:36.315619
+147	J.H.S. 054 Booker T. Washington	Elana Elster	\N	B	2016-02-16 15:53:36.316989	2016-02-16 15:53:36.316989
+148	P.S. 075 Emily Dickinson	Robert O'Brien	\N	C	2016-02-16 15:53:36.318462	2016-02-16 15:53:36.318462
+149	P.S. 076 A. Philip Randolph	Charles Deberry	\N	B	2016-02-16 15:53:36.319663	2016-02-16 15:53:36.319663
+150	P.S. 084 Lillian Weber	Robin Sundick	\N	F	2016-02-16 15:53:36.32092	2016-02-16 15:53:36.32092
+151	P.S. 087 William Sherman	Monica Berry	\N	B	2016-02-16 15:53:36.322379	2016-02-16 15:53:36.322379
+152	P.S. 145, The Bloomingdale School	Ivelisse Alvarez	\N	C	2016-02-16 15:53:36.323676	2016-02-16 15:53:36.323676
+153	P.S. 149 Sojourner Truth	Kayrol Burgess Harper	\N	C	2016-02-16 15:53:36.324905	2016-02-16 15:53:36.324905
+154	P.S. 163 Alfred E. Smith	Virginia Pepe	\N	C	2016-02-16 15:53:36.326113	2016-02-16 15:53:36.326113
+155	P.S. 165 Robert E. Simon	Brett Gallini	\N	A	2016-02-16 15:53:36.327202	2016-02-16 15:53:36.327202
+156	P.S. 166 The Richard Rodgers School of The Arts an	Debbie J. Hand	\N	B	2016-02-16 15:53:36.328365	2016-02-16 15:53:36.328365
+157	P.S. 180 Hugo Newman	Peter Mcfarlane	\N	B	2016-02-16 15:53:36.32963	2016-02-16 15:53:36.32963
+158	P.S. 185 John M. Langston	Jane Murphy	\N	C	2016-02-16 15:53:36.330997	2016-02-16 15:53:36.330997
+159	P.S. 191 Amsterdam	Maria Verdesoto	\N	C	2016-02-16 15:53:36.332268	2016-02-16 15:53:36.332268
+160	P.S. 199 Jessie Isador Straus	Katy Rosen	\N	A	2016-02-16 15:53:36.333632	2016-02-16 15:53:36.333632
+161	P.S. 208 Alain L. Locke	Susan M. Green	\N	D	2016-02-16 15:53:36.334938	2016-02-16 15:53:36.334938
+162	P.S. 241 Family Academy	Diana Diaz	\N	B	2016-02-16 15:53:36.335967	2016-02-16 15:53:36.335967
+163	PS M242-Gwendolyn Powell Brown Computer School	Denise Gomez	\N	B	2016-02-16 15:53:36.336987	2016-02-16 15:53:36.336987
+164	M.S. 243 Center School	Elaine Schwartz	\N	B	2016-02-16 15:53:36.338077	2016-02-16 15:53:36.338077
+165	M.S. M245 The Computer School	Henry Zymeck	\N	B	2016-02-16 15:53:36.339266	2016-02-16 15:53:36.339266
+166	M.S. M247 Dual Language Middle School	Claudia Aguirre	\N	A	2016-02-16 15:53:36.340972	2016-02-16 15:53:36.340972
+167	M.S. 250 West Side Collaborative Middle School	Jeanne Rotunda	\N	B	2016-02-16 15:53:36.342195	2016-02-16 15:53:36.342195
+168	M.S. 256 Academic & Athletic Excellence	Jeffrey S. Perl	\N	B	2016-02-16 15:53:36.343391	2016-02-16 15:53:36.343391
+169	Community Action School - MS 258	John Curry	\N	A	2016-02-16 15:53:36.344482	2016-02-16 15:53:36.344482
+170	Manhattan Theatre Lab High School	Evelyn Collins	\N	F	2016-02-16 15:53:36.3455	2016-02-16 15:53:36.3455
+171	High School for Arts, Imagination and Inquiry	Stephen Noonan	\N	C	2016-02-16 15:53:36.346549	2016-02-16 15:53:36.346549
+172	Urban Assembly School for Media Studies, The	Cordelia Veve	\N	A	2016-02-16 15:53:36.347725	2016-02-16 15:53:36.347725
+173	P.S. 333 Manhattan School for Children	Susan Rappaport	\N	B	2016-02-16 15:53:36.348964	2016-02-16 15:53:36.348964
+174	The Anderson School	Jodi Hyde	\N	A	2016-02-16 15:53:36.350186	2016-02-16 15:53:36.350186
+175	THE URBAN ASSEMBLY SCHOOL FOR GREEN CAREERS	Alexandra Rathmann-Noonan	\N	\N	2016-02-16 15:53:36.351405	2016-02-16 15:53:36.351405
+176	THE GLOBAL LEARNING COLLABORATIVE	Jennifer Zinn	\N	\N	2016-02-16 15:53:36.352662	2016-02-16 15:53:36.352662
+177	INNOVATION DIPLOMA PLUS	Casey Jones	\N	\N	2016-02-16 15:53:36.35393	2016-02-16 15:53:36.35393
+178	Wadleigh Secondary School for the Performing & Vis	Herma Hall	\N	D	2016-02-16 15:53:36.355208	2016-02-16 15:53:36.355208
+179	Wadleigh Secondary School for the Performing & Visual Arts	Herma Hall	\N	D	2016-02-16 15:53:36.356421	2016-02-16 15:53:36.356421
+180	FRANK McCOURT HIGH SCHOOL	Danielle Salzberg	\N	\N	2016-02-16 15:53:36.35754	2016-02-16 15:53:36.35754
+181	WEST PREP ACADEMY	Roberto Padilla	\N	C	2016-02-16 15:53:36.35875	2016-02-16 15:53:36.35875
+182	Louis D. Brandeis High School	Arleen Liquori	\N	\N	2016-02-16 15:53:36.359933	2016-02-16 15:53:36.359933
+183	Beacon High School	Ruth Lacey	\N	A	2016-02-16 15:53:36.361193	2016-02-16 15:53:36.361193
+184	Fiorello H. LaGuardia High School of Music & Art and Performing Arts	Kim Bruno	\N	A	2016-02-16 15:53:36.362375	2016-02-16 15:53:36.362375
+185	High School for Law, Advocacy and Community Justice	Miriam Nightengale	\N	A	2016-02-16 15:53:36.363561	2016-02-16 15:53:36.363561
+186	High School of Arts and Technology	Anne Geiger	\N	C	2016-02-16 15:53:36.364797	2016-02-16 15:53:36.364797
+187	Edward A. Reynolds West Side High School	Jean Mctavish	\N	C	2016-02-16 15:53:36.36588	2016-02-16 15:53:36.36588
+188	Manhattan / Hunter Science High School	Susan Kreisman	\N	B	2016-02-16 15:53:36.366958	2016-02-16 15:53:36.366958
+189	Brandeis Yabc	0	\N	\N	2016-02-16 15:53:36.368148	2016-02-16 15:53:36.368148
+190	Special Music School	Katherine Banucci-Smith	\N	A	2016-02-16 15:53:36.369362	2016-02-16 15:53:36.369362
+191	Frederick Douglass Academy II Secondary School	Osei Owusu-Afriyie	\N	F	2016-02-16 15:53:36.370578	2016-02-16 15:53:36.370578
+192	Frederick Douglass Academy II Secondary School	Osei Owusu-Afriyie	\N	C	2016-02-16 15:53:36.371721	2016-02-16 15:53:36.371721
+193	Mott Hall II	Ana De Los Santos	\N	A	2016-02-16 15:53:36.372917	2016-02-16 15:53:36.372917
+194	P.S. 007 Samuel Stern	Racquel Jones	\N	C	2016-02-16 15:53:36.374096	2016-02-16 15:53:36.374096
+195	Tag Young Scholars	Janette Cesar	\N	B	2016-02-16 15:53:36.375289	2016-02-16 15:53:36.375289
+196	J.H.S. 013 Jackie Robinson	Jacob Michelman	\N	C	2016-02-16 15:53:36.376462	2016-02-16 15:53:36.376462
+197	River East Elementary	Alison Mckenzie	\N	C	2016-02-16 15:53:36.377627	2016-02-16 15:53:36.377627
+198	P.S. 38 Roberto Clemente	Norma Caraballo	\N	B	2016-02-16 15:53:36.378784	2016-02-16 15:53:36.378784
+199	M.S. 45/S.T.A.R.S. Prep Academy	Tomasz Grabski	\N	C	2016-02-16 15:53:36.3799	2016-02-16 15:53:36.3799
+200	P.S. 050 Vito Marcantonio	Cynthia Rochez	\N	C	2016-02-16 15:53:36.381078	2016-02-16 15:53:36.381078
+201	James Weldon Johnson	Israel Soto	\N	A	2016-02-16 15:53:36.382229	2016-02-16 15:53:36.382229
+202	The Lexington Academy	Antonio Hernandez	\N	D	2016-02-16 15:53:36.383343	2016-02-16 15:53:36.383343
+203	P.S. 083 Luis Munoz Rivera	Frances Castillo	\N	A	2016-02-16 15:53:36.384374	2016-02-16 15:53:36.384374
+204	P.S. 096 Joseph Lanzetta	Noel Rios	\N	B	2016-02-16 15:53:36.385687	2016-02-16 15:53:36.385687
+205	P.S. 102 Jacques Cartier	Sandra Gittens	\N	B	2016-02-16 15:53:36.386798	2016-02-16 15:53:36.386798
+206	P.S. 108 Assemblyman Angelo Del Toro Educational C	Lourdes Arroyo	\N	A	2016-02-16 15:53:36.387922	2016-02-16 15:53:36.387922
+207	P.S. 112 Jose Celso Barbosa	Eileen Reiter	\N	A	2016-02-16 15:53:36.389151	2016-02-16 15:53:36.389151
+208	P.S. 146 Ann M. Short	Mona Silfen	\N	A	2016-02-16 15:53:36.390409	2016-02-16 15:53:36.390409
+209	P.S. 155 William Paca	Lillian Raimundi Ortiz	\N	B	2016-02-16 15:53:36.391679	2016-02-16 15:53:36.391679
+210	P.S. 171 Patrick Henry	Dimitres Pantelidis	\N	B	2016-02-16 15:53:36.392828	2016-02-16 15:53:36.392828
+211	The Bilingual Bicultural School	Andrea Hernandez	\N	B	2016-02-16 15:53:36.394009	2016-02-16 15:53:36.394009
+212	P.S. 206 Jose Celso Barbosa	Myrna Rodriguez	\N	D	2016-02-16 15:53:36.395188	2016-02-16 15:53:36.395188
+213	M.S. 224 Manhattan East School for Arts & Academic	Liliana Sarro	\N	C	2016-02-16 15:53:36.396314	2016-02-16 15:53:36.396314
+214	ESPERANZA PREPARATORY ACADEMY	Alex Estrella	\N	A	2016-02-16 15:53:36.397513	2016-02-16 15:53:36.397513
+215	Mosaic Preparatory Academy	Lisette Caesar	\N	D	2016-02-16 15:53:36.398875	2016-02-16 15:53:36.398875
+216	Renaissance School of the Arts	Tammy Pate	\N	D	2016-02-16 15:53:36.400147	2016-02-16 15:53:36.400147
+217	Global Neighborhood Secondary School	Luis Genao	\N	B	2016-02-16 15:53:36.401364	2016-02-16 15:53:36.401364
+218	GLOBAL TECHNOLOGY PREPARATORY	Chrystina Russell	\N	A	2016-02-16 15:53:36.402475	2016-02-16 15:53:36.402475
+219	Coalition School for Social Change	Sheldon Young	\N	C	2016-02-16 15:53:36.403597	2016-02-16 15:53:36.403597
+220	Manhattan Center for Science and Mathematics	Jose David Jimenez	\N	A	2016-02-16 15:53:36.404797	2016-02-16 15:53:36.404797
+221	Park East High School	Kevin Mccarthy	\N	A	2016-02-16 15:53:36.406316	2016-02-16 15:53:36.406316
+222	Central Park East I	Julie Zuckerman	\N	C	2016-02-16 15:53:36.407728	2016-02-16 15:53:36.407728
+223	Central Park East High School	Bennett Lieberman	\N	A	2016-02-16 15:53:36.409246	2016-02-16 15:53:36.409246
+224	Young Women's Leadership School	Althea Bradshaw-Tyson	\N	B	2016-02-16 15:53:36.410549	2016-02-16 15:53:36.410549
+225	Young Women's Leadership School	Althea Bradshaw-Tyson	\N	A	2016-02-16 15:53:36.411728	2016-02-16 15:53:36.411728
+226	Academy of Environmental Science Secondary High School	Irma Garceau	\N	\N	2016-02-16 15:53:36.412953	2016-02-16 15:53:36.412953
+227	Heritage School, The	Luis Alberto Duany	\N	B	2016-02-16 15:53:36.414117	2016-02-16 15:53:36.414117
+228	Isaac Newton Middle School for Math & Science	Lisa Nelson	\N	D	2016-02-16 15:53:36.415316	2016-02-16 15:53:36.415316
+229	Central Park East II	Naomi Smith	\N	A	2016-02-16 15:53:36.416562	2016-02-16 15:53:36.416562
+230	P.S. 030 Hernandez/Hughes	Teri Stinson	\N	D	2016-02-16 15:53:36.417772	2016-02-16 15:53:36.417772
+231	P.S. 036 Margaret Douglas	Cynthia Mullins-Simmons	\N	C	2016-02-16 15:53:36.418935	2016-02-16 15:53:36.418935
+232	P.S. 046 Arthur Tappan	George Young	\N	B	2016-02-16 15:53:36.420141	2016-02-16 15:53:36.420141
+233	P.S. 092 Mary McLeod Bethune	Rosa Davila	\N	B	2016-02-16 15:53:36.421328	2016-02-16 15:53:36.421328
+234	P.S. 123 Mahalia Jackson	Beverly Lewis	\N	D	2016-02-16 15:53:36.422507	2016-02-16 15:53:36.422507
+235	P.S. 125 Ralph Bunche	Rafaela Espinal Pacheco	\N	C	2016-02-16 15:53:36.423709	2016-02-16 15:53:36.423709
+236	P.S. 129 John H. Finley	Odelphia Pierre	\N	C	2016-02-16 15:53:36.424909	2016-02-16 15:53:36.424909
+237	P.S. 133 Fred R Moore	Susan M. Vairo	\N	C	2016-02-16 15:53:36.426045	2016-02-16 15:53:36.426045
+238	P.S. 154 Harriet Tubman	Elizabeth Jarrett	\N	D	2016-02-16 15:53:36.427307	2016-02-16 15:53:36.427307
+239	P.S. 161 Pedro Albizu Campos	Barbara Freeman	\N	B	2016-02-16 15:53:36.428536	2016-02-16 15:53:36.428536
+240	P.S. 175 Henry H Garnet	Cheryl Mcclendon	\N	B	2016-02-16 15:53:36.429653	2016-02-16 15:53:36.429653
+241	P.S. 194 Countee Cullen	Charyn Koppelson Cleary	\N	D	2016-02-16 15:53:36.430757	2016-02-16 15:53:36.430757
+242	I.S. 195 Roberto Clemente	Rosarie Jean	\N	\N	2016-02-16 15:53:36.431886	2016-02-16 15:53:36.431886
+243	P.S. 197 John B. Russwurm	Renardo Wright	\N	F	2016-02-16 15:53:36.433022	2016-02-16 15:53:36.433022
+244	P.S. 200- The James Mccune Smith School	Renee Y. Belton	\N	C	2016-02-16 15:53:36.434181	2016-02-16 15:53:36.434181
+245	Harlem Renaissance High School	Nadav Zeimer	\N	B	2016-02-16 15:53:36.435361	2016-02-16 15:53:36.435361
+246	I.S. M286 Renaissance Military Leadership Academy	Qadir Ben Dixon	\N	C	2016-02-16 15:53:36.436496	2016-02-16 15:53:36.436496
+247	KAPPA IV	Briony Carr	\N	A	2016-02-16 15:53:36.437691	2016-02-16 15:53:36.437691
+248	Mott Hall High School	Altagracia Villalona	\N	B	2016-02-16 15:53:36.438886	2016-02-16 15:53:36.438886
+249	Kappa II	Sean Dunning	\N	\N	2016-02-16 15:53:36.440018	2016-02-16 15:53:36.440018
+250	Thurgood Marshall Academy Lower School	Sean Davenport	\N	B	2016-02-16 15:53:36.441219	2016-02-16 15:53:36.441219
+251	Academy of Collaborative Education	Rashaunda Shaw	\N	\N	2016-02-16 15:53:36.442487	2016-02-16 15:53:36.442487
+252	Columbia Secondary School	Gary Biester	\N	A	2016-02-16 15:53:36.443673	2016-02-16 15:53:36.443673
+253	Columbia Secondary School	Gary Biester	\N	\N	2016-02-16 15:53:36.444914	2016-02-16 15:53:36.444914
+254	Academy for Social Action: A College Board School	Rhokeisha Ford	\N	D	2016-02-16 15:53:36.446085	2016-02-16 15:53:36.446085
+255	Academy for Social Action: A College Board School	Rhokeisha Ford	\N	C	2016-02-16 15:53:36.447233	2016-02-16 15:53:36.447233
+256	Urban Assembly School for the Performing Arts	Fia Davis	\N	D	2016-02-16 15:53:36.448489	2016-02-16 15:53:36.448489
+257	THE URBAN ASSEMBLY INSTITUTE FOR NEW TECHNOLOGIES	Travis Brown	\N	B	2016-02-16 15:53:36.449685	2016-02-16 15:53:36.449685
+258	Choir Academy of Harlem	Dr. A. Ellen Parris	\N	B	2016-02-16 15:53:36.450903	2016-02-16 15:53:36.450903
+259	Choir Academy of Harlem	Dr. A. Ellen Parris	\N	C	2016-02-16 15:53:36.452071	2016-02-16 15:53:36.452071
+260	Frederick Douglass Academy	Gregory Hodge	\N	B	2016-02-16 15:53:36.453222	2016-02-16 15:53:36.453222
+261	Frederick Douglass Academy	Gregory Hodge	\N	C	2016-02-16 15:53:36.454421	2016-02-16 15:53:36.454421
+262	Thurgood Marshall Academy for Learning and Social	Sandye Johnson	\N	D	2016-02-16 15:53:36.45559	2016-02-16 15:53:36.45559
+263	Thurgood Marshall Academy for Learning and Social Change	Sandye Johnson	\N	A	2016-02-16 15:53:36.456803	2016-02-16 15:53:36.456803
+264	Bread & Roses Integrated Arts High School	Rodney Lofton	\N	D	2016-02-16 15:53:36.457977	2016-02-16 15:53:36.457977
+265	High School for Mathematics, Science and Engineering at City College	William Dugan	\N	A	2016-02-16 15:53:36.459093	2016-02-16 15:53:36.459093
+266	P.S. 004 Duke Ellington	Delois White	\N	B	2016-02-16 15:53:36.460326	2016-02-16 15:53:36.460326
+267	P.S. 005 Ellen Lurie	Wanda Soto	\N	C	2016-02-16 15:53:36.461573	2016-02-16 15:53:36.461573
+268	P.S. 008 Luis Belliard	Rafaela Landin	\N	B	2016-02-16 15:53:36.462768	2016-02-16 15:53:36.462768
+269	P.S. 018 Park Terrace	Connie Mejia	\N	A	2016-02-16 15:53:36.464262	2016-02-16 15:53:36.464262
+270	P.S. 028 Wright Brothers	Elsa Nunez	\N	B	2016-02-16 15:53:36.465429	2016-02-16 15:53:36.465429
+271	P.S. 048 P.O. Michael J. Buczek	Tracy Walsh	\N	A	2016-02-16 15:53:36.466684	2016-02-16 15:53:36.466684
+272	J.H.S. 052 Inwood	Salvador Fernandez	\N	B	2016-02-16 15:53:36.467932	2016-02-16 15:53:36.467932
+273	P.S. 098 Shorac Kappock	Maritza Rodriguez	\N	C	2016-02-16 15:53:36.469204	2016-02-16 15:53:36.469204
+274	P.S. 115 Alexander Humboldt	Angela Rodriguez	\N	C	2016-02-16 15:53:36.470417	2016-02-16 15:53:36.470417
+275	P.S. 128 Audubon	Rosa Argelia Arredondo	\N	B	2016-02-16 15:53:36.471688	2016-02-16 15:53:36.471688
+276	P.S. 132 Juan Pablo Duarte	Xiomara Nova	\N	D	2016-02-16 15:53:36.473201	2016-02-16 15:53:36.473201
+277	J.H.S. 143 Eleanor Roosevelt	Ourania Pappas	\N	B	2016-02-16 15:53:36.4747	2016-02-16 15:53:36.4747
+278	P.S. 152 Dyckman Valley	Julia Pietri	\N	C	2016-02-16 15:53:36.476399	2016-02-16 15:53:36.476399
+279	P.S. 153 Adam Clayton Powell	Karen Bailey	\N	A	2016-02-16 15:53:36.477629	2016-02-16 15:53:36.477629
+280	P.S. 173	Dawn Boursiquot	\N	B	2016-02-16 15:53:36.478789	2016-02-16 15:53:36.478789
+281	Professor Juan Bosch Public School	Deirdre Budd	\N	B	2016-02-16 15:53:36.480056	2016-02-16 15:53:36.480056
+282	P.S./I.S. 187 Hudson Cliffs	Ms. Cynthia Chory	\N	B	2016-02-16 15:53:36.481328	2016-02-16 15:53:36.481328
+283	P.S. 189	Theresa Luger	\N	A	2016-02-16 15:53:36.482574	2016-02-16 15:53:36.482574
+284	P.S. 192 Jacob H. Schiff	Deborah Schaefer	\N	B	2016-02-16 15:53:36.483786	2016-02-16 15:53:36.483786
+285	P.S./I.S. 210 - Twenty-first Century Academy for	Evelyn Linares	\N	C	2016-02-16 15:53:36.48499	2016-02-16 15:53:36.48499
+286	I.S. 218 Salome Urena	June Barnett	\N	C	2016-02-16 15:53:36.486223	2016-02-16 15:53:36.486223
+287	The Mott Hall School	Cynthia Arndt	\N	B	2016-02-16 15:53:36.487434	2016-02-16 15:53:36.487434
+288	Paula Hedbavny School	Maureen Guido	\N	A	2016-02-16 15:53:36.488633	2016-02-16 15:53:36.488633
+289	City College Academy of the Arts	Bernadette Drysdale	\N	A	2016-02-16 15:53:36.490011	2016-02-16 15:53:36.490011
+290	City College Academy of the Arts	Bernadette Drysdale	\N	\N	2016-02-16 15:53:36.491308	2016-02-16 15:53:36.491308
+291	Amistad Dual Language School	Miriam Pedraja	\N	A	2016-02-16 15:53:36.492501	2016-02-16 15:53:36.492501
+292	Muscota	Camille Wallin	\N	C	2016-02-16 15:53:36.493783	2016-02-16 15:53:36.493783
+293	M.S. 319 - Maria Teresa	Ysidro Abreu	\N	A	2016-02-16 15:53:36.495096	2016-02-16 15:53:36.495096
+294	M.S. 321 - Minerva	Pamela Russell-Glover	\N	\N	2016-02-16 15:53:36.496366	2016-02-16 15:53:36.496366
+295	Middle School 322	Erica Zigelman	\N	C	2016-02-16 15:53:36.497599	2016-02-16 15:53:36.497599
+296	M.S. 324 - Patria Mirabal	Janet Heller	\N	A	2016-02-16 15:53:36.498843	2016-02-16 15:53:36.498843
+297	P.S. 325	Gary H. Cruz	\N	C	2016-02-16 15:53:36.500006	2016-02-16 15:53:36.500006
+298	M.S. 326 - Writers Today & Leaders Tomorrow	Sharon Weissbrot	\N	A	2016-02-16 15:53:36.501298	2016-02-16 15:53:36.501298
+299	M.S. 328 - Manhattan Middle School for Scientific	Jorge Estrella	\N	B	2016-02-16 15:53:36.509209	2016-02-16 15:53:36.509209
+300	Community Health Academy of the Heights	Stephania Vu	\N	C	2016-02-16 15:53:36.51129	2016-02-16 15:53:36.51129
+301	Community Health Academy of the Heights	Stephania Vu	\N	\N	2016-02-16 15:53:36.512861	2016-02-16 15:53:36.512861
+302	Washington Heights Expeditionary Learning School	Brett Kimmel	\N	A	2016-02-16 15:53:36.514266	2016-02-16 15:53:36.514266
+303	Washington Heights Expeditionary Learning School	Brett Kimmel	\N	\N	2016-02-16 15:53:36.51568	2016-02-16 15:53:36.51568
+304	Harbor Heights	Monica Klehr	\N	A	2016-02-16 15:53:36.517004	2016-02-16 15:53:36.517004
+305	Washington Heights Academy	Crystal M. Felix	\N	B	2016-02-16 15:53:36.518262	2016-02-16 15:53:36.518262
+306	Hamilton Heights School	Alva Buxenbaum	\N	A	2016-02-16 15:53:36.519492	2016-02-16 15:53:36.519492
+307	High School for Excellence and Innovation	Tyona Washington	\N	\N	2016-02-16 15:53:36.520588	2016-02-16 15:53:36.520588
+308	George Washington Yabc	Samuel Akel	\N	A	2016-02-16 15:53:36.521772	2016-02-16 15:53:36.521772
+309	High School for International Business and Finance	Peter Sloman	\N	C	2016-02-16 15:53:36.523039	2016-02-16 15:53:36.523039
+310	High School for Media and Communications	Ronni Michelen	\N	C	2016-02-16 15:53:36.524427	2016-02-16 15:53:36.524427
+311	High School for Law and Public Service	Nicholas Politis	\N	A	2016-02-16 15:53:36.526005	2016-02-16 15:53:36.526005
+312	High School for Health Careers and Sciences	Harris Marmor	\N	D	2016-02-16 15:53:36.527498	2016-02-16 15:53:36.527498
+313	I.S. 528 Bea Fuller Rodgers School	Kristy Dela Cruz	\N	D	2016-02-16 15:53:36.52901	2016-02-16 15:53:36.52901
+314	A. Philip Randolph Campus High School	Henry Rubio	\N	C	2016-02-16 15:53:36.530393	2016-02-16 15:53:36.530393
+315	Gregorio Luperon High School for Science and Mathematics	Juan Villar	\N	A	2016-02-16 15:53:36.53158	2016-02-16 15:53:36.53158
+316	P.S. 001 Courtlandt School	Jorge Perdomo	\N	D	2016-02-16 15:53:36.532637	2016-02-16 15:53:36.532637
+317	P.S. 005 Port Morris	Mary Padilla	\N	B	2016-02-16 15:53:36.533721	2016-02-16 15:53:36.533721
+318	P.S. 018 John Peter Zenger	Jasmin Varela	\N	A	2016-02-16 15:53:36.534792	2016-02-16 15:53:36.534792
+319	P.S. 025 Bilingual School	Carmen Toledo	\N	B	2016-02-16 15:53:36.535903	2016-02-16 15:53:36.535903
+320	P.S./M.S. 029 Melrose School	Meredith Gotlin	\N	D	2016-02-16 15:53:36.537111	2016-02-16 15:53:36.537111
+321	P.S. 030 Wilton	\N	\N	A	2016-02-16 15:53:36.538262	2016-02-16 15:53:36.538262
+322	P.S./M.S. 031 The William Lloyd Garrison	Liza Diaz	\N	C	2016-02-16 15:53:36.539424	2016-02-16 15:53:36.539424
+323	P.S. 043 Jonas Bronck	Giovanna Delucchi	\N	A	2016-02-16 15:53:36.540636	2016-02-16 15:53:36.540636
+324	P.S. 049 Willis Avenue	Laura Galloway	\N	B	2016-02-16 15:53:36.541726	2016-02-16 15:53:36.541726
+325	P.S. 065 Mother Hale Academy	Jasmine Gonzalez	\N	B	2016-02-16 15:53:36.54292	2016-02-16 15:53:36.54292
+326	J.H.S. 151 Lou Gehrig	Socorro Rivera	\N	A	2016-02-16 15:53:36.544152	2016-02-16 15:53:36.544152
+327	P.S. 154 Jonathan D. Hyatt	Marsha Elliott	\N	C	2016-02-16 15:53:36.545309	2016-02-16 15:53:36.545309
+328	P.S. 157 Grove Hill	Ramona Duran	\N	C	2016-02-16 15:53:36.54653	2016-02-16 15:53:36.54653
+329	P.S. 161 Ponce De Leon	Mark Weisman	\N	B	2016-02-16 15:53:36.547923	2016-02-16 15:53:36.547923
+330	J.H.S. 162 Lola Rodriguez De Tio	Maryann Manzolillo	\N	C	2016-02-16 15:53:36.549168	2016-02-16 15:53:36.549168
+331	P.S. 179	Sherry Font Williams	\N	F	2016-02-16 15:53:36.550388	2016-02-16 15:53:36.550388
+332	M.S. 203	William Hewlett Jr	\N	C	2016-02-16 15:53:36.551588	2016-02-16 15:53:36.551588
+333	South Bronx Preparatory: A College Board School	Ellen Reddon Flanagan	\N	C	2016-02-16 15:53:36.552709	2016-02-16 15:53:36.552709
+334	South Bronx Preparatory: A College Board School	Ellen Reddon Flanagan	\N	A	2016-02-16 15:53:36.553868	2016-02-16 15:53:36.553868
+335	M.S. 223 The Laboratory School of Finance and Tech	Ramon Gonzalez	\N	B	2016-02-16 15:53:36.554974	2016-02-16 15:53:36.554974
+336	P.S. / I.S. 224	Sojourner Welch	\N	D	2016-02-16 15:53:36.556118	2016-02-16 15:53:36.556118
+337	P.S. 277	Cheryl Tyler	\N	F	2016-02-16 15:53:36.55722	2016-02-16 15:53:36.55722
+338	South Bronx Academy for Applied Media	Roshone Ault	\N	A	2016-02-16 15:53:36.558304	2016-02-16 15:53:36.558304
+339	Academy of Public Relations	Barry Marks	\N	A	2016-02-16 15:53:36.55971	2016-02-16 15:53:36.55971
+340	Crotona Academy High School	Anthony W. Harris	\N	C	2016-02-16 15:53:36.560912	2016-02-16 15:53:36.560912
+341	International Community High School	Berena Cabarcas	\N	A	2016-02-16 15:53:36.562159	2016-02-16 15:53:36.562159
+342	Academy of Applied Mathematics and Technology	Vincent Gassetto	\N	A	2016-02-16 15:53:36.563352	2016-02-16 15:53:36.563352
+343	Young Leaders Elementary School	Karen Collins	\N	D	2016-02-16 15:53:36.564432	2016-02-16 15:53:36.564432
+344	Jill Chaifetz Transfer High School	Anne Fennelly	\N	C	2016-02-16 15:53:36.565665	2016-02-16 15:53:36.565665
+345	Bronx Haven High School	Lucinda Mendez	\N	C	2016-02-16 15:53:36.56703	2016-02-16 15:53:36.56703
+346	Performance School	Lourdes Estrella	\N	C	2016-02-16 15:53:36.568341	2016-02-16 15:53:36.568341
+347	Community School for Social Justice	Sue-Ann Rosch	\N	C	2016-02-16 15:53:36.569617	2016-02-16 15:53:36.569617
+348	Alfred E. Smith Campus YABC	David Martin	\N	A	2016-02-16 15:53:36.571165	2016-02-16 15:53:36.571165
+349	Mott Haven Village Preparatory High School	Flavia Puello Perdomo	\N	B	2016-02-16 15:53:36.572556	2016-02-16 15:53:36.572556
+350	University Heights Secondary School	Hazel Joseph Roseboro	\N	A	2016-02-16 15:53:36.57393	2016-02-16 15:53:36.57393
+351	Hostos-Lincoln Academy of Science	Nicholas Paarlberg	\N	C	2016-02-16 15:53:36.575201	2016-02-16 15:53:36.575201
+352	Hostos-Lincoln Academy of Science	Nicholas Paarlberg	\N	B	2016-02-16 15:53:36.576472	2016-02-16 15:53:36.576472
+353	Foreign Language Academy of Global Studies	Leba Collins Augone	\N	C	2016-02-16 15:53:36.577587	2016-02-16 15:53:36.577587
+354	Bronx Leadership Academy II High School	Katherine Callaghan	\N	B	2016-02-16 15:53:36.578909	2016-02-16 15:53:36.578909
+355	New Explorers High School	Jacob Hobson	\N	B	2016-02-16 15:53:36.580311	2016-02-16 15:53:36.580311
+356	Urban Assembly School for Careers in Sports	Johanny Garcia	\N	A	2016-02-16 15:53:36.58165	2016-02-16 15:53:36.58165
+357	Bronx Academy of Letters	Anna Hall	\N	C	2016-02-16 15:53:36.583145	2016-02-16 15:53:36.583145
+358	Bronx Academy of Letters	Anna Hall	\N	A	2016-02-16 15:53:36.584607	2016-02-16 15:53:36.584607
+359	Alfred E. Smith Career and Technical Education High School	Rene Cassanova	\N	C	2016-02-16 15:53:36.585886	2016-02-16 15:53:36.585886
+360	Samuel Gompers Career and Technical Education High School	Joyce Mills Kittrell	\N	F	2016-02-16 15:53:36.587222	2016-02-16 15:53:36.587222
+361	Health Opportunities High School	Carron Staple	\N	B	2016-02-16 15:53:36.589107	2016-02-16 15:53:36.589107
+362	P.S. X014 Senator John Calandra	Ira Schulman	\N	D	2016-02-16 15:53:36.591114	2016-02-16 15:53:36.591114
+363	P.S. 036 Unionport	Elvira Maresca	\N	B	2016-02-16 15:53:36.592383	2016-02-16 15:53:36.592383
+364	P.S. 048 Joseph R. Drake	Roxanne Cardona	\N	A	2016-02-16 15:53:36.593593	2016-02-16 15:53:36.593593
+365	P.S. 062 Inocensio Casanova	Lisa Manfredonia	\N	A	2016-02-16 15:53:36.594817	2016-02-16 15:53:36.594817
+366	P.S. 069 The New Vision School	Sheila Durant	\N	A	2016-02-16 15:53:36.595991	2016-02-16 15:53:36.595991
+367	P.S. 071 Rose E. Scala	Lance Cooper	\N	C	2016-02-16 15:53:36.5971	2016-02-16 15:53:36.5971
+368	P.S. 072 Dr. William Dorney	Margarita Colon	\N	C	2016-02-16 15:53:36.598455	2016-02-16 15:53:36.598455
+369	P.S. 075	Marines Arrieta-Cruz	\N	A	2016-02-16 15:53:36.599691	2016-02-16 15:53:36.599691
+370	P.S. 093 Albert G. Oliver	Donald Mattson	\N	A	2016-02-16 15:53:36.600897	2016-02-16 15:53:36.600897
+371	P.S. 100 Isaac Clason	Chad Adam Altman	\N	B	2016-02-16 15:53:36.601985	2016-02-16 15:53:36.601985
+372	M.S. X101 Edward R. Byrne	Kim Hampton Hewitt	\N	B	2016-02-16 15:53:36.60324	2016-02-16 15:53:36.60324
+373	P.S. 107	Katherine Hamm	\N	C	2016-02-16 15:53:36.604435	2016-02-16 15:53:36.604435
+374	P.S. 119	Lydia Tyner	\N	B	2016-02-16 15:53:36.605649	2016-02-16 15:53:36.605649
+375	J.H.S. 123 James M. Kieran	Tyra Williams	\N	B	2016-02-16 15:53:36.60687	2016-02-16 15:53:36.60687
+376	J.H.S. 125 Henry Hudson	Hilda Bairan	\N	C	2016-02-16 15:53:36.608102	2016-02-16 15:53:36.608102
+377	P.S. 130 Abram Stevens Hewitt	Lourdes Velazquez	\N	C	2016-02-16 15:53:36.609318	2016-02-16 15:53:36.609318
+378	J.H.S. 131 Albert Einstein	Edward C. Leotta	\N	C	2016-02-16 15:53:36.610504	2016-02-16 15:53:36.610504
+379	P.S. 138 Samuel Randall	Lorraine Carrol-Dawkins	\N	C	2016-02-16 15:53:36.61165	2016-02-16 15:53:36.61165
+380	P.S. X140 The Eagle School	Paul Cannon	\N	C	2016-02-16 15:53:36.612864	2016-02-16 15:53:36.612864
+381	P.S. 146 Edward Collins	Janet Sanderson-Brown	\N	B	2016-02-16 15:53:36.614013	2016-02-16 15:53:36.614013
+382	P.S. 152 Evergreen	Frances Lynch	\N	A	2016-02-16 15:53:36.615161	2016-02-16 15:53:36.615161
+383	P.S. 182	Anne O'Grady	\N	B	2016-02-16 15:53:36.61628	2016-02-16 15:53:36.61628
+384	Bronx Studio School for Writers and Artists	David Vazquez	\N	C	2016-02-16 15:53:36.617364	2016-02-16 15:53:36.617364
+385	Bronx Studio School for Writers and Artists	David Vazquez	\N	\N	2016-02-16 15:53:36.618479	2016-02-16 15:53:36.618479
+386	Women's Academy of Excellence	Arnette Crocker	\N	B	2016-02-16 15:53:36.619598	2016-02-16 15:53:36.619598
+387	Renaissance High School for Musical Theater & Technology	Maria N Herrera	\N	B	2016-02-16 15:53:36.620733	2016-02-16 15:53:36.620733
+388	Gateway School for Environmental Research and Technology	Clifford Siegel	\N	D	2016-02-16 15:53:36.621878	2016-02-16 15:53:36.621878
+389	M.S. 301 Paul L. Dunbar	Benjamin Basile	\N	C	2016-02-16 15:53:36.623033	2016-02-16 15:53:36.623033
+390	M.S. 302 Luisa Dessus Cruz	Angel Rodriguez	\N	A	2016-02-16 15:53:36.624193	2016-02-16 15:53:36.624193
+391	P.S. 304 Early Childhood School	Joseph Nobile	\N	B	2016-02-16 15:53:36.625326	2016-02-16 15:53:36.625326
+392	Pablo Neruda Academy for Architecture and World Studies	Sabrina Cook	\N	B	2016-02-16 15:53:36.626447	2016-02-16 15:53:36.626447
+393	Millennium Art Academy	Maxine Nodel	\N	A	2016-02-16 15:53:36.627519	2016-02-16 15:53:36.627519
+394	Holcombe L. Rucker School of Community Research	Sharif Rucker	\N	D	2016-02-16 15:53:36.628878	2016-02-16 15:53:36.628878
+395	P.S. 333 - The Museum School	Arthur Brown	\N	C	2016-02-16 15:53:36.630172	2016-02-16 15:53:36.630172
+396	The Academy of the Arts	Erik Wright	\N	B	2016-02-16 15:53:36.631369	2016-02-16 15:53:36.631369
+397	The School for Inquiry and Social Justice	Andrea Cyprys	\N	A	2016-02-16 15:53:36.632619	2016-02-16 15:53:36.632619
+398	Urban Assembly Academy of Civic Engagement	Cameron Berube	\N	C	2016-02-16 15:53:36.633747	2016-02-16 15:53:36.633747
+399	Archimedes Academy for Math, Science and Technolog	Miriam Lazar	\N	B	2016-02-16 15:53:36.634935	2016-02-16 15:53:36.634935
+400	Archimedes Academy for Math, Science and Technology Applications	Miriam Lazar	\N	\N	2016-02-16 15:53:36.636042	2016-02-16 15:53:36.636042
+401	Urban Institute of Mathematics	Jennifer Joynt	\N	B	2016-02-16 15:53:36.637173	2016-02-16 15:53:36.637173
+402	The Bronx Mathematics Preparatory School	Mark D. Clarke	\N	C	2016-02-16 15:53:36.638263	2016-02-16 15:53:36.638263
+403	Antonia Pantoja Preparatory Academy, A College Boa	Nancy Jacqueline Diaz	\N	B	2016-02-16 15:53:36.639463	2016-02-16 15:53:36.639463
+404	Antonia Pantoja Preparatory Academy, A College Board School	Nancy Jacqueline Diaz	\N	\N	2016-02-16 15:53:36.640635	2016-02-16 15:53:36.640635
+405	Bronx Community High School	Flora Greenaway	\N	B	2016-02-16 15:53:36.641722	2016-02-16 15:53:36.641722
+406	Herbert H. Lehman High School	Dr. Janet Saraceno	\N	F	2016-02-16 15:53:36.642818	2016-02-16 15:53:36.642818
+407	Herbert H. Lehman Yabc	Martin Smallhorne	\N	A	2016-02-16 15:53:36.644	2016-02-16 15:53:36.644
+408	The Hunts Point School	John Hughes	\N	C	2016-02-16 15:53:36.645159	2016-02-16 15:53:36.645159
+409	BRONX BRIDGES HIGH SCHOOL	Pablo Villavicencio	\N	\N	2016-02-16 15:53:36.646501	2016-02-16 15:53:36.646501
+410	SOUNDVIEW ACADEMY FOR CULTURE AND SCHOLARSHIP	William Frackelton	\N	D	2016-02-16 15:53:36.647668	2016-02-16 15:53:36.647668
+411	Bronx Guild	Sam Decker	\N	B	2016-02-16 15:53:36.648892	2016-02-16 15:53:36.648892
+412	MOTT HALL COMMUNITY SCHOOL	Geovanti Steward	\N	B	2016-02-16 15:53:36.650093	2016-02-16 15:53:36.650093
+413	Stevenson Yabc	Gladys De La Cruz	\N	D	2016-02-16 15:53:36.651299	2016-02-16 15:53:36.651299
+414	Felisa Rincon de Gautier Institute for Law and Public Policy, The	Ms. Grismaldy Laboy-Wilson	\N	B	2016-02-16 15:53:36.652522	2016-02-16 15:53:36.652522
+415	Banana Kelly High School	Joshua Laub	\N	C	2016-02-16 15:53:36.653682	2016-02-16 15:53:36.653682
+416	School for Community Research and Learning	John Tornifolio	\N	\N	2016-02-16 15:53:36.654884	2016-02-16 15:53:36.654884
+417	High School X560 - Bronx Academy High School	Gary Eisinger	\N	\N	2016-02-16 15:53:36.655936	2016-02-16 15:53:36.655936
+418	Jane Addams High School for Academic Careers	Sharron Smalls	\N	F	2016-02-16 15:53:36.656965	2016-02-16 15:53:36.656965
+419	P.S. 002 Morrisania	Lisa Debonis	\N	\N	2016-02-16 15:53:36.65802	2016-02-16 15:53:36.65802
+420	P.S./M.S. 004 Crotona Park West	Vincent Resto	\N	C	2016-02-16 15:53:36.659264	2016-02-16 15:53:36.659264
+421	P.S. 011 Highbridge	Elizabeth Hachar	\N	D	2016-02-16 15:53:36.660526	2016-02-16 15:53:36.660526
+422	J.H.S. 022 Jordan L. Mott	Linda Rosenbury	\N	C	2016-02-16 15:53:36.661669	2016-02-16 15:53:36.661669
+423	P.S. 028 Mount Hope	Marie Barresi	\N	B	2016-02-16 15:53:36.662779	2016-02-16 15:53:36.662779
+424	P.S. 035 Franz Siegel	Graciela Navarro	\N	B	2016-02-16 15:53:36.664004	2016-02-16 15:53:36.664004
+425	P.S. 042 Claremont	Patricia Rigot Kulow	\N	C	2016-02-16 15:53:36.665177	2016-02-16 15:53:36.665177
+426	P.S. 053 Basheer Quisim	Collin Wolfe	\N	B	2016-02-16 15:53:36.666417	2016-02-16 15:53:36.666417
+427	P.S. 055 Benjamin Franklin	Luis Torres	\N	B	2016-02-16 15:53:36.66761	2016-02-16 15:53:36.66761
+428	P.S. 058	Velma Gunn	\N	D	2016-02-16 15:53:36.668829	2016-02-16 15:53:36.668829
+429	P.S. 063 Author's Academy	Reinaldo Diaz-Lens	\N	C	2016-02-16 15:53:36.670051	2016-02-16 15:53:36.670051
+430	P.S. 064 Pura Belpre	Tara Obrien	\N	D	2016-02-16 15:53:36.67124	2016-02-16 15:53:36.67124
+431	P.S. 070 Max Schoenfeld	Kerry Castellano	\N	C	2016-02-16 15:53:36.672511	2016-02-16 15:53:36.672511
+432	P.S. 073 Bronx	Jean Mirvil	\N	A	2016-02-16 15:53:36.673859	2016-02-16 15:53:36.673859
+433	P.S. X088 - S. Silverstein Little Sparrow School	Melinda Hyer	\N	B	2016-02-16 15:53:36.675079	2016-02-16 15:53:36.675079
+434	P.S. 090 George Meany	Joan Kong	\N	\N	2016-02-16 15:53:36.676204	2016-02-16 15:53:36.676204
+435	P.S. 109 Sedgwick	Amanda Blatter	\N	B	2016-02-16 15:53:36.677265	2016-02-16 15:53:36.677265
+436	P.S. 110 Theodore Schoenfeld	Daisy Perez	\N	B	2016-02-16 15:53:36.678338	2016-02-16 15:53:36.678338
+437	P.S. X114 - Luis Llorens Torres Schools	Olivia Francis-Webber	\N	F	2016-02-16 15:53:36.679406	2016-02-16 15:53:36.679406
+438	I.S. 117 Joseph H. Wade	Delise Jones	\N	C	2016-02-16 15:53:36.68048	2016-02-16 15:53:36.68048
+439	P.S. 126 Dr Marjorie H Dunbar	Nadine Kee-Foster	\N	A	2016-02-16 15:53:36.681699	2016-02-16 15:53:36.681699
+440	Mott Hall III	Jorisis Stupart	\N	A	2016-02-16 15:53:36.682878	2016-02-16 15:53:36.682878
+441	P.S. 132 Garret A. Morgan	Anissa Chalmers	\N	C	2016-02-16 15:53:36.684134	2016-02-16 15:53:36.684134
+442	J.H.S. 145 Arturo Toscanini	Robert Hannibal	\N	B	2016-02-16 15:53:36.685397	2016-02-16 15:53:36.685397
+443	P.S. 163 Arthur A. Schomburg	Dilsia Martinez	\N	C	2016-02-16 15:53:36.686622	2016-02-16 15:53:36.686622
+444	J.H.S. 166 Roberto Clemente	Lauren Reiss	\N	\N	2016-02-16 15:53:36.687821	2016-02-16 15:53:36.687821
+445	P.S. 170	Nancy Ramos	\N	B	2016-02-16 15:53:36.689014	2016-02-16 15:53:36.689014
+446	P.S. 199X - The Shakespeare School	Lilia Navarrete	\N	A	2016-02-16 15:53:36.69023	2016-02-16 15:53:36.69023
+447	P.S. 204 Morris Heights	Marcy Glattstein	\N	B	2016-02-16 15:53:36.691425	2016-02-16 15:53:36.691425
+448	Kappa	Sheri Warren	\N	B	2016-02-16 15:53:36.692645	2016-02-16 15:53:36.692645
+449	P.S./I.S. 218 Rafael Hernandez Dual Language Magne	Leticia Rosario	\N	C	2016-02-16 15:53:36.693845	2016-02-16 15:53:36.693845
+450	I.S. 219 New Venture School	Dominic Cipollone	\N	C	2016-02-16 15:53:36.694994	2016-02-16 15:53:36.694994
+451	Bronx Expeditionary Learning High School	D White	\N	B	2016-02-16 15:53:36.696132	2016-02-16 15:53:36.696132
+452	I.S. 229 Roland Patterson	Ezra Matthias	\N	B	2016-02-16 15:53:36.697286	2016-02-16 15:53:36.697286
+453	P.S. 230 Dr Roland N. Patterson	Rowena Penn-Jackson	\N	C	2016-02-16 15:53:36.698532	2016-02-16 15:53:36.698532
+454	Eagle Academy for Young Men	Jonathan Foy	\N	B	2016-02-16 15:53:36.699808	2016-02-16 15:53:36.699808
+455	I.S. 232	Neifi Acosta	\N	A	2016-02-16 15:53:36.701091	2016-02-16 15:53:36.701091
+456	P.S. 236 Langston Hughes	Beverly Ellis	\N	C	2016-02-16 15:53:36.702378	2016-02-16 15:53:36.702378
+457	Urban Assembly Academy for History and Citizenship for Young Men, The	Avis Terrell	\N	\N	2016-02-16 15:53:36.710495	2016-02-16 15:53:36.710495
+458	Urban Assembly School for Applied Math and Science	Kenneth Baum	\N	B	2016-02-16 15:53:36.712018	2016-02-16 15:53:36.712018
+459	Urban Assembly School for Applied Math and Science, The	Kenneth Baum	\N	A	2016-02-16 15:53:36.7132	2016-02-16 15:53:36.7132
+460	Eximius College Preparatory Academy: A College Boa	Tammy Smith	\N	\N	2016-02-16 15:53:36.714495	2016-02-16 15:53:36.714495
+461	Eximius College Preparatory Academy: A College Board School	Tammy Smith	\N	B	2016-02-16 15:53:36.715772	2016-02-16 15:53:36.715772
+462	Mott Hall Bronx High School	David Tinagero	\N	B	2016-02-16 15:53:36.717026	2016-02-16 15:53:36.717026
+463	Bronx Center for Science and Mathematics	Edward Tom	\N	A	2016-02-16 15:53:36.718289	2016-02-16 15:53:36.718289
+464	Validus Preparatory Academy: An Expeditionary Learning School	Brady Smith	\N	C	2016-02-16 15:53:36.719511	2016-02-16 15:53:36.719511
+465	Leadership Institute	Marta Colon	\N	C	2016-02-16 15:53:36.720814	2016-02-16 15:53:36.720814
+466	Morris Academy for Collaborative Studies	Charles Osewalt	\N	B	2016-02-16 15:53:36.722157	2016-02-16 15:53:36.722157
+467	I.S. X303 Leadership & Community Service	Patricia Bentley	\N	C	2016-02-16 15:53:36.72353	2016-02-16 15:53:36.72353
+468	I.S. 313 School of Leadership Development	Lauren Wilkins	\N	C	2016-02-16 15:53:36.724868	2016-02-16 15:53:36.724868
+469	Bronx Writing Academy	Kamar Samuels	\N	C	2016-02-16 15:53:36.726106	2016-02-16 15:53:36.726106
+470	Bronx Early College Academy for Teaching & Learnin	John Barnes	\N	C	2016-02-16 15:53:36.727312	2016-02-16 15:53:36.727312
+471	Bronx Early College Academy for Teaching & Learning	John Barnes	\N	\N	2016-02-16 15:53:36.728582	2016-02-16 15:53:36.728582
+472	Urban Science Academy	Patrick Kelly	\N	C	2016-02-16 15:53:36.729773	2016-02-16 15:53:36.729773
+473	Comprehensive Model School Project M.S. 327	Manuel Ramirez	\N	B	2016-02-16 15:53:36.731274	2016-02-16 15:53:36.731274
+474	New Millennium Business Academy Middle School	Dorald Bastian	\N	D	2016-02-16 15:53:36.732706	2016-02-16 15:53:36.732706
+475	DreamYard Preparatory School	Rod Bowen	\N	D	2016-02-16 15:53:36.73401	2016-02-16 15:53:36.73401
+476	I.S. 339	Jason Levy	\N	D	2016-02-16 15:53:36.735306	2016-02-16 15:53:36.735306
+477	Academy for Language and Technology	Arisleyda Urena	\N	A	2016-02-16 15:53:36.736593	2016-02-16 15:53:36.736593
+478	Bronx International High School	Joaquin Vega	\N	A	2016-02-16 15:53:36.737877	2016-02-16 15:53:36.737877
+479	School for Excellence	Carmen Bardeguez Brown	\N	B	2016-02-16 15:53:36.739124	2016-02-16 15:53:36.739124
+480	Bronx High School of Business	Enrique Lizardi	\N	C	2016-02-16 15:53:36.740471	2016-02-16 15:53:36.740471
+481	Bronx High School for Medical Science	William Quintana	\N	B	2016-02-16 15:53:36.741792	2016-02-16 15:53:36.741792
+482	Bronx High School for Medical Science	William Quintana	\N	C	2016-02-16 15:53:36.743119	2016-02-16 15:53:36.743119
+483	Jonathan Levin High School for Media and Communications	Nasib Hoxha	\N	C	2016-02-16 15:53:36.74441	2016-02-16 15:53:36.74441
+484	THE FAMILY SCHOOL	Pamela Lee	\N	D	2016-02-16 15:53:36.745662	2016-02-16 15:53:36.745662
+485	SCIENCE AND TECHNOLOGY ACADEMY: A MOTT HALL SCHOOL	Dr. Patrick Awosogba	\N	A	2016-02-16 15:53:36.746909	2016-02-16 15:53:36.746909
+486	SHERIDAN ACADEMY FOR YOUNG LEADERS	Lisette Febus	\N	C	2016-02-16 15:53:36.748191	2016-02-16 15:53:36.748191
+487	Bronx School for Law, Government and Justice	Meisha Ross-Porter	\N	C	2016-02-16 15:53:36.749432	2016-02-16 15:53:36.749432
+488	Bronx School for Law, Government and Justice	Meisha Ross-Porter	\N	C	2016-02-16 15:53:36.750632	2016-02-16 15:53:36.750632
+489	Frederick Douglass Academy III Secondary School	Rahesha Amon	\N	\N	2016-02-16 15:53:36.751812	2016-02-16 15:53:36.751812
+490	Frederick Douglass Academy III Secondary School	Rahesha Amon	\N	B	2016-02-16 15:53:36.753106	2016-02-16 15:53:36.753106
+491	Bronx Leadership Academy High School	Kenneth Gaskins,jr.	\N	B	2016-02-16 15:53:36.754373	2016-02-16 15:53:36.754373
+492	High School for Violin and Dance	Franklin Sim	\N	A	2016-02-16 15:53:36.755538	2016-02-16 15:53:36.755538
+493	P.S. 3 Raul Julia Micro Society	Denise Brown	\N	B	2016-02-16 15:53:36.756963	2016-02-16 15:53:36.756963
+494	P.S. 007 Kingsbridge	Frank Patterson	\N	A	2016-02-16 15:53:36.75825	2016-02-16 15:53:36.75825
+495	P.S. 008 Issac Varian	Rosa Maria Peralta	\N	B	2016-02-16 15:53:36.759502	2016-02-16 15:53:36.759502
+496	P.S. 9 Ryer Avenue Elementary School	Jacqueline Bailey	\N	C	2016-02-16 15:53:36.760756	2016-02-16 15:53:36.760756
+497	P.S. X015 Institute for Environmental Learning	Tara Edmonds	\N	A	2016-02-16 15:53:36.761995	2016-02-16 15:53:36.761995
+498	P.S. 20 P.O.George J. Werdan III	Carol Carlsen	\N	C	2016-02-16 15:53:36.763242	2016-02-16 15:53:36.763242
+499	P.S. 023 The New Children's School	Shirley Torres	\N	B	2016-02-16 15:53:36.7646	2016-02-16 15:53:36.7646
+500	P.S. 024 Spuyten Duyvil	Donna Connelly	\N	B	2016-02-16 15:53:36.766038	2016-02-16 15:53:36.766038
+501	P.S. 032 Belmont	Esther Schwartz	\N	B	2016-02-16 15:53:36.767281	2016-02-16 15:53:36.767281
+502	P.S. 033 Timothy Dwight	Lynette Santos	\N	C	2016-02-16 15:53:36.76857	2016-02-16 15:53:36.76857
+503	P.S. X037 - Multiple Intelligence School	Kenneth Petriccione	\N	C	2016-02-16 15:53:36.769919	2016-02-16 15:53:36.769919
+504	Thomas C. Giordano Middle School 45	Annamaria Giordano	\N	C	2016-02-16 15:53:36.771243	2016-02-16 15:53:36.771243
+505	P.S. 046 Edgar Allan Poe	Jennifer Alexander-Ade	\N	C	2016-02-16 15:53:36.772533	2016-02-16 15:53:36.772533
+506	P.S. 051 Bronx New School	Paul Smith	\N	A	2016-02-16 15:53:36.773802	2016-02-16 15:53:36.773802
+507	P.S. / I.S. 54	Maribelle Nunez-Pardo	\N	D	2016-02-16 15:53:36.77515	2016-02-16 15:53:36.77515
+508	P.S. 056 Norwood Heights	Priscilla Sheeran	\N	A	2016-02-16 15:53:36.776395	2016-02-16 15:53:36.776395
+509	P.S. 059 The Community School of Technology	Christine Mchugh	\N	B	2016-02-16 15:53:36.777711	2016-02-16 15:53:36.777711
+510	P.S. 079 Creston	Angelyn Donald	\N	\N	2016-02-16 15:53:36.778926	2016-02-16 15:53:36.778926
+511	J.H.S. 080 The Mosholu Parkway	Lovey Mazique-Rivera	\N	C	2016-02-16 15:53:36.780028	2016-02-16 15:53:36.780028
+512	P.S. 081 Robert J. Christen	Melodie Mashel	\N	C	2016-02-16 15:53:36.781301	2016-02-16 15:53:36.781301
+513	P.S. 085 Great Expectations	Ted Husted	\N	C	2016-02-16 15:53:36.782526	2016-02-16 15:53:36.782526
+514	P.S. 086 Kingsbridge Heights	Sheldon Benardo	\N	A	2016-02-16 15:53:36.783917	2016-02-16 15:53:36.783917
+515	P.S. 091 Bronx	Meridith Struhl Nasjlett	\N	C	2016-02-16 15:53:36.785611	2016-02-16 15:53:36.785611
+516	P.S. 094 Kings College School	Diane Daprocida	\N	C	2016-02-16 15:53:36.787226	2016-02-16 15:53:36.787226
+517	P.S. 095 Sheila Mencher	Serge Marshall Davis	\N	C	2016-02-16 15:53:36.788708	2016-02-16 15:53:36.788708
+518	J.H.S. 118 William W. Niles	Elizabeth Lawrence	\N	C	2016-02-16 15:53:36.79022	2016-02-16 15:53:36.79022
+519	Riverdale / Kingsbridge Academy (Middle School / H	Lori O'Mara	\N	C	2016-02-16 15:53:36.791862	2016-02-16 15:53:36.791862
+520	Riverdale / Kingsbridge Academy (Middle School / High School 141)	Lori O'mara	\N	A	2016-02-16 15:53:36.793339	2016-02-16 15:53:36.793339
+521	P.S. 159 Luis Munoz Marin Biling	Luis Liz	\N	C	2016-02-16 15:53:36.794852	2016-02-16 15:53:36.794852
+522	P.S. 205 Fiorello Laguardia	Carol Rosado	\N	B	2016-02-16 15:53:36.796214	2016-02-16 15:53:36.796214
+523	I.S. 206 Ann Mersereau	David Neering	\N	C	2016-02-16 15:53:36.797592	2016-02-16 15:53:36.797592
+524	P.S. 207	Maria Rosado	\N	C	2016-02-16 15:53:36.798813	2016-02-16 15:53:36.798813
+525	P.S. 209	Anne Keegan	\N	B	2016-02-16 15:53:36.800071	2016-02-16 15:53:36.800071
+526	Bronx Engineering and Technology Academy	Karalyne Sperling	\N	C	2016-02-16 15:53:36.801382	2016-02-16 15:53:36.801382
+527	Theatre Arts Production Company School	Lynn Passarella	\N	C	2016-02-16 15:53:36.802715	2016-02-16 15:53:36.802715
+528	P.S. 226	Gloria Darden	\N	C	2016-02-16 15:53:36.804057	2016-02-16 15:53:36.804057
+529	Jonas Bronck Academy	Donalda Chumney	\N	B	2016-02-16 15:53:36.805453	2016-02-16 15:53:36.805453
+530	The Marie Curie School for Medicine, Nursing, and Health Professions	Rodney Fisher	\N	B	2016-02-16 15:53:36.807795	2016-02-16 15:53:36.807795
+531	West Bronx Academy for the Future	Wilper Morales	\N	C	2016-02-16 15:53:36.809325	2016-02-16 15:53:36.809325
+532	West Bronx Academy for the Future	Wilper Morales	\N	C	2016-02-16 15:53:36.811144	2016-02-16 15:53:36.811144
+533	The New School for Leadership and Journalism	Dolores Peterson	\N	A	2016-02-16 15:53:36.812607	2016-02-16 15:53:36.812607
+534	P.S. 246 Poe Center	Beverly Miller	\N	B	2016-02-16 15:53:36.814233	2016-02-16 15:53:36.814233
+535	I.S. 254	Wilford Hemans	\N	C	2016-02-16 15:53:36.815783	2016-02-16 15:53:36.815783
+536	Kingsbridge International High School	Ronald Newlon	\N	B	2016-02-16 15:53:36.817523	2016-02-16 15:53:36.817523
+537	P.S. 279 Captain Manuel Rivera, Jr.	James Waslawski	\N	B	2016-02-16 15:53:36.819363	2016-02-16 15:53:36.819363
+538	P.S./M.S. 280 Mosholu Parkway	James Weeks	\N	B	2016-02-16 15:53:36.820852	2016-02-16 15:53:36.820852
+539	Bronx School of Law and Finance	Evan Schwartz	\N	B	2016-02-16 15:53:36.82251	2016-02-16 15:53:36.82251
+540	P.S. 291	Carlos Velez	\N	B	2016-02-16 15:53:36.824426	2016-02-16 15:53:36.824426
+541	P.S. 306	Darryl Harrington	\N	D	2016-02-16 15:53:36.825924	2016-02-16 15:53:36.825924
+542	P.S. X307 - Eames Place	Luisa Fuentes	\N	A	2016-02-16 15:53:36.828108	2016-02-16 15:53:36.828108
+543	Bronx Dance Academy School	Sandra Sanchez	\N	B	2016-02-16 15:53:36.829631	2016-02-16 15:53:36.829631
+544	P.S. 310 Marble Hill	Elizabeth Cardona	\N	D	2016-02-16 15:53:36.831152	2016-02-16 15:53:36.831152
+545	P.S. 315 Lab School	Elsie Cardona-Berardinelli	\N	A	2016-02-16 15:53:36.832955	2016-02-16 15:53:36.832955
+546	The Bronx School of Science Inquiry and Investigat	Serapha Cruz	\N	B	2016-02-16 15:53:36.834669	2016-02-16 15:53:36.834669
+547	P.S. 340	Nelly Maldonado	\N	C	2016-02-16 15:53:36.83624	2016-02-16 15:53:36.83624
+548	International School for Liberal Arts	Migdalia Carrillo	\N	A	2016-02-16 15:53:36.837741	2016-02-16 15:53:36.837741
+549	International School for Liberal Arts	Migdalia Carrillo	\N	C	2016-02-16 15:53:36.83937	2016-02-16 15:53:36.83937
+550	Ampark Neighborhood	Elizabeth Lopez-Towey	\N	C	2016-02-16 15:53:36.841258	2016-02-16 15:53:36.841258
+551	P.S. 360	Nancy Rodriguez-Lewis	\N	C	2016-02-16 15:53:36.842911	2016-02-16 15:53:36.842911
+552	ACADEMY FOR PERSONAL LEADERSHIP AND EXCELLENCE	Angelo Ledda	\N	\N	2016-02-16 15:53:36.845018	2016-02-16 15:53:36.845018
+553	In-Tech Academy (M.S. / High School 368)	Yvette Allen	\N	B	2016-02-16 15:53:36.847286	2016-02-16 15:53:36.847286
+554	In-Tech Academy (M.S. / High School 368)	Yvette Allen	\N	C	2016-02-16 15:53:36.848893	2016-02-16 15:53:36.848893
+555	Knowledge and Power Preparatory Academy International High School (Kappa)	Panorea Panagiosoulis	\N	A	2016-02-16 15:53:36.85118	2016-02-16 15:53:36.85118
+556	Elementary School for Math, Science, and Technolog	Avon Connell-Cowell	\N	B	2016-02-16 15:53:36.853071	2016-02-16 15:53:36.853071
+557	School for Environmental Citizenship	Heather Dawe	\N	F	2016-02-16 15:53:36.854842	2016-02-16 15:53:36.854842
+558	M.S. 390	Robert Mercedes	\N	B	2016-02-16 15:53:36.856416	2016-02-16 15:53:36.856416
+559	The Angelo Patri Middle School	Graciela Abadia	\N	C	2016-02-16 15:53:36.858509	2016-02-16 15:53:36.858509
+560	P.S. 396	Nicole Tine	\N	B	2016-02-16 15:53:36.860048	2016-02-16 15:53:36.860048
+561	English Language Learners and International Support Preparatory Academy (ELLIS)	Norma Vega	\N	\N	2016-02-16 15:53:36.861697	2016-02-16 15:53:36.861697
+562	M.S. 399	Outerbridge, Kim	\N	\N	2016-02-16 15:53:36.863267	2016-02-16 15:53:36.863267
+563	High School for Teaching and the Professions	Gary Prince	\N	B	2016-02-16 15:53:36.864787	2016-02-16 15:53:36.864787
+564	Belmont Preparatory High School	Stephen Joseph Gumbs	\N	A	2016-02-16 15:53:36.866396	2016-02-16 15:53:36.866396
+565	Fordham High School for the Arts	Iris Blige	\N	A	2016-02-16 15:53:36.868086	2016-02-16 15:53:36.868086
+566	Fordham Leadership Academy for Business and Technology	Richard Bost	\N	D	2016-02-16 15:53:36.869926	2016-02-16 15:53:36.869926
+567	Bronx High School for Law and Community Service	Michael Barakat	\N	B	2016-02-16 15:53:36.871967	2016-02-16 15:53:36.871967
+568	DeWitt Clinton High School	Geraldine Ambrosio	\N	F	2016-02-16 15:53:36.873619	2016-02-16 15:53:36.873619
+653	E.S.M.T- I.S. 190	Dianajade Santiago	\N	C	2016-02-16 15:53:37.001035	2016-02-16 15:53:37.001035
+569	Celia Cruz Bronx High School of Music, The	William Rodriguez, Ed.D.	\N	C	2016-02-16 15:53:36.875235	2016-02-16 15:53:36.875235
+570	Bronx High School of Science	Valerie Reidy	\N	A	2016-02-16 15:53:36.877032	2016-02-16 15:53:36.877032
+571	CRESTON ACADEMY	Pamela Edwards	\N	C	2016-02-16 15:53:36.87863	2016-02-16 15:53:36.87863
+572	EAST FORDHAM ACADEMY FOR THE ARTS	Tanicia Williams	\N	A	2016-02-16 15:53:36.880766	2016-02-16 15:53:36.880766
+573	John F. Kennedy High School	Lisa Luft	\N	\N	2016-02-16 15:53:36.882396	2016-02-16 15:53:36.882396
+574	Marble Hill High School for International Studies	Kirsten Larson	\N	A	2016-02-16 15:53:36.883961	2016-02-16 15:53:36.883961
+575	Walton Yabc	Keesha Lindsay	\N	C	2016-02-16 15:53:36.885525	2016-02-16 15:53:36.885525
+576	Kennedy Yabc	Frank Parrino	\N	D	2016-02-16 15:53:36.887696	2016-02-16 15:53:36.887696
+577	Bronx Theatre High School	Deborah Effinger	\N	C	2016-02-16 15:53:36.889244	2016-02-16 15:53:36.889244
+578	Discovery High School	Rolando Rivera	\N	A	2016-02-16 15:53:36.890674	2016-02-16 15:53:36.890674
+579	Grace Dodge Career and Technical Education High School	Roberto Hernandez	\N	F	2016-02-16 15:53:36.892053	2016-02-16 15:53:36.892053
+580	Grace Dodge Yabc	Patricia Squire	\N	D	2016-02-16 15:53:36.893449	2016-02-16 15:53:36.893449
+581	High School of American Studies at Lehman College	Mr. Alessandro Weiss	\N	A	2016-02-16 15:53:36.894839	2016-02-16 15:53:36.894839
+582	P.S. 016 Wakefield	Yvonne Williams	\N	B	2016-02-16 15:53:36.896179	2016-02-16 15:53:36.896179
+583	P.S. 019 Judith K. Weiss	Timothy P. Sullivan	\N	B	2016-02-16 15:53:36.897881	2016-02-16 15:53:36.897881
+584	P.S. 021 Philip H. Sheridan	Joyce Coleman	\N	C	2016-02-16 15:53:36.899475	2016-02-16 15:53:36.899475
+585	P.S. 041 Gun Hill Road	Erika Tobia	\N	A	2016-02-16 15:53:36.900888	2016-02-16 15:53:36.900888
+586	P.S. 068 Bronx	Catherine Helfrich	\N	B	2016-02-16 15:53:36.90228	2016-02-16 15:53:36.90228
+587	P.S. 076 The Bennington School	Louise Sedotto	\N	B	2016-02-16 15:53:36.904074	2016-02-16 15:53:36.904074
+588	P.S. 078 Anne Hutchinson	Claudina Skerritt	\N	B	2016-02-16 15:53:36.905448	2016-02-16 15:53:36.905448
+589	P.S. 083 Donald Hertz	Benjamin Soccodato	\N	B	2016-02-16 15:53:36.906936	2016-02-16 15:53:36.906936
+590	P.S. 087 Bronx	Donna Anaman	\N	C	2016-02-16 15:53:36.908435	2016-02-16 15:53:36.908435
+591	P.S. 089 Bronx	Ralph Martinez	\N	C	2016-02-16 15:53:36.909922	2016-02-16 15:53:36.909922
+592	P.S. 096 Richard Rodgers	Marta Garcia	\N	B	2016-02-16 15:53:36.911621	2016-02-16 15:53:36.911621
+593	P.S. 097 Bronx	Katheleen Bornkamp	\N	A	2016-02-16 15:53:36.913018	2016-02-16 15:53:36.913018
+594	P.S. 103 Hector Fontanez	Farid Reyes	\N	B	2016-02-16 15:53:36.914823	2016-02-16 15:53:36.914823
+595	P.S. 105 Sen Abraham Bernstein	Mr. Christopher Eustace	\N	C	2016-02-16 15:53:36.916355	2016-02-16 15:53:36.916355
+596	P.S. 106 Parkchester	Eugenia Montalvo	\N	B	2016-02-16 15:53:36.917952	2016-02-16 15:53:36.917952
+597	P.S. 108 Philip J. Abinanti	Charles Sperrazza	\N	C	2016-02-16 15:53:36.919671	2016-02-16 15:53:36.919671
+598	P.S. 111 Seton Falls	Ava Fullenweider	\N	C	2016-02-16 15:53:36.921351	2016-02-16 15:53:36.921351
+599	P.S. 112 Bronxwood	Susan Barnes	\N	D	2016-02-16 15:53:36.923756	2016-02-16 15:53:36.923756
+600	P.S. 121 Throop	Rachel Donnelly	\N	C	2016-02-16 15:53:36.925571	2016-02-16 15:53:36.925571
+601	J.H.S. 127 The Castle Hill	Harry Sherman	\N	C	2016-02-16 15:53:36.927537	2016-02-16 15:53:36.927537
+602	MS 142 John Philip Sousa	Casimiro Cibelli	\N	C	2016-02-16 15:53:36.929139	2016-02-16 15:53:36.929139
+603	J.H.S. 144 Michelangelo	Pauline Mattis	\N	C	2016-02-16 15:53:36.93069	2016-02-16 15:53:36.93069
+604	P.S. 153 Helen Keller	Veronica Goka	\N	A	2016-02-16 15:53:36.942821	2016-02-16 15:53:36.942821
+605	P.S. 160 Walt Disney	Lori Baker	\N	C	2016-02-16 15:53:36.943893	2016-02-16 15:53:36.943893
+606	P.S. 175 City Island	Amy Lipson	\N	C	2016-02-16 15:53:36.945104	2016-02-16 15:53:36.945104
+607	P.S. 178 - Dr. Selman Waksman	Evelyn Fulton	\N	B	2016-02-16 15:53:36.946295	2016-02-16 15:53:36.946295
+608	M.S. 180 Dr. Daniel Hale Williams	Frank Uzzo	\N	C	2016-02-16 15:53:36.947551	2016-02-16 15:53:36.947551
+609	I.S. 181 Pablo Casals	Christopher Warnock	\N	B	2016-02-16 15:53:36.948853	2016-02-16 15:53:36.948853
+610	Cornerstone Academy for Social Action	Malissa Mootoo	\N	C	2016-02-16 15:53:36.950051	2016-02-16 15:53:36.950051
+611	PS/MS 194	Rosa Sifuentes-Rosado	\N	C	2016-02-16 15:53:36.95113	2016-02-16 15:53:36.95113
+612	Bronx Health Sciences High School	Miriam Rivas	\N	A	2016-02-16 15:53:36.952267	2016-02-16 15:53:36.952267
+613	Bronx High School for Writing and Communication Arts	Steven Chernigoff	\N	C	2016-02-16 15:53:36.953479	2016-02-16 15:53:36.953479
+614	Bronx Lab School	Christophe Lagares	\N	C	2016-02-16 15:53:36.954683	2016-02-16 15:53:36.954683
+615	Academy for Scholarship and Entrepreneurship: A Co	Zenobia White	\N	D	2016-02-16 15:53:36.955836	2016-02-16 15:53:36.955836
+616	Academy for Scholarship and Entrepreneurship: A College Board School	Zenobia White	\N	D	2016-02-16 15:53:36.956921	2016-02-16 15:53:36.956921
+617	Globe School for Environmental Research	Matthew Angell	\N	C	2016-02-16 15:53:36.958139	2016-02-16 15:53:36.958139
+618	High School of Computers and Technology	Bruce Abramowitz	\N	A	2016-02-16 15:53:36.959363	2016-02-16 15:53:36.959363
+619	The Forward School	Adrienne Phifer	\N	B	2016-02-16 15:53:36.960591	2016-02-16 15:53:36.960591
+620	Collegiate Institute for Math and Science	Estelle Hans	\N	A	2016-02-16 15:53:36.961778	2016-02-16 15:53:36.961778
+621	The Young Scholars Academy of The Bronx	Jeanette Vargas	\N	C	2016-02-16 15:53:36.962969	2016-02-16 15:53:36.962969
+622	Bronx Academy of Health Careers	Marvia Lindsay	\N	A	2016-02-16 15:53:36.964133	2016-02-16 15:53:36.964133
+623	Astor Collegiate Academy	Sandra Burgos	\N	C	2016-02-16 15:53:36.965296	2016-02-16 15:53:36.965296
+624	Aspire Preparatory Middle School	Steven Cobb	\N	F	2016-02-16 15:53:36.966442	2016-02-16 15:53:36.966442
+625	Bronx Green Middle School	Charles Johnson	\N	B	2016-02-16 15:53:36.96759	2016-02-16 15:53:36.96759
+626	School of Diplomacy	John Scalice	\N	F	2016-02-16 15:53:36.968746	2016-02-16 15:53:36.968746
+627	Christopher Columbus High School	Lisa Fuentes	\N	\N	2016-02-16 15:53:36.97009	2016-02-16 15:53:36.97009
+628	C Columbus Hs Yabc	Ruth Colton	\N	B	2016-02-16 15:53:36.971248	2016-02-16 15:53:36.971248
+629	Bronx High School for the Visual Arts	George York	\N	C	2016-02-16 15:53:36.972548	2016-02-16 15:53:36.972548
+630	Harry S Truman High School	Sana Nasser	\N	B	2016-02-16 15:53:36.973809	2016-02-16 15:53:36.973809
+631	CORNERSTONE ACADEMY FOR SOCIAL ACTION MIDDLE SCHOO	Jamaal Bowman	\N	B	2016-02-16 15:53:36.975007	2016-02-16 15:53:36.975007
+632	PELHAM ACADEMY OF ACADEMICS AND COMMUNITY ENGAGEME	Anthony Rivera	\N	B	2016-02-16 15:53:36.976186	2016-02-16 15:53:36.976186
+633	PS/MS 11X498 - VAN NEST ACADEMY	Carol Gilligan	\N	\N	2016-02-16 15:53:36.977366	2016-02-16 15:53:36.977366
+634	New World High School	Fausto Salazar	\N	B	2016-02-16 15:53:36.978473	2016-02-16 15:53:36.978473
+635	The Bronxwood Preparatory Academy	Janet Gallardo	\N	C	2016-02-16 15:53:36.979499	2016-02-16 15:53:36.979499
+636	Global Enterprise High School	Sandra Maldonado	\N	\N	2016-02-16 15:53:36.980864	2016-02-16 15:53:36.980864
+637	Pelham Preparatory Academy	Jane Aronoff	\N	B	2016-02-16 15:53:36.982013	2016-02-16 15:53:36.982013
+638	High School for Contemporary Arts	Francisco Sanchez	\N	A	2016-02-16 15:53:36.983267	2016-02-16 15:53:36.983267
+639	P.S. 006 West Farms	Darlene Mcwhales	\N	C	2016-02-16 15:53:36.984639	2016-02-16 15:53:36.984639
+640	P.S. 044 David C. Farragut	Donna Ferguson	\N	C	2016-02-16 15:53:36.986032	2016-02-16 15:53:36.986032
+641	P.S. 047 John Randolph	Thomas Guarnieri	\N	B	2016-02-16 15:53:36.987201	2016-02-16 15:53:36.987201
+642	P.S. 050 Clara Barton	Lori Ferguson	\N	C	2016-02-16 15:53:36.988305	2016-02-16 15:53:36.988305
+643	P.S. 057 Crescent	Edsel Philip	\N	C	2016-02-16 15:53:36.989417	2016-02-16 15:53:36.989417
+644	P.S. 061 Francisco Oller	Patricia Quigley	\N	D	2016-02-16 15:53:36.990562	2016-02-16 15:53:36.990562
+645	P.S. 066 School of Higher Expectations	Thomas Degrazia	\N	B	2016-02-16 15:53:36.991763	2016-02-16 15:53:36.991763
+646	P.S. 067 Mohegan School	Emily Grimball	\N	B	2016-02-16 15:53:36.992881	2016-02-16 15:53:36.992881
+647	P.S. 092 Bronx	Manuel Estrella	\N	C	2016-02-16 15:53:36.993979	2016-02-16 15:53:36.993979
+648	J.H.S. 098 Herman Ridder	Claralee Irobunda	\N	C	2016-02-16 15:53:36.995036	2016-02-16 15:53:36.995036
+649	P.S. 102 Joseph O. Loretan	Tanyua Trezevantte	\N	\N	2016-02-16 15:53:36.99616	2016-02-16 15:53:36.99616
+650	P.S. 129 Twin Parks Upper	Yvette Beasley	\N	B	2016-02-16 15:53:36.997307	2016-02-16 15:53:36.997307
+651	P.S. 134 George F. Bristow	Kenneth Thomas	\N	C	2016-02-16 15:53:36.998462	2016-02-16 15:53:36.998462
+652	P.S. 150 Charles James Fox	Edwin Irizarry	\N	B	2016-02-16 15:53:36.999694	2016-02-16 15:53:36.999694
+654	P.S. 195	Andrew Kavanagh	\N	C	2016-02-16 15:53:37.002249	2016-02-16 15:53:37.002249
+655	P.S. 196	Lizzette Rivera	\N	C	2016-02-16 15:53:37.003418	2016-02-16 15:53:37.003418
+656	P.S. 198	Judy Hunt-Hutchings	\N	\N	2016-02-16 15:53:37.004492	2016-02-16 15:53:37.004492
+657	P.S. 211	Betty Gonzalez-Soto	\N	B	2016-02-16 15:53:37.005527	2016-02-16 15:53:37.005527
+658	P.S. 212	Yohan Lim	\N	B	2016-02-16 15:53:37.006611	2016-02-16 15:53:37.006611
+659	P.S. 214	David Cintron	\N	B	2016-02-16 15:53:37.007858	2016-02-16 15:53:37.007858
+660	School of Performing Arts	Seth Litt	\N	C	2016-02-16 15:53:37.009054	2016-02-16 15:53:37.009054
+661	Mott Hall V	Peter Oroszlany	\N	B	2016-02-16 15:53:37.010137	2016-02-16 15:53:37.010137
+662	Mott Hall V	Peter Oroszlany	\N	\N	2016-02-16 15:53:37.011366	2016-02-16 15:53:37.011366
+663	New Day Academy	Mara Ganeles	\N	\N	2016-02-16 15:53:37.012657	2016-02-16 15:53:37.012657
+664	New Day Academy	Mara Ganeles	\N	\N	2016-02-16 15:53:37.013946	2016-02-16 15:53:37.013946
+665	Metropolitan High School, The	Carla Theodorou	\N	A	2016-02-16 15:53:37.015081	2016-02-16 15:53:37.015081
+666	Explorations Academy	Susana Hernandez	\N	B	2016-02-16 15:53:37.016191	2016-02-16 15:53:37.016191
+667	Performance Conservatory High School	Eulynis Matthias Fridie	\N	\N	2016-02-16 15:53:37.017298	2016-02-16 15:53:37.017298
+668	Bronx Latin	Leticia Pineiro	\N	A	2016-02-16 15:53:37.018443	2016-02-16 15:53:37.018443
+669	Bronx Latin	Leticia Pineiro	\N	A	2016-02-16 15:53:37.019583	2016-02-16 15:53:37.019583
+670	East Bronx Academy for the Future	Sarah Scrogin	\N	C	2016-02-16 15:53:37.020672	2016-02-16 15:53:37.020672
+671	East Bronx Academy for the Future	Sarah Scrogin	\N	B	2016-02-16 15:53:37.021691	2016-02-16 15:53:37.021691
+672	Frederick Douglass Academy V. Middle School	Deborah Cimini	\N	B	2016-02-16 15:53:37.022792	2016-02-16 15:53:37.022792
+673	Peace and Diversity Academy	Andrew Turay	\N	C	2016-02-16 15:53:37.023941	2016-02-16 15:53:37.023941
+674	Fannie Lou Hamer Middle School	Lorraine Chanon	\N	C	2016-02-16 15:53:37.025095	2016-02-16 15:53:37.025095
+675	The School of Science and Applied Learning	Venessa Singleton	\N	D	2016-02-16 15:53:37.026292	2016-02-16 15:53:37.026292
+676	Kappa III	Elisa Alvarez	\N	A	2016-02-16 15:53:37.027421	2016-02-16 15:53:37.027421
+677	I.S. X318 Math, Science & Technology Through Arts	Maria Lopez	\N	B	2016-02-16 15:53:37.028688	2016-02-16 15:53:37.028688
+678	Accion Academy	Adrian Manuel	\N	C	2016-02-16 15:53:37.029941	2016-02-16 15:53:37.029941
+679	Urban Assembly School for Wildlife Conservation	Mark Ossenheimer	\N	D	2016-02-16 15:53:37.031364	2016-02-16 15:53:37.031364
+680	Urban Assembly School for Wildlife Conservation	Mark Ossenheimer	\N	\N	2016-02-16 15:53:37.032537	2016-02-16 15:53:37.032537
+681	Emolior Academy	Derick Spaulding	\N	C	2016-02-16 15:53:37.033659	2016-02-16 15:53:37.033659
+682	Entrada Academy	Socorro Diaz	\N	C	2016-02-16 15:53:37.034858	2016-02-16 15:53:37.034858
+683	Pan American International High School at Monroe	Bridgit Claire Bye	\N	\N	2016-02-16 15:53:37.035907	2016-02-16 15:53:37.035907
+684	Learning To Work Yabc At Monroe Academy	Carmel Belizaire	\N	B	2016-02-16 15:53:37.036922	2016-02-16 15:53:37.036922
+685	Arturo A. Schomburg Satellite Academy Bronx	Marsha Vernon	\N	\N	2016-02-16 15:53:37.038139	2016-02-16 15:53:37.038139
+686	URBAN SCHOLARS COMMUNITY SCHOOL	Debra Clarke-Jones	\N	F	2016-02-16 15:53:37.039219	2016-02-16 15:53:37.039219
+687	THE CINEMA SCHOOL	Rex Bobbish	\N	\N	2016-02-16 15:53:37.040541	2016-02-16 15:53:37.040541
+688	BRONX CAREER AND COLLEGE PREPARATORY HIGH SCHOOL	Kizhaya Roberts	\N	\N	2016-02-16 15:53:37.041714	2016-02-16 15:53:37.041714
+689	Bronx Regional High School	Colin Thomas	\N	C	2016-02-16 15:53:37.042792	2016-02-16 15:53:37.042792
+690	High School of World Cultures	Ramon Namnun	\N	B	2016-02-16 15:53:37.043813	2016-02-16 15:53:37.043813
+691	Bronx Coalition Community High School	Mary Ann Tucker	\N	\N	2016-02-16 15:53:37.045011	2016-02-16 15:53:37.045011
+692	Fannie Lou Hamer Freedom High School	Nancy Mann	\N	A	2016-02-16 15:53:37.046738	2016-02-16 15:53:37.046738
+693	Wings Academy	Wayne Cox	\N	C	2016-02-16 15:53:37.047962	2016-02-16 15:53:37.047962
+694	Monroe Academy for Business/Law	Charles Ogundimu	\N	\N	2016-02-16 15:53:37.049227	2016-02-16 15:53:37.049227
+695	Bronx Little School	Janice Gordon	\N	A	2016-02-16 15:53:37.050425	2016-02-16 15:53:37.050425
+696	Monroe Academy for Visual Arts & Design	Richard J. Massel	\N	B	2016-02-16 15:53:37.05156	2016-02-16 15:53:37.05156
+697	P.S. 003 The Bedford Village	Kristina Beecher	\N	C	2016-02-16 15:53:37.052728	2016-02-16 15:53:37.052728
+698	P.S. 008 Robert Fulton	Seth Phillips	\N	C	2016-02-16 15:53:37.053924	2016-02-16 15:53:37.053924
+699	P.S. 009 Teunis G. Bergen	Sandra D'Avilar	\N	C	2016-02-16 15:53:37.05509	2016-02-16 15:53:37.05509
+700	P.S. 011 Purvis J. Behan	Alonta Wrighton	\N	B	2016-02-16 15:53:37.056308	2016-02-16 15:53:37.056308
+701	P.S. 020 Clinton Hill	L Barbera	\N	B	2016-02-16 15:53:37.057515	2016-02-16 15:53:37.057515
+702	P.S. 044 Marcus Garvey	Valerie Taylor	\N	B	2016-02-16 15:53:37.058667	2016-02-16 15:53:37.058667
+703	P.S. 046 Edward C. Blum	Karyn Nicholson	\N	A	2016-02-16 15:53:37.05996	2016-02-16 15:53:37.05996
+704	P.S. 054 Samuel C. Barnes	Lorna Khan	\N	C	2016-02-16 15:53:37.061448	2016-02-16 15:53:37.061448
+705	P.S. 056 Lewis H. Latimer	Deborah Clark-Johnson	\N	A	2016-02-16 15:53:37.06298	2016-02-16 15:53:37.06298
+706	P.S. 067 Charles A. Dorsey	Corinne Seabrook	\N	D	2016-02-16 15:53:37.064537	2016-02-16 15:53:37.064537
+707	P.S. 093 William H. Prescott	Sandra Philip	\N	B	2016-02-16 15:53:37.066059	2016-02-16 15:53:37.066059
+708	Satellite Three	Beatrice Thompson	\N	D	2016-02-16 15:53:37.067389	2016-02-16 15:53:37.067389
+709	M.S. 113 Ronald Edmonds Learning Center	Dawnique Daughtry	\N	D	2016-02-16 15:53:37.068734	2016-02-16 15:53:37.068734
+710	P.S. 133 William A. Butler	Heather Foster-Mann	\N	B	2016-02-16 15:53:37.070185	2016-02-16 15:53:37.070185
+711	P.S. 256 Benjamin Banneker	Sharyn Hemphill	\N	F	2016-02-16 15:53:37.071687	2016-02-16 15:53:37.071687
+712	Dr. Susan S. McKinney Secondary School of the Arts	Paula Holmes	\N	B	2016-02-16 15:53:37.073069	2016-02-16 15:53:37.073069
+713	Dr. Susan S. McKinney Secondary School of the Arts	Paula Holmes	\N	B	2016-02-16 15:53:37.074832	2016-02-16 15:53:37.074832
+714	M.S. K266 - Park Place Community Middle School	Michele Robinson	\N	C	2016-02-16 15:53:37.076319	2016-02-16 15:53:37.076319
+715	P.S. 270 Johann DeKalb	Mitra Lutchman	\N	C	2016-02-16 15:53:37.077773	2016-02-16 15:53:37.077773
+716	P.S. 282 Park Slope	Magalie Alexis	\N	C	2016-02-16 15:53:37.079265	2016-02-16 15:53:37.079265
+717	P.S. 287 Bailey K. Ashford	Ms. Michele Rawlins	\N	B	2016-02-16 15:53:37.080589	2016-02-16 15:53:37.080589
+718	Satellite East Middle School	Kim Mcpherson	\N	B	2016-02-16 15:53:37.081914	2016-02-16 15:53:37.081914
+719	P.S. 305 Dr. Peter Ray	Dr. Julia Mortley	\N	C	2016-02-16 15:53:37.08313	2016-02-16 15:53:37.08313
+720	P.S. 307 Daniel Hale Williams	Roberta Davenport	\N	C	2016-02-16 15:53:37.084463	2016-02-16 15:53:37.084463
+721	Satellite West Middle School	Suzane Joseph	\N	A	2016-02-16 15:53:37.085681	2016-02-16 15:53:37.085681
+722	Academy of Business and Community Development	Simone A. Mcintosh	\N	D	2016-02-16 15:53:37.086826	2016-02-16 15:53:37.086826
+723	Academy of Business and Community Development	Simone A. Mcintosh	\N	\N	2016-02-16 15:53:37.087907	2016-02-16 15:53:37.087907
+724	Urban Assembly High School of Music and Art	Paul Thompson	\N	D	2016-02-16 15:53:37.089149	2016-02-16 15:53:37.089149
+725	Brooklyn Community High School of Communication, Arts and Media	James O'brien	\N	C	2016-02-16 15:53:37.09036	2016-02-16 15:53:37.09036
+726	Science Skills Center High School for Science, Technology and the Creative Arts	Judy Henry	\N	A	2016-02-16 15:53:37.091719	2016-02-16 15:53:37.091719
+727	Brooklyn Technical High School	Randy Asher	\N	B	2016-02-16 15:53:37.092941	2016-02-16 15:53:37.092941
+728	Brooklyn International High School	Pamela Taranto	\N	A	2016-02-16 15:53:37.094201	2016-02-16 15:53:37.094201
+729	The Urban Assembly School for Law and Justice	Shannon Curran	\N	B	2016-02-16 15:53:37.095296	2016-02-16 15:53:37.095296
+730	Urban Assembly Academy of Arts and Letters	Allison Gaines Pell	\N	B	2016-02-16 15:53:37.096345	2016-02-16 15:53:37.096345
+731	ACORN Community High School	Andrea Piper	\N	B	2016-02-16 15:53:37.097374	2016-02-16 15:53:37.097374
+732	Freedom Academy High School	Alyson Forde	\N	F	2016-02-16 15:53:37.098421	2016-02-16 15:53:37.098421
+733	Urban Assembly Institute of Math and Science for Y	Kiri Soares	\N	B	2016-02-16 15:53:37.099574	2016-02-16 15:53:37.099574
+734	Urban Assembly Institute of Math and Science for Young Women	Kiri Soares	\N	\N	2016-02-16 15:53:37.100786	2016-02-16 15:53:37.100786
+735	Brooklyn Academy High School	Elaine Lindsey	\N	A	2016-02-16 15:53:37.102047	2016-02-16 15:53:37.102047
+736	M.S. 571	Santosha Troutman	\N	\N	2016-02-16 15:53:37.103307	2016-02-16 15:53:37.103307
+737	Bedford Stuyvesant Preparatory High School	Darryl Rascoe	\N	C	2016-02-16 15:53:37.104516	2016-02-16 15:53:37.104516
+738	Khalil Gibran International Academy	Beshir Abdellatif	\N	\N	2016-02-16 15:53:37.105774	2016-02-16 15:53:37.105774
+739	Bedford Academy High School	Adofo Muhammad	\N	A	2016-02-16 15:53:37.106871	2016-02-16 15:53:37.106871
+740	Knowledge and Power Preparatory Academy VII Middle	Beatrice Thompson	\N	F	2016-02-16 15:53:37.108124	2016-02-16 15:53:37.108124
+741	George Westinghouse Career and Technical Education High School	Janine Kieran	\N	D	2016-02-16 15:53:37.109503	2016-02-16 15:53:37.109503
+742	Brooklyn High School for Leadership and Community Service	Georgia Kouriampalis	\N	B	2016-02-16 15:53:37.110719	2016-02-16 15:53:37.110719
+743	Downtown Brooklyn Yabc	Michael Noto	\N	D	2016-02-16 15:53:37.111858	2016-02-16 15:53:37.111858
+744	Benjamin Banneker Academy	Majida Abdul Karim	\N	B	2016-02-16 15:53:37.1131	2016-02-16 15:53:37.1131
+745	CITY POLYTECHNIC HIGH SCHOOL OF ENGINEERING, ARCHITECTURE, AND TECHNOLOGY	Chris Aguirre	\N	\N	2016-02-16 15:53:37.114332	2016-02-16 15:53:37.114332
+746	FORT GREENE PREPARATORY ACADEMY	Paula Lettiere	\N	\N	2016-02-16 15:53:37.115539	2016-02-16 15:53:37.115539
+747	P.S. 016 Leonard Dunkly	Mary Renny	\N	C	2016-02-16 15:53:37.116636	2016-02-16 15:53:37.116636
+748	P.S. 017 Henry D. Woodworth	Dr. Robert Marchi	\N	C	2016-02-16 15:53:37.117903	2016-02-16 15:53:37.117903
+749	P.S. 018 Edward Bush	Karen Ford	\N	C	2016-02-16 15:53:37.119156	2016-02-16 15:53:37.119156
+750	P.S. 019 Roberto Clemente	Maria Witherspoon	\N	F	2016-02-16 15:53:37.12028	2016-02-16 15:53:37.12028
+751	P.S. 023 Carter G. Woodson	Sharon Meade	\N	B	2016-02-16 15:53:37.121352	2016-02-16 15:53:37.121352
+752	P.S. 031 Samuel F. Dupont	Mary J. Scarlato	\N	A	2016-02-16 15:53:37.122453	2016-02-16 15:53:37.122453
+753	P.S. 034 Oliver H. Perry	Alicja Winnicki	\N	A	2016-02-16 15:53:37.123636	2016-02-16 15:53:37.123636
+754	J.H.S. 050 John D. Wells	Denise Jamison	\N	C	2016-02-16 15:53:37.124827	2016-02-16 15:53:37.124827
+755	P.S. 059 William Floyd	Dawn Best	\N	C	2016-02-16 15:53:37.126031	2016-02-16 15:53:37.126031
+756	Juan Morel Campos Secondary School	Howard Fineman	\N	C	2016-02-16 15:53:37.12726	2016-02-16 15:53:37.12726
+757	Juan Morel Campos Secondary School	Howard Fineman	\N	C	2016-02-16 15:53:37.128521	2016-02-16 15:53:37.128521
+758	P.S. 084 Jose De Diego	Sereida Rodriguez	\N	B	2016-02-16 15:53:37.129705	2016-02-16 15:53:37.129705
+759	P.S. 110 The Monitor	Anna Cano Amato	\N	C	2016-02-16 15:53:37.130864	2016-02-16 15:53:37.130864
+760	P.S. 120 Carlos Tapia	Liza Caraballo	\N	A	2016-02-16 15:53:37.132238	2016-02-16 15:53:37.132238
+761	John Ericsson Middle School 126	Rosemary Ochoa	\N	D	2016-02-16 15:53:37.133517	2016-02-16 15:53:37.133517
+762	P.S. 132 The Conselyea School	Beth Lubeck	\N	C	2016-02-16 15:53:37.134756	2016-02-16 15:53:37.134756
+763	P.S. 147 Isaac Remsen	Julia Drake	\N	B	2016-02-16 15:53:37.135939	2016-02-16 15:53:37.135939
+764	P.S. 157 Benjamin Franklin	Maribel Torres	\N	B	2016-02-16 15:53:37.137099	2016-02-16 15:53:37.137099
+765	P.S. 196 Ten Eyck	Janine Colon	\N	C	2016-02-16 15:53:37.138313	2016-02-16 15:53:37.138313
+766	P.S. 250 George H. Lindsay	Nora Barnes	\N	B	2016-02-16 15:53:37.139769	2016-02-16 15:53:37.139769
+767	P.S. 257 John F. Hylan	Brian Leavy-Devale	\N	A	2016-02-16 15:53:37.141126	2016-02-16 15:53:37.141126
+768	P.S. 297 Abraham Stockton	James Brown	\N	B	2016-02-16 15:53:37.142352	2016-02-16 15:53:37.142352
+769	I.S. 318 Eugenio Maria De Hostos	Fortunato Rubino	\N	C	2016-02-16 15:53:37.143566	2016-02-16 15:53:37.143566
+770	The Urban Assembly School for the Urban Environmen	Kourtney Boyd	\N	B	2016-02-16 15:53:37.144742	2016-02-16 15:53:37.144742
+771	P.S. 380 John Wayne Elementary	Diane Vitolo	\N	A	2016-02-16 15:53:37.145936	2016-02-16 15:53:37.145936
+772	Academy for Young Writers	Courtney Winkfield	\N	A	2016-02-16 15:53:37.147104	2016-02-16 15:53:37.147104
+773	Brooklyn Latin School, The	Jason Griffiths	\N	B	2016-02-16 15:53:37.148264	2016-02-16 15:53:37.148264
+774	Green School: An Academy for Environmental Careers	Karali Pitzele	\N	B	2016-02-16 15:53:37.149434	2016-02-16 15:53:37.149434
+775	PROGRESS High School for Professional Careers	William Jusino	\N	C	2016-02-16 15:53:37.150697	2016-02-16 15:53:37.150697
+776	School for Legal Studies	Monica Ortiz	\N	D	2016-02-16 15:53:37.151894	2016-02-16 15:53:37.151894
+777	The High School for Enterprise, Business and Technology	Holger Carrillo	\N	A	2016-02-16 15:53:37.15316	2016-02-16 15:53:37.15316
+778	Brooklyn Preparatory High School	Noah Lansner	\N	B	2016-02-16 15:53:37.154354	2016-02-16 15:53:37.154354
+779	Williamsburg High School for Architecture and Design	Gill Cornell	\N	A	2016-02-16 15:53:37.155554	2016-02-16 15:53:37.155554
+780	Williamsburg Preparatory School	Michael Shadrick	\N	A	2016-02-16 15:53:37.157014	2016-02-16 15:53:37.157014
+781	Conselyea Preparatory School	Maria Masullo	\N	B	2016-02-16 15:53:37.158225	2016-02-16 15:53:37.158225
+782	M.S. 582	Brian Walsh	\N	D	2016-02-16 15:53:37.159494	2016-02-16 15:53:37.159494
+783	Lyons Community School	Taeko Onishi	\N	B	2016-02-16 15:53:37.160841	2016-02-16 15:53:37.160841
+784	Lyons Community School	Taeko Onishi	\N	A	2016-02-16 15:53:37.162172	2016-02-16 15:53:37.162172
+785	Automotive High School	Mary Brouder	\N	C	2016-02-16 15:53:37.163621	2016-02-16 15:53:37.163621
+786	Young Women's Leadership School of Brooklyn	Talana Bradley	\N	A	2016-02-16 15:53:37.164959	2016-02-16 15:53:37.164959
+787	Frances Perkins Academy	Santana, Jocelyn	\N	\N	2016-02-16 15:53:37.166299	2016-02-16 15:53:37.166299
+788	El Puente Academy for Peace and Justice	Hector Calderon	\N	A	2016-02-16 15:53:37.167609	2016-02-16 15:53:37.167609
+789	Automotive High School Yabc	David Decamp	\N	B	2016-02-16 15:53:37.168808	2016-02-16 15:53:37.168808
+790	P.S. 001 The Bergen	Jennifer Eusanio	\N	B	2016-02-16 15:53:37.170013	2016-02-16 15:53:37.170013
+791	Magnet School of Math, Science and Design Technolo	Laura Scott	\N	B	2016-02-16 15:53:37.171195	2016-02-16 15:53:37.171195
+792	P.S. 015 Patrick F. Daly	Peggy Wyns-Madison	\N	B	2016-02-16 15:53:37.172233	2016-02-16 15:53:37.172233
+793	P.S. 024	Christina Fuentes	\N	B	2016-02-16 15:53:37.173349	2016-02-16 15:53:37.173349
+794	Agnes Y. Humphrey School for Leadership	Winston Hamann	\N	\N	2016-02-16 15:53:37.174409	2016-02-16 15:53:37.174409
+795	P.S. 029 John M. Harrigan	Melanie Raneri Woods	\N	C	2016-02-16 15:53:37.17543	2016-02-16 15:53:37.17543
+796	P.S. 032 Samuels Mills Sprole	Deborah Ann Florio	\N	C	2016-02-16 15:53:37.176474	2016-02-16 15:53:37.176474
+797	P.S. 038 The Pacific	Yolanda Ramirez	\N	C	2016-02-16 15:53:37.177495	2016-02-16 15:53:37.177495
+798	P.S. 039 Henry Bristow	Anita De Paz	\N	B	2016-02-16 15:53:37.178583	2016-02-16 15:53:37.178583
+799	M.S. 51 William Alexander	Lenore Berner	\N	A	2016-02-16 15:53:37.179684	2016-02-16 15:53:37.179684
+800	P.S. 058 The Carroll	Giselle Mcgee	\N	B	2016-02-16 15:53:37.180725	2016-02-16 15:53:37.180725
+801	J.H.S. 088 Peter Rouget	Ailene Altman Mitchell	\N	A	2016-02-16 15:53:37.181877	2016-02-16 15:53:37.181877
+802	P.S. 094 The Henry Longfellow	Janette Caban	\N	B	2016-02-16 15:53:37.183005	2016-02-16 15:53:37.183005
+803	P.S. 107 John W. Kimball	Cynthia Holton	\N	B	2016-02-16 15:53:37.184219	2016-02-16 15:53:37.184219
+804	P.S. 124 Silas B. Dutcher	Annabelle Martinez	\N	B	2016-02-16 15:53:37.185369	2016-02-16 15:53:37.185369
+805	P.S. 130 The Parkside	Maria Nunziata	\N	A	2016-02-16 15:53:37.186461	2016-02-16 15:53:37.186461
+806	P.S. 131 Brooklyn	Ruth Quiles	\N	A	2016-02-16 15:53:37.187589	2016-02-16 15:53:37.187589
+807	I.S. 136 Charles O. Dewey	Eric Sackler	\N	B	2016-02-16 15:53:37.188746	2016-02-16 15:53:37.188746
+808	P.S. 146	Anna Allanbrook	\N	A	2016-02-16 15:53:37.190081	2016-02-16 15:53:37.190081
+809	Magnet School for Science & Technology	Samuel Ortiz	\N	A	2016-02-16 15:53:37.191496	2016-02-16 15:53:37.191496
+810	P.S. 169 Sunset Park	Josephine Santiago	\N	C	2016-02-16 15:53:37.192934	2016-02-16 15:53:37.192934
+811	P.S. 172 Beacon School of Excellence	Jack Spatola	\N	A	2016-02-16 15:53:37.194127	2016-02-16 15:53:37.194127
+812	P.S. 230 Doris L. Cohen	Sharon Fiden	\N	C	2016-02-16 15:53:37.195184	2016-02-16 15:53:37.195184
+813	P.S. 261 Philip Livingston	Zipporiah Mills	\N	C	2016-02-16 15:53:37.196341	2016-02-16 15:53:37.196341
+814	P.S. 295	Deanna Marco	\N	A	2016-02-16 15:53:37.197521	2016-02-16 15:53:37.197521
+815	P.S. 321 William Penn	Elizabeth Phillips	\N	A	2016-02-16 15:53:37.1987	2016-02-16 15:53:37.1987
+816	The Children's School	\N	\N	A	2016-02-16 15:53:37.199922	2016-02-16 15:53:37.199922
+817	Brooklyn School for Global Studies	Joseph O'Brien	\N	B	2016-02-16 15:53:37.2011	2016-02-16 15:53:37.2011
+818	Brooklyn School for Global Studies	Joseph O'brien	\N	B	2016-02-16 15:53:37.202286	2016-02-16 15:53:37.202286
+819	New Horizons School	Deanna Sinito	\N	B	2016-02-16 15:53:37.203474	2016-02-16 15:53:37.203474
+820	New Voices School of Academic & Creative Arts	Frank Giordano	\N	A	2016-02-16 15:53:37.204747	2016-02-16 15:53:37.204747
+821	The Math & Science Exploratory School	Lisa Gioe	\N	A	2016-02-16 15:53:37.205961	2016-02-16 15:53:37.205961
+822	Brooklyn Secondary School for Collaborative Studi	Alyce Barr	\N	A	2016-02-16 15:53:37.207152	2016-02-16 15:53:37.207152
+823	Brooklyn Secondary School for Collaborative Studies	Alyce Barr	\N	A	2016-02-16 15:53:37.208317	2016-02-16 15:53:37.208317
+824	Secondary School for Law	Oneatha Swinton	\N	\N	2016-02-16 15:53:37.209529	2016-02-16 15:53:37.209529
+825	Secondary School for Law	Oneatha Swinton	\N	C	2016-02-16 15:53:37.21073	2016-02-16 15:53:37.21073
+826	Secondary School for Journalism	Abbie Reif	\N	\N	2016-02-16 15:53:37.211975	2016-02-16 15:53:37.211975
+827	Secondary School for Journalism	Abbie Reif	\N	B	2016-02-16 15:53:37.213103	2016-02-16 15:53:37.213103
+828	Park Slope Collegiate	Jill Bloomberg	\N	C	2016-02-16 15:53:37.214365	2016-02-16 15:53:37.214365
+829	Park Slope Collegiate	Jill Bloomberg	\N	D	2016-02-16 15:53:37.215742	2016-02-16 15:53:37.215742
+830	School for International Studies	Fred Walsh	\N	C	2016-02-16 15:53:37.216912	2016-02-16 15:53:37.216912
+831	Cobble Hill School of American Studies	Annamaria Mule	\N	B	2016-02-16 15:53:37.218107	2016-02-16 15:53:37.218107
+832	Pacific High School	Gardy Alabre/Laurie Harriton	\N	\N	2016-02-16 15:53:37.219354	2016-02-16 15:53:37.219354
+833	West Brooklyn Community High School	Liliana Polo	\N	A	2016-02-16 15:53:37.220552	2016-02-16 15:53:37.220552
+834	Metropolitan Corporate Academy High School	Lennel George	\N	\N	2016-02-16 15:53:37.221722	2016-02-16 15:53:37.221722
+835	Brooklyn High School of the Arts	Margaret Lacey Berman	\N	B	2016-02-16 15:53:37.222969	2016-02-16 15:53:37.222969
+836	SUNSET PARK HIGH SCHOOL	Corinne Vinal	\N	\N	2016-02-16 15:53:37.224155	2016-02-16 15:53:37.224155
+837	RED HOOK NEIGHBORHOOD SCHOOL	Rochel Brown	\N	C	2016-02-16 15:53:37.225294	2016-02-16 15:53:37.225294
+838	South Brooklyn Community High School	Louis Garcia	\N	B	2016-02-16 15:53:37.226411	2016-02-16 15:53:37.226411
+839	Sunset Park Prep	Lola Padin	\N	A	2016-02-16 15:53:37.227459	2016-02-16 15:53:37.227459
+840	P.S. 005 Dr. Ronald Mcnair	Lena Gates	\N	C	2016-02-16 15:53:37.228628	2016-02-16 15:53:37.228628
+841	P.S. 021 Crispus Attucks	Harold Anderson	\N	A	2016-02-16 15:53:37.22968	2016-02-16 15:53:37.22968
+842	P.S. 025 Eubie Blake School	Anita Coley	\N	C	2016-02-16 15:53:37.230732	2016-02-16 15:53:37.230732
+843	P.S. 026 Jesse Owens	Michele Ashley	\N	A	2016-02-16 15:53:37.231752	2016-02-16 15:53:37.231752
+844	P.S. 028 The Warren Prep Academy	Sadie Silver	\N	D	2016-02-16 15:53:37.232773	2016-02-16 15:53:37.232773
+845	M.S. 035 Stephen Decatur	Jacklyn Charles-Marcus	\N	A	2016-02-16 15:53:37.233804	2016-02-16 15:53:37.233804
+846	P.S. 040 George W. Carver	Leonie Hibbert	\N	A	2016-02-16 15:53:37.235058	2016-02-16 15:53:37.235058
+847	J.H.S. 057 Whitelaw Reid	Celeste Douglas	\N	C	2016-02-16 15:53:37.236307	2016-02-16 15:53:37.236307
+848	P.S. 081 Thaddeus Stevens	Cheryl Ault- Baker	\N	B	2016-02-16 15:53:37.237531	2016-02-16 15:53:37.237531
+849	P.S. 243K- The Weeksville School	Karen Hambright-Glove	\N	C	2016-02-16 15:53:37.238739	2016-02-16 15:53:37.238739
+850	P.S. 262 El Hajj Malik El Shabazz Elementary Schoo	Joeletha Ferguson	\N	A	2016-02-16 15:53:37.240118	2016-02-16 15:53:37.240118
+851	M.S. 267 Math, Science & Technology	Patricia King	\N	A	2016-02-16 15:53:37.241526	2016-02-16 15:53:37.241526
+852	P.S. 308 Clara Cardwell	Renata Clement	\N	D	2016-02-16 15:53:37.242845	2016-02-16 15:53:37.242845
+853	P.S. 309 The George E. Wibecan Preparatory Academy	Emily Zucal	\N	C	2016-02-16 15:53:37.244024	2016-02-16 15:53:37.244024
+854	P.S. 335 Granville T. Woods	Dr. Laverne Nimmons	\N	A	2016-02-16 15:53:37.245223	2016-02-16 15:53:37.245223
+855	School of Business, Finance and Entrepreneurship	Glyn Marryshow	\N	B	2016-02-16 15:53:37.24631	2016-02-16 15:53:37.24631
+856	Frederick Douglass Academy IV Secondary School	Elvin Crespo	\N	F	2016-02-16 15:53:37.247377	2016-02-16 15:53:37.247377
+857	Frederick Douglass Academy IV Secondary School	Elvin Crespo	\N	C	2016-02-16 15:53:37.248443	2016-02-16 15:53:37.248443
+858	Boys and Girls High School	Bernard Gassaway	\N	F	2016-02-16 15:53:37.249542	2016-02-16 15:53:37.249542
+859	Brooklyn High School for Law and Technology	Michael Prayor	\N	B	2016-02-16 15:53:37.250599	2016-02-16 15:53:37.250599
+860	Upper School @ P.S. 25	William Cooper	\N	B	2016-02-16 15:53:37.251696	2016-02-16 15:53:37.251696
+861	M.S. 584	Gilleyan J. Hargrove	\N	C	2016-02-16 15:53:37.252951	2016-02-16 15:53:37.252951
+862	Gotham Professional Arts Academy	Alexander White	\N	F	2016-02-16 15:53:37.254081	2016-02-16 15:53:37.254081
+863	Brighter Choice Community School	Fabayo Mcintosh	\N	\N	2016-02-16 15:53:37.255204	2016-02-16 15:53:37.255204
+864	Brooklyn Brownstone School	Nakia Haskins	\N	\N	2016-02-16 15:53:37.256479	2016-02-16 15:53:37.256479
+865	Young Scholars' Academy for Discovery and Explorat	Danika Lacroix	\N	A	2016-02-16 15:53:37.257954	2016-02-16 15:53:37.257954
+866	The Brooklyn Academy of Global Finance	Kavita Gupta	\N	\N	2016-02-16 15:53:37.259268	2016-02-16 15:53:37.259268
+867	M.S. 002	Adrienne Spencer	\N	B	2016-02-16 15:53:37.260479	2016-02-16 15:53:37.260479
+868	P.S. 006	Ellen Carlisle	\N	B	2016-02-16 15:53:37.261689	2016-02-16 15:53:37.261689
+869	P.S. 012	Nyree Dixon	\N	C	2016-02-16 15:53:37.262788	2016-02-16 15:53:37.262788
+870	P.S. 022	Carlen Padmore-Gateau	\N	F	2016-02-16 15:53:37.264065	2016-02-16 15:53:37.264065
+871	M.S. 061 Dr. Gladstone H. Atwell	Sandra Taylor	\N	C	2016-02-16 15:53:37.265234	2016-02-16 15:53:37.265234
+872	P.S. 091 The Albany Avenue School	Tessa Alleyne	\N	D	2016-02-16 15:53:37.26644	2016-02-16 15:53:37.26644
+873	P.S. 092 Adrian Hegeman	Ms. Diana Rahmaan	\N	C	2016-02-16 15:53:37.267623	2016-02-16 15:53:37.267623
+874	P.S. 138 Brooklyn	Ms. Marie Chauvet-Monchik	\N	B	2016-02-16 15:53:37.268789	2016-02-16 15:53:37.268789
+875	P.S. 161 The Crown	Ms. Deborah Barrett	\N	D	2016-02-16 15:53:37.269909	2016-02-16 15:53:37.269909
+876	P.S. 167 The Parkway	Marc Mardy	\N	C	2016-02-16 15:53:37.271143	2016-02-16 15:53:37.271143
+877	P.S. 181 Brooklyn	Lowell Coleman	\N	B	2016-02-16 15:53:37.27267	2016-02-16 15:53:37.27267
+878	P.S. 189 Lincoln Terrace	Ms. Berthe G. Faustin	\N	A	2016-02-16 15:53:37.274106	2016-02-16 15:53:37.274106
+879	P.S. 191 Paul Robeson	Mrs. Elsi Capolongo	\N	B	2016-02-16 15:53:37.275513	2016-02-16 15:53:37.275513
+880	P.S. 221 Toussaint L'Ouverture	Clara Moodie-Kirkland	\N	A	2016-02-16 15:53:37.276967	2016-02-16 15:53:37.276967
+881	P.S. 241 Emma L. Johnston	Frantz Lucius	\N	A	2016-02-16 15:53:37.278509	2016-02-16 15:53:37.278509
+882	M.S. 246 Walt Whitman	Bently Warrington	\N	B	2016-02-16 15:53:37.279906	2016-02-16 15:53:37.279906
+883	P.S. 249 The Caton	Ms. Elisa Brown	\N	A	2016-02-16 15:53:37.281235	2016-02-16 15:53:37.281235
+884	P.S. 289 George V. Brower	Mr. Dennis O. Jeffers	\N	C	2016-02-16 15:53:37.282572	2016-02-16 15:53:37.282572
+885	P.S. 316 Elijah Stroud	Elif Gure	\N	C	2016-02-16 15:53:37.284056	2016-02-16 15:53:37.284056
+886	Middle School for Academic and Social Excellence	Andrea Whitehurst	\N	C	2016-02-16 15:53:37.285569	2016-02-16 15:53:37.285569
+887	I.S. 340	Mrs. Jean Williams	\N	C	2016-02-16 15:53:37.286887	2016-02-16 15:53:37.286887
+888	Ebbets Field Middle School	Margie Baker	\N	B	2016-02-16 15:53:37.290437	2016-02-16 15:53:37.290437
+889	Elijah Stroud Middle School	Claudette Essor	\N	B	2016-02-16 15:53:37.292449	2016-02-16 15:53:37.292449
+890	The School of Integrated Learning	Monique Campbell	\N	B	2016-02-16 15:53:37.293747	2016-02-16 15:53:37.293747
+891	P.S. 375 Jackie-Robinson School	Ms. Marion Wilson	\N	A	2016-02-16 15:53:37.294871	2016-02-16 15:53:37.294871
+892	Academy for College Preparation and Career Explora	Doris Unger	\N	B	2016-02-16 15:53:37.29596	2016-02-16 15:53:37.29596
+893	Academy for College Preparation and Career Exploration: A College Board School	Doris Unger	\N	D	2016-02-16 15:53:37.297115	2016-02-16 15:53:37.297115
+894	M.S. K394	Ms. Claudette Murray	\N	B	2016-02-16 15:53:37.298281	2016-02-16 15:53:37.298281
+895	P.S. 397 Foster-Laurie	Nancy Colon	\N	B	2016-02-16 15:53:37.299531	2016-02-16 15:53:37.299531
+896	P.S. 398 Walter Weaver	Diane Danay-Caban	\N	B	2016-02-16 15:53:37.301033	2016-02-16 15:53:37.301033
+897	P.S. 399 Stanley Eugene Clark	Marion J. Brown	\N	B	2016-02-16 15:53:37.30218	2016-02-16 15:53:37.30218
+898	Academy of Hospitality and Tourism	Adam Breier	\N	B	2016-02-16 15:53:37.303443	2016-02-16 15:53:37.303443
+899	Erasmus Yabc	Angela Pugh Roberson	\N	C	2016-02-16 15:53:37.304807	2016-02-16 15:53:37.304807
+900	Ronald Edmonds Learning Center II	Herbert Daughtry	\N	A	2016-02-16 15:53:37.306398	2016-02-16 15:53:37.306398
+901	W.E.B. Dubois Academic High School	Catherine Hartnett	\N	D	2016-02-16 15:53:37.307956	2016-02-16 15:53:37.307956
+902	International High School at Prospect Heights	Nedda De Castro	\N	A	2016-02-16 15:53:37.309561	2016-02-16 15:53:37.309561
+903	The High School for Global Citizenship	Michelle Rochon	\N	C	2016-02-16 15:53:37.311208	2016-02-16 15:53:37.311208
+904	School for Human Rights, The	Michael Alexander	\N	C	2016-02-16 15:53:37.312683	2016-02-16 15:53:37.312683
+905	School for Human Rights, The	Michael Alexander	\N	A	2016-02-16 15:53:37.3142	2016-02-16 15:53:37.3142
+906	School for Democracy and Leadership	Rebecca Ostro	\N	D	2016-02-16 15:53:37.315632	2016-02-16 15:53:37.315632
+907	School for Democracy and Leadership	Rebecca Ostro	\N	D	2016-02-16 15:53:37.316952	2016-02-16 15:53:37.316952
+908	High School for Youth and Community Development at Erasmus	Mary Prendergast	\N	C	2016-02-16 15:53:37.318387	2016-02-16 15:53:37.318387
+909	High School for Service & Learning at Erasmus	Leonard Kassan	\N	A	2016-02-16 15:53:37.319925	2016-02-16 15:53:37.319925
+910	Science, Technology and Research Early College Hig	Dr. Eric L. Blake	\N	B	2016-02-16 15:53:37.321174	2016-02-16 15:53:37.321174
+911	Science, Technology and Research Early College High School at Erasmus	Dr. Eric L. Blake	\N	B	2016-02-16 15:53:37.322545	2016-02-16 15:53:37.322545
+912	International Arts Business School	Ms. Sheila Hanley	\N	F	2016-02-16 15:53:37.324037	2016-02-16 15:53:37.324037
+913	High School for Public Service: Heroes of Tomorrow	Ben Shuldiner	\N	A	2016-02-16 15:53:37.325373	2016-02-16 15:53:37.325373
+914	Brooklyn Academy of Science and the Environment	Veronica Peterson	\N	B	2016-02-16 15:53:37.326734	2016-02-16 15:53:37.326734
+915	Brooklyn School for Music & Theatre	Pamela Randazzo-Dorcely	\N	B	2016-02-16 15:53:37.32824	2016-02-16 15:53:37.32824
+916	Brownsville Academy High School	Lashawn Robinson	\N	A	2016-02-16 15:53:37.329403	2016-02-16 15:53:37.329403
+917	Middle School for the Arts	Susan Hobson-Ransom	\N	D	2016-02-16 15:53:37.330747	2016-02-16 15:53:37.330747
+918	Medgar Evers College Preparatory School	Dr. Michael A. Wiltshire	\N	C	2016-02-16 15:53:37.331948	2016-02-16 15:53:37.331948
+919	Medgar Evers College Preparatory School	Dr. Michael A. Wiltshire	\N	B	2016-02-16 15:53:37.333186	2016-02-16 15:53:37.333186
+920	Clara Barton High School	Dr. Richard A. Forman	\N	C	2016-02-16 15:53:37.334295	2016-02-16 15:53:37.334295
+921	Paul Robeson High School	Ronald Williams Wells	\N	\N	2016-02-16 15:53:37.33554	2016-02-16 15:53:37.33554
+922	ACADEMY FOR HEALTH CAREERS	Deonne Martin	\N	\N	2016-02-16 15:53:37.336655	2016-02-16 15:53:37.336655
+923	P.S. 66	Lucille Jackson	\N	B	2016-02-16 15:53:37.337986	2016-02-16 15:53:37.337986
+924	I.S. 068 Isaac Bildersee	Merve Williams	\N	B	2016-02-16 15:53:37.33936	2016-02-16 15:53:37.33936
+925	P.S. 114 Ryder Elementary	Darwin Smith	\N	C	2016-02-16 15:53:37.340664	2016-02-16 15:53:37.340664
+926	P.S. 115 Daniel Mucatel School	Denis Guerin	\N	B	2016-02-16 15:53:37.341875	2016-02-16 15:53:37.341875
+927	P.S. 135 Sheldon A. Brookner	Trevlyn Mcrae	\N	B	2016-02-16 15:53:37.343185	2016-02-16 15:53:37.343185
+928	P.S. 208 Elsa Ebeling	Ms. Kristy Parris	\N	B	2016-02-16 15:53:37.34429	2016-02-16 15:53:37.34429
+929	I.S. 211 John Wilson	Buffie Simmons-Peart	\N	A	2016-02-16 15:53:37.345355	2016-02-16 15:53:37.345355
+930	P.S. 219 Kennedy-King	Ms. Winsome Smith	\N	B	2016-02-16 15:53:37.34649	2016-02-16 15:53:37.34649
+931	P.S. 233 Langston Hughes	Denean Stephens-Spellman	\N	C	2016-02-16 15:53:37.347706	2016-02-16 15:53:37.347706
+932	P.S. 235 Lenox School	Lisa Solitario	\N	A	2016-02-16 15:53:37.34892	2016-02-16 15:53:37.34892
+933	P.S. 244 Richard R. Green	Ms. Grace Alesia	\N	A	2016-02-16 15:53:37.350188	2016-02-16 15:53:37.350188
+934	P.S. 268 Emma Lazarus	Vangela Kirton	\N	B	2016-02-16 15:53:37.351707	2016-02-16 15:53:37.351707
+935	P.S. 272 Curtis Estabrook	Dakota Keyes	\N	F	2016-02-16 15:53:37.353015	2016-02-16 15:53:37.353015
+936	P.S. 276 Louis Marshall	Yasmine Fidelia	\N	B	2016-02-16 15:53:37.354329	2016-02-16 15:53:37.354329
+937	P.S. 279 Herman Schreiber	Lorenzo Chambers	\N	C	2016-02-16 15:53:37.355615	2016-02-16 15:53:37.355615
+938	I.S. 285 Meyer Levin	Mr. Frederick A. Underwood	\N	B	2016-02-16 15:53:37.3569	2016-02-16 15:53:37.3569
+939	THE SCIENCE AND MEDICINE MIDDLE SCHOOL	Ingrid Thomas-Clark	\N	B	2016-02-16 15:53:37.358155	2016-02-16 15:53:37.358155
+940	Canarsie High School	Angelo Marra	\N	\N	2016-02-16 15:53:37.359483	2016-02-16 15:53:37.359483
+941	It Takes a Village Academy	Marina Vinitskaya	\N	A	2016-02-16 15:53:37.36065	2016-02-16 15:53:37.36065
+942	Brooklyn Generation School	Terri Lynn Grey	\N	C	2016-02-16 15:53:37.361837	2016-02-16 15:53:37.361837
+943	Brooklyn Theatre Arts High School	Joshua Good	\N	A	2016-02-16 15:53:37.363067	2016-02-16 15:53:37.363067
+944	Kurt Hahn Expeditionary Learning School	Matt Brown	\N	C	2016-02-16 15:53:37.364154	2016-02-16 15:53:37.364154
+945	Victory Collegiate High School	Marcel D. Deans	\N	A	2016-02-16 15:53:37.36531	2016-02-16 15:53:37.36531
+946	Brooklyn Bridge Academy	Max Jean Paul	\N	C	2016-02-16 15:53:37.36638	2016-02-16 15:53:37.36638
+947	East Flatbush Community Research School	David Manning	\N	D	2016-02-16 15:53:37.367505	2016-02-16 15:53:37.367505
+948	Middle School for Art and Philosophy	Andrew Buck	\N	C	2016-02-16 15:53:37.368746	2016-02-16 15:53:37.368746
+949	Arts & Media Preparatory Academy	Robert Hall	\N	B	2016-02-16 15:53:37.369983	2016-02-16 15:53:37.369983
+950	Middle School of Marketing and Legal Studies	Jameela Horton-Ball	\N	B	2016-02-16 15:53:37.37114	2016-02-16 15:53:37.37114
+951	High School for Innovation in Advertising and Media	Adaleza Michelena	\N	\N	2016-02-16 15:53:37.372319	2016-02-16 15:53:37.372319
+952	Cultural Academy for the Arts and Sciences	Diane Varano	\N	\N	2016-02-16 15:53:37.37347	2016-02-16 15:53:37.37347
+953	High School for Medical Professions	Joseph Scarmato	\N	\N	2016-02-16 15:53:37.374735	2016-02-16 15:53:37.374735
+954	Olympus Academy	Seth Schoenfeld	\N	C	2016-02-16 15:53:37.375932	2016-02-16 15:53:37.375932
+955	Academy for Conservation and the Environment	Michelle Ashkin	\N	\N	2016-02-16 15:53:37.377169	2016-02-16 15:53:37.377169
+956	Urban Action Academy	Abe Correa	\N	\N	2016-02-16 15:53:37.378232	2016-02-16 15:53:37.378232
+957	EAST BROOKLYN COMMUNITY HIGH SCHOOL	Patrick Mcgillicuddy	\N	B	2016-02-16 15:53:37.379459	2016-02-16 15:53:37.379459
+958	South Shore Educational Complex Yabc	Dawn Harris	\N	C	2016-02-16 15:53:37.380906	2016-02-16 15:53:37.380906
+959	P.S. 007 Abraham Lincoln	Nydia Acevedo	\N	A	2016-02-16 15:53:37.382364	2016-02-16 15:53:37.382364
+960	P.S. 013 Roberto Clemente	Barbara Ashby	\N	C	2016-02-16 15:53:37.383601	2016-02-16 15:53:37.383601
+961	P.S. 065	Daysi Garcia	\N	B	2016-02-16 15:53:37.384873	2016-02-16 15:53:37.384873
+962	P.S./I.S. 072 Annette P Goldman	Valena Welch Woodley	\N	\N	2016-02-16 15:53:37.386306	2016-02-16 15:53:37.386306
+963	P.S. 089 Cypress Hills	Irene Leon	\N	B	2016-02-16 15:53:37.387541	2016-02-16 15:53:37.387541
+964	P.S. 108 Sal Abbracciamento	Constance Hahn	\N	B	2016-02-16 15:53:37.388829	2016-02-16 15:53:37.388829
+965	P.S. 149 Danny Kaye	Enid Silvera	\N	C	2016-02-16 15:53:37.39013	2016-02-16 15:53:37.39013
+966	P.S. 158 Warwick	Audrey Wilson	\N	B	2016-02-16 15:53:37.391318	2016-02-16 15:53:37.391318
+967	P.S. 159 Isaac Pitkin	Monica Duncan	\N	B	2016-02-16 15:53:37.392424	2016-02-16 15:53:37.392424
+968	J.H.S. 166 George Gershwin	Maria Ortega	\N	C	2016-02-16 15:53:37.393998	2016-02-16 15:53:37.393998
+969	I.S. 171 Abraham Lincoln	Yolanda Fustanio	\N	F	2016-02-16 15:53:37.395224	2016-02-16 15:53:37.395224
+970	P.S. 174 Dumont	Ingrid Mason	\N	C	2016-02-16 15:53:37.396415	2016-02-16 15:53:37.396415
+971	P.S. 190 Sheffield	Stephaun Hill	\N	B	2016-02-16 15:53:37.397514	2016-02-16 15:53:37.397514
+972	P.S. 202 Ernest S. Jenkyns	Pauline Smith-Gayle	\N	D	2016-02-16 15:53:37.39877	2016-02-16 15:53:37.39877
+973	P.S. 213 New Lots	Anne Lee Bernard	\N	D	2016-02-16 15:53:37.400349	2016-02-16 15:53:37.400349
+974	P.S. 214 Michael Friedsam	Patricia Tubridy	\N	B	2016-02-16 15:53:37.401823	2016-02-16 15:53:37.401823
+975	J.H.S. 218 James P. Sinnott	Alison Breedy	\N	B	2016-02-16 15:53:37.40322	2016-02-16 15:53:37.40322
+976	P.S. 224 Hale A. Woodruff	George Andrews	\N	C	2016-02-16 15:53:37.404562	2016-02-16 15:53:37.404562
+977	P.S. 260 Breuckelen	Pierre Raymond	\N	\N	2016-02-16 15:53:37.405908	2016-02-16 15:53:37.405908
+978	P.S. 273 Wortman	Melessa Avery	\N	C	2016-02-16 15:53:37.407167	2016-02-16 15:53:37.407167
+979	P.S. 290 Juan Morel Campos	Willena George	\N	B	2016-02-16 15:53:37.408544	2016-02-16 15:53:37.408544
+980	J.H.S. 292 Margaret S. Douglas	Everett Hughes	\N	B	2016-02-16 15:53:37.40979	2016-02-16 15:53:37.40979
+981	J.H.S. 302 Rafael Cordero	Lisa Linder	\N	C	2016-02-16 15:53:37.411119	2016-02-16 15:53:37.411119
+982	P.S. 306 Ethan Allen	Lawrence Burroughs	\N	F	2016-02-16 15:53:37.412675	2016-02-16 15:53:37.412675
+983	Essence School	Claudy Makelele	\N	C	2016-02-16 15:53:37.414078	2016-02-16 15:53:37.414078
+984	P.S. 328 Phyllis Wheatley	Douglas Avila	\N	D	2016-02-16 15:53:37.415367	2016-02-16 15:53:37.415367
+985	P.S. 345 Patrolman Robert Bolden	Wanda Holt	\N	C	2016-02-16 15:53:37.416715	2016-02-16 15:53:37.416715
+986	P.S. 346 Abe Stark	Kevin Caifa	\N	C	2016-02-16 15:53:37.418156	2016-02-16 15:53:37.418156
+987	I.S. 364 Gateway	Dale Kelly	\N	C	2016-02-16 15:53:37.419401	2016-02-16 15:53:37.419401
+988	East New York Family Academy	Sheila Richards	\N	A	2016-02-16 15:53:37.420744	2016-02-16 15:53:37.420744
+989	East New York Family Academy	Sheila Richards	\N	C	2016-02-16 15:53:37.422259	2016-02-16 15:53:37.422259
+990	Franklin K. Lane High School	Marlon Bynum	\N	\N	2016-02-16 15:53:37.423372	2016-02-16 15:53:37.423372
+991	Thomas Jefferson Yabc	Juan Batista	\N	A	2016-02-16 15:53:37.424508	2016-02-16 15:53:37.424508
+992	Frederick Douglass Academy VIII Middle School	Yolanda Martin	\N	B	2016-02-16 15:53:37.425728	2016-02-16 15:53:37.425728
+993	Franklin K. Lane Campus YABC	Rosalie Marks	\N	A	2016-02-16 15:53:37.42689	2016-02-16 15:53:37.42689
+994	High School for Civil Rights	Michael S. Steele	\N	B	2016-02-16 15:53:37.42804	2016-02-16 15:53:37.42804
+995	Performing Arts and Technology High School	Reginald Richardson	\N	B	2016-02-16 15:53:37.429163	2016-02-16 15:53:37.429163
+996	World Academy for Total Community Health High School	Kim Wanliss	\N	C	2016-02-16 15:53:37.43041	2016-02-16 15:53:37.43041
+997	Multicultural High School	Altagracia Liciaga	\N	C	2016-02-16 15:53:37.431598	2016-02-16 15:53:37.431598
+998	Transit Tech Career and Technical Education High School	Neil Harris	\N	B	2016-02-16 15:53:37.43277	2016-02-16 15:53:37.43277
+999	Academy of Innovative Technology	Cynthia Fowlkes	\N	\N	2016-02-16 15:53:37.433936	2016-02-16 15:53:37.433936
+1000	Brooklyn Lab School	Charles Simic	\N	\N	2016-02-16 15:53:37.435062	2016-02-16 15:53:37.435062
+1001	Cypress Hills Collegiate Preparatory School	Alex Maysonet	\N	D	2016-02-16 15:53:37.436216	2016-02-16 15:53:37.436216
+1002	W. H. Maxwell Career and Technical Education High School	Jocelyn Badette	\N	A	2016-02-16 15:53:37.437373	2016-02-16 15:53:37.437373
+1003	EAST NEW YORK ELEMENTARY SCHOOL OF EXCELLENCE	Judy Touzin	\N	C	2016-02-16 15:53:37.438552	2016-02-16 15:53:37.438552
+1004	EAST NEW YORK MIDDLE SCHOOL OF EXCELLENCE	Rose Anne Gonzalez	\N	B	2016-02-16 15:53:37.439702	2016-02-16 15:53:37.439702
+1005	THE SCHOOL FOR CLASSICS: AN ACADEMY OF THINKERS, WRITERS AND PERFORMERS	Janice Ross	\N	\N	2016-02-16 15:53:37.440829	2016-02-16 15:53:37.440829
+1006	I.S. 30 Mary White Ovington	Carol Heeraman	\N	B	2016-02-16 15:53:37.441967	2016-02-16 15:53:37.441967
+1007	P.S. 048 Mapleton	Diane Picucci	\N	A	2016-02-16 15:53:37.443123	2016-02-16 15:53:37.443123
+1008	J.H.S. 062 Ditmas	Barry Kevorkian	\N	B	2016-02-16 15:53:37.444257	2016-02-16 15:53:37.444257
+1009	P.S. 69 Vincent D. Grippo School	Jaynemarie Capetanakis	\N	A	2016-02-16 15:53:37.445344	2016-02-16 15:53:37.445344
+1010	P.S. 102 The Bayview	Ms. Theresa Dovi	\N	B	2016-02-16 15:53:37.446428	2016-02-16 15:53:37.446428
+1011	P.S./I.S. 104 The Fort Hamilton School	Ms. Marie Dibella	\N	B	2016-02-16 15:53:37.447519	2016-02-16 15:53:37.447519
+1012	P.S. 105 The Blythebourne	Johanna Castronovo	\N	A	2016-02-16 15:53:37.448656	2016-02-16 15:53:37.448656
+1013	P.S. 112 Lefferts Park	Louise Verdemare (Alfano)	\N	A	2016-02-16 15:53:37.449916	2016-02-16 15:53:37.449916
+1014	P.S. 127 Mckinley Park	Agatha Alicandro	\N	B	2016-02-16 15:53:37.451069	2016-02-16 15:53:37.451069
+1015	P.S. 160 William T. Sampson	Margaret Russo	\N	C	2016-02-16 15:53:37.452216	2016-02-16 15:53:37.452216
+1016	P.S. 163 Bath Beach	Maryann Wasmuth	\N	A	2016-02-16 15:53:37.453355	2016-02-16 15:53:37.453355
+1017	P.S. 164 Caesar Rodney	Margaret Choy-Shan	\N	A	2016-02-16 15:53:37.454521	2016-02-16 15:53:37.454521
+1018	Ralph A. Fabrizio School	Zhen (Tony) Wu	\N	B	2016-02-16 15:53:37.455597	2016-02-16 15:53:37.455597
+1019	P.S. 176 Ovington	Elizabeth Culkin	\N	A	2016-02-16 15:53:37.456691	2016-02-16 15:53:37.456691
+1020	P.S. 179 Kensington	Valerie Joseph	\N	C	2016-02-16 15:53:37.457756	2016-02-16 15:53:37.457756
+1021	The SEEALL Academy	Gary Williams	\N	B	2016-02-16 15:53:37.458919	2016-02-16 15:53:37.458919
+1022	P.S. 185 Walter Kassenbrock	Kenneth Llinas	\N	C	2016-02-16 15:53:37.460216	2016-02-16 15:53:37.460216
+1023	P.S. 186 Dr. Irving A Gladstone	Bayan (Ebeid) Cadotte	\N	B	2016-02-16 15:53:37.46143	2016-02-16 15:53:37.46143
+1024	The Christa McAuliffe SchoolI.S. 187	Justin Berman	\N	A	2016-02-16 15:53:37.462556	2016-02-16 15:53:37.462556
+1025	P.S. 192 - The Magnet School for Math and Science	Liset Isaac	\N	A	2016-02-16 15:53:37.463673	2016-02-16 15:53:37.463673
+1026	P.S. 200 Benson School	Javier Muniz	\N	A	2016-02-16 15:53:37.464787	2016-02-16 15:53:37.464787
+1027	J.H.S. 201 The Dyker Heights	Ms. Madeleine Brennan	\N	A	2016-02-16 15:53:37.465922	2016-02-16 15:53:37.465922
+1028	P.S. 204 Vince Lombardi	Mrs. Marie Reilly	\N	B	2016-02-16 15:53:37.467025	2016-02-16 15:53:37.467025
+1029	P.S. 205 Clarion	Beth Grater	\N	A	2016-02-16 15:53:37.46819	2016-02-16 15:53:37.46819
+1030	J.H.S. 220 John J. Pershing	Loretta Witek	\N	C	2016-02-16 15:53:37.469328	2016-02-16 15:53:37.469328
+1031	J.H.S. 223 The Montauk	Andrew Frank	\N	A	2016-02-16 15:53:37.470532	2016-02-16 15:53:37.470532
+1032	J.H.S. 227 Edward B. Shallow	Brenda D. Champion	\N	A	2016-02-16 15:53:37.471691	2016-02-16 15:53:37.471691
+1033	P.S. 229 Dyker	Robert Zappulla	\N	B	2016-02-16 15:53:37.47287	2016-02-16 15:53:37.47287
+1034	P.S. 247 Brooklyn	Christopher E. Ogno	\N	A	2016-02-16 15:53:37.474053	2016-02-16 15:53:37.474053
+1035	J.H.S. 259 William Mckinley	Janice Geary	\N	A	2016-02-16 15:53:37.47528	2016-02-16 15:53:37.47528
+1036	New Utrecht High School	Maureen Goldfarb	\N	B	2016-02-16 15:53:37.476469	2016-02-16 15:53:37.476469
+1037	High School of Telecommunication Arts and Technology	Philip Weinberg	\N	A	2016-02-16 15:53:37.477681	2016-02-16 15:53:37.477681
+1038	Fort Hamilton High School	Jo Ann Chester	\N	B	2016-02-16 15:53:37.478864	2016-02-16 15:53:37.478864
+1039	PS 503: The School of Discovery	Bernadette Fitzgerald	\N	B	2016-02-16 15:53:37.480007	2016-02-16 15:53:37.480007
+1040	Franklin Delano Roosevelt High School	Steven Demarco	\N	B	2016-02-16 15:53:37.481222	2016-02-16 15:53:37.481222
+1041	P.S. 506: The School of Journalism & Technology	Elizabeth Waters	\N	B	2016-02-16 15:53:37.482305	2016-02-16 15:53:37.482305
+1042	Urban Assembly School for Criminal Justice	Mariela Graham	\N	A	2016-02-16 15:53:37.48347	2016-02-16 15:53:37.48347
+1043	Urban Assembly School for Criminal Justice	Mariela Graham	\N	\N	2016-02-16 15:53:37.484783	2016-02-16 15:53:37.484783
+1044	Franklin Delano Roosevelt YABC	Michael Ragucci	\N	B	2016-02-16 15:53:37.48611	2016-02-16 15:53:37.48611
+1045	P.S. 90 Edna Cohen School	Greta Hawkins	\N	A	2016-02-16 15:53:37.487241	2016-02-16 15:53:37.487241
+1046	P.S. 095 The Gravesend	Janet Ndzibah	\N	C	2016-02-16 15:53:37.488442	2016-02-16 15:53:37.488442
+1047	I.S. 096 Seth Low	Denise Sandra Levinsky	\N	B	2016-02-16 15:53:37.48964	2016-02-16 15:53:37.48964
+1048	P.S. 97 The Highlawn	Kristine Mustillo	\N	A	2016-02-16 15:53:37.490891	2016-02-16 15:53:37.490891
+1049	I.S. 98 Bay Academy	Maria Timo	\N	A	2016-02-16 15:53:37.492244	2016-02-16 15:53:37.492244
+1050	P.S. 099 Isaac Asimov	Gregory Pirraglia	\N	A	2016-02-16 15:53:37.493353	2016-02-16 15:53:37.493353
+1051	P.S. 100 The Coney Island School	Katherine A. Moloney	\N	C	2016-02-16 15:53:37.494587	2016-02-16 15:53:37.494587
+1052	P.S. 101 The Verrazano	Gregg Korrol	\N	B	2016-02-16 15:53:37.495808	2016-02-16 15:53:37.495808
+1053	P.S. 121 Nelson A. Rockefeller	Lillian Catalano	\N	A	2016-02-16 15:53:37.49701	2016-02-16 15:53:37.49701
+1054	P.S. 128 Bensonhurst	Marcia Robins	\N	B	2016-02-16 15:53:37.498115	2016-02-16 15:53:37.498115
+1055	P.S. 153 Homecrest	Carl Santamaria	\N	C	2016-02-16 15:53:37.499281	2016-02-16 15:53:37.499281
+1056	P.S. 177 The Marlboro	Shoshana Singer	\N	B	2016-02-16 15:53:37.500473	2016-02-16 15:53:37.500473
+1057	P.S. 188 Michael E. Berdy	Frederick M. Tudda	\N	A	2016-02-16 15:53:37.501617	2016-02-16 15:53:37.501617
+1058	P.S. 199 Frederick Wachtel	Rosalia Bacarella	\N	B	2016-02-16 15:53:37.502773	2016-02-16 15:53:37.502773
+1059	P.S. 209 Margaret Mead	Frances Locurcio	\N	B	2016-02-16 15:53:37.503916	2016-02-16 15:53:37.503916
+1060	P.S. 212 Lady Deborah Moody	Josephine Marsella	\N	B	2016-02-16 15:53:37.505282	2016-02-16 15:53:37.505282
+1061	P.S. 215 Morris H. Weiss	Antonella Bove	\N	A	2016-02-16 15:53:37.506739	2016-02-16 15:53:37.506739
+1062	P.S. 216 Arturo Toscanini	Celia Kaplinsky	\N	C	2016-02-16 15:53:37.508346	2016-02-16 15:53:37.508346
+1063	P.S. K225 - The Eileen E. Zaglin	Joseph Montebello	\N	B	2016-02-16 15:53:37.509742	2016-02-16 15:53:37.509742
+1064	P.S. 226 Alfred De B.Mason	Sherry Tannenbaum	\N	B	2016-02-16 15:53:37.51105	2016-02-16 15:53:37.51105
+1065	I.S. 228 David A. Boody	Dominick D'Angelo	\N	C	2016-02-16 15:53:37.512273	2016-02-16 15:53:37.512273
+1066	P.S. 238 Anne Sullivan	Harla Joy Musoff-Weiss	\N	B	2016-02-16 15:53:37.51354	2016-02-16 15:53:37.51354
+1067	Mark Twain I.S. 239 for the Gifted & Talented	Carol Moore	\N	A	2016-02-16 15:53:37.514757	2016-02-16 15:53:37.514757
+1068	P.S. 253	Lisa Speroni	\N	A	2016-02-16 15:53:37.515934	2016-02-16 15:53:37.515934
+1069	I.S. 281 Joseph B Cavallaro	Stephen Rosenblum	\N	A	2016-02-16 15:53:37.51714	2016-02-16 15:53:37.51714
+1070	P.S. 288 The Shirley Tanyhill	Joelene-Lynette Kinard	\N	B	2016-02-16 15:53:37.518316	2016-02-16 15:53:37.518316
+1071	I.S. 303 Herbert S. Eisenberg	Mr. Gary Ingrassia	\N	A	2016-02-16 15:53:37.519407	2016-02-16 15:53:37.519407
+1072	P.S. 329 Surfside	Salema Marbury	\N	B	2016-02-16 15:53:37.520553	2016-02-16 15:53:37.520553
+1073	International High School at Lafayette	Michael F. Soet	\N	B	2016-02-16 15:53:37.521625	2016-02-16 15:53:37.521625
+1074	Rachel Carson High School for Coastal Studies	Edward Wilensky	\N	B	2016-02-16 15:53:37.522763	2016-02-16 15:53:37.522763
+1075	High School of Sports Management	Robin Pitts	\N	B	2016-02-16 15:53:37.523887	2016-02-16 15:53:37.523887
+1076	Abraham Lincoln High School	Ari Hoogenboom	\N	C	2016-02-16 15:53:37.525106	2016-02-16 15:53:37.525106
+1077	Abraham Lincoln Yabc	Neal Reich	\N	B	2016-02-16 15:53:37.526284	2016-02-16 15:53:37.526284
+1078	Kingsborough Early College School	Connie Hamilton	\N	B	2016-02-16 15:53:37.527521	2016-02-16 15:53:37.527521
+1079	Kingsborough Early College School	Connie Hamilton	\N	\N	2016-02-16 15:53:37.528694	2016-02-16 15:53:37.528694
+1080	Edward R. Murrow High School	Anthony R. Lodico	\N	B	2016-02-16 15:53:37.52982	2016-02-16 15:53:37.52982
+1081	John Dewey High School	Barry Fried	\N	C	2016-02-16 15:53:37.531268	2016-02-16 15:53:37.531268
+1082	Life Academy High School for Film and Music	Edison Teano	\N	B	2016-02-16 15:53:37.532663	2016-02-16 15:53:37.532663
+1083	Expeditionary Learning School for Community Leaders	Sarah Weeks	\N	D	2016-02-16 15:53:37.533853	2016-02-16 15:53:37.533853
+1084	William E. Grady Career and Technical Education High School	Geraldine Maione	\N	B	2016-02-16 15:53:37.535159	2016-02-16 15:53:37.535159
+1085	Brooklyn Studio Secondary School	Andrea Ciliotta	\N	B	2016-02-16 15:53:37.536244	2016-02-16 15:53:37.536244
+1086	Brooklyn Studio Secondary School	Andrea Ciliotta	\N	C	2016-02-16 15:53:37.537338	2016-02-16 15:53:37.537338
+1087	Liberation Diploma Plus	April Leong	\N	A	2016-02-16 15:53:37.538381	2016-02-16 15:53:37.538381
+1088	J.H.S. 014 Shell Bank	Anne Tully	\N	A	2016-02-16 15:53:37.539409	2016-02-16 15:53:37.539409
+1089	P.S. 052 Sheepshead Bay	Ilene Altschul	\N	C	2016-02-16 15:53:37.540463	2016-02-16 15:53:37.540463
+1090	J.H.S. 078 Roy H. Mann	Jacek Polubiec	\N	C	2016-02-16 15:53:37.541532	2016-02-16 15:53:37.541532
+1091	P.S. 109	Joan Thomas	\N	C	2016-02-16 15:53:37.542666	2016-02-16 15:53:37.542666
+1092	P.S. 119 Amersfort	Lisa Fernandez	\N	B	2016-02-16 15:53:37.543781	2016-02-16 15:53:37.543781
+1093	P.S. K134	Debra Ramsaran	\N	A	2016-02-16 15:53:37.544998	2016-02-16 15:53:37.544998
+1094	P.S. 139 Alexine A. Fenty	Mary Mcdonald	\N	B	2016-02-16 15:53:37.5462	2016-02-16 15:53:37.5462
+1095	School of Science & Technology	Dr. Rhonda D. Farkas	\N	B	2016-02-16 15:53:37.547299	2016-02-16 15:53:37.547299
+1096	P.S. 193 Gil Hodges	Frank A. Cimino	\N	C	2016-02-16 15:53:37.548467	2016-02-16 15:53:37.548467
+1097	P.S. 194 Raoul Wallenberg	Mary Zissler-Lynch	\N	C	2016-02-16 15:53:37.549682	2016-02-16 15:53:37.549682
+1098	P.S. 195 Manhattan Beach	Arthur Forman	\N	B	2016-02-16 15:53:37.551082	2016-02-16 15:53:37.551082
+1099	P.S. 197 Brooklyn	Rosemarie Barbiere Nicoletti	\N	B	2016-02-16 15:53:37.552329	2016-02-16 15:53:37.552329
+1100	P.S. 198 Brooklyn	Joy-Ann Morgan	\N	B	2016-02-16 15:53:37.553461	2016-02-16 15:53:37.553461
+1101	P.S. 203 Floyd Bennett	Lisa Esposito	\N	B	2016-02-16 15:53:37.554582	2016-02-16 15:53:37.554582
+1102	P.S. 206 Joseph F Lamb	Deirdre Keyes	\N	C	2016-02-16 15:53:37.555794	2016-02-16 15:53:37.555794
+1103	P.S. 207 Elizabeth G. Leary	Mary Bosco	\N	B	2016-02-16 15:53:37.557069	2016-02-16 15:53:37.557069
+1104	P.S. 217 Colonel David Marcus School	Franca Conti	\N	B	2016-02-16 15:53:37.558574	2016-02-16 15:53:37.558574
+1105	P.S. 222 Katherine R. Snyder	Louise Blake	\N	B	2016-02-16 15:53:37.559895	2016-02-16 15:53:37.559895
+1106	J.H.S. 234 Arthur W. Cunningham	Susan Schaeffer	\N	B	2016-02-16 15:53:37.561245	2016-02-16 15:53:37.561245
+1107	P.S. 236 Mill Basin	Mary Theresa Nelson	\N	C	2016-02-16 15:53:37.56259	2016-02-16 15:53:37.56259
+1108	Andries Hudde	Elena S. O'Sullivan	\N	C	2016-02-16 15:53:37.563751	2016-02-16 15:53:37.563751
+1109	P.S. 245	Pat Kannengieser	\N	B	2016-02-16 15:53:37.565094	2016-02-16 15:53:37.565094
+1110	P.S. 251 Paerdegat	Steven Boyer	\N	B	2016-02-16 15:53:37.566519	2016-02-16 15:53:37.566519
+1111	P.S. 254 Dag Hammarskjold	Linda Alhonote	\N	A	2016-02-16 15:53:37.568047	2016-02-16 15:53:37.568047
+1112	P.S. 255 Barbara Reing School	Linda L. Singer	\N	A	2016-02-16 15:53:37.569685	2016-02-16 15:53:37.569685
+1113	P.S. 269 Nostrand	Phyllis Corbin	\N	C	2016-02-16 15:53:37.571486	2016-02-16 15:53:37.571486
+1114	P.S. 277 Gerritsen Beach	Jeanne M. Fish	\N	C	2016-02-16 15:53:37.573008	2016-02-16 15:53:37.573008
+1115	J.H.S. 278 Marine Park	Debra Garofalo	\N	D	2016-02-16 15:53:37.574272	2016-02-16 15:53:37.574272
+1116	P.S. 312 Bergen Beach	Linda Beal Benigno	\N	C	2016-02-16 15:53:37.575524	2016-02-16 15:53:37.575524
+1117	P.S. K315	Judith Ranft	\N	B	2016-02-16 15:53:37.576659	2016-02-16 15:53:37.576659
+1118	P.S. 361 East Flatbush Early Childhood School	Dianne S. Martin	\N	C	2016-02-16 15:53:37.577766	2016-02-16 15:53:37.577766
+1119	I. S. 381	Mary Harrington	\N	C	2016-02-16 15:53:37.578839	2016-02-16 15:53:37.578839
+1120	Midwood High School	David Cohen	\N	C	2016-02-16 15:53:37.580066	2016-02-16 15:53:37.580066
+1121	James Madison High School	Joseph A. Gogliormella	\N	B	2016-02-16 15:53:37.581295	2016-02-16 15:53:37.581295
+1122	Sheepshead Bay High School	Reesa Levy	\N	D	2016-02-16 15:53:37.582776	2016-02-16 15:53:37.582776
+1123	Leon M. Goldstein High School for the Sciences	Joseph Zaza	\N	A	2016-02-16 15:53:37.584152	2016-02-16 15:53:37.584152
+1124	Brooklyn College Academy	Nicholas Mazzarella	\N	A	2016-02-16 15:53:37.585473	2016-02-16 15:53:37.585473
+1125	Brooklyn College Academy	Nicholas Mazzarella	\N	A	2016-02-16 15:53:37.586742	2016-02-16 15:53:37.586742
+1126	P.S. 041 Francis White	Theresa Siegel	\N	A	2016-02-16 15:53:37.588046	2016-02-16 15:53:37.588046
+1127	P.S. 073 Thomas S. Boyland	Joelle Mcken	\N	C	2016-02-16 15:53:37.589327	2016-02-16 15:53:37.589327
+1128	P.S./I.S. 137 Rachel Jean Mitchell	Winston Riley	\N	C	2016-02-16 15:53:37.590595	2016-02-16 15:53:37.590595
+1129	P.S. 150 Christopher	Pamela Bradley Muchere	\N	C	2016-02-16 15:53:37.591757	2016-02-16 15:53:37.591757
+1130	P.S./ I.S. 155 Nicholas Herkimer	Nelly Cortes	\N	A	2016-02-16 15:53:37.592948	2016-02-16 15:53:37.592948
+1131	P.S. 156 Waverly	Beverly Logan	\N	C	2016-02-16 15:53:37.594154	2016-02-16 15:53:37.594154
+1132	P.S. 165 Ida Posner	Fran Ellers	\N	C	2016-02-16 15:53:37.595394	2016-02-16 15:53:37.595394
+1133	P.S. 178 Saint Clair Mckelway	Joseph Frantz Henry	\N	C	2016-02-16 15:53:37.596592	2016-02-16 15:53:37.596592
+1134	P.S. 184 Newport	Lamson Lam	\N	B	2016-02-16 15:53:37.597826	2016-02-16 15:53:37.597826
+1135	P.S. 284 Lew Wallace	Shenean Lindsay	\N	B	2016-02-16 15:53:37.599048	2016-02-16 15:53:37.599048
+1136	P.S. 298 Dr. Betty Shabazz	Antoinette Martin	\N	F	2016-02-16 15:53:37.600157	2016-02-16 15:53:37.600157
+1137	P.S./I.S. 323	Linda Harris	\N	A	2016-02-16 15:53:37.608411	2016-02-16 15:53:37.608411
+1138	P.S. 327 Dr. Rose B. English	Stephen Appea	\N	C	2016-02-16 15:53:37.609703	2016-02-16 15:53:37.609703
+1139	P.S. 332 Charles H. Houston	Mickisha Goss	\N	\N	2016-02-16 15:53:37.610852	2016-02-16 15:53:37.610852
+1140	I.S. 392	Shirley Wheeler	\N	A	2016-02-16 15:53:37.612014	2016-02-16 15:53:37.612014
+1141	Brooklyn Collegiate: A College Board School	Amote Sias	\N	F	2016-02-16 15:53:37.613397	2016-02-16 15:53:37.613397
+1142	Brooklyn Collegiate: A College Board School	Amote Sias	\N	B	2016-02-16 15:53:37.614614	2016-02-16 15:53:37.614614
+1143	Frederick Douglass Academy VII High School	Tamika Matheson	\N	A	2016-02-16 15:53:37.615783	2016-02-16 15:53:37.615783
+1144	Kappa V	Dellie Edwards	\N	A	2016-02-16 15:53:37.617001	2016-02-16 15:53:37.617001
+1145	Mott Hall IV	Thomas Mcbryde Jr	\N	F	2016-02-16 15:53:37.618091	2016-02-16 15:53:37.618091
+1146	General D. Chappie James Elementary School of Scie	Margaret V. Mcauley	\N	F	2016-02-16 15:53:37.619253	2016-02-16 15:53:37.619253
+1147	General D. Chappie James Middle School of Science	Willis Perry	\N	D	2016-02-16 15:53:37.620384	2016-02-16 15:53:37.620384
+1148	Brooklyn Democracy Academy	Thomas Mckenna	\N	A	2016-02-16 15:53:37.621476	2016-02-16 15:53:37.621476
+1149	Eagle Academy for Young Men II	Rashad Meade	\N	B	2016-02-16 15:53:37.622776	2016-02-16 15:53:37.622776
+1150	EBC/ENY High School for Public Safety & Law	Beverly Faison	\N	\N	2016-02-16 15:53:37.624238	2016-02-16 15:53:37.624238
+1151	Aspirations Diploma Plus High School	Matt Molloy	\N	D	2016-02-16 15:53:37.626051	2016-02-16 15:53:37.626051
+1152	Metropolitan Diploma Plus High School	Meri Yallowitz	\N	A	2016-02-16 15:53:37.627547	2016-02-16 15:53:37.627547
+1153	MOTT HALL BRIDGES MIDDLE SCHOOL	Nadia Lopez	\N	\N	2016-02-16 15:53:37.629053	2016-02-16 15:53:37.629053
+1154	Teachers Preparatory High School	Carmen Simon	\N	B	2016-02-16 15:53:37.630497	2016-02-16 15:53:37.630497
+1155	Teachers Preparatory High School	Carmen Simon	\N	A	2016-02-16 15:53:37.631846	2016-02-16 15:53:37.631846
+1156	I.S. 5 - The Walter Crowley Intermediate School	Michael Dantona	\N	B	2016-02-16 15:53:37.633184	2016-02-16 15:53:37.633184
+1157	P.S. 007 Louis F. Simeone	Sara Tucci	\N	B	2016-02-16 15:53:37.634379	2016-02-16 15:53:37.634379
+1158	P.S. 012 James B. Colgate	Patricia Perry	\N	B	2016-02-16 15:53:37.635597	2016-02-16 15:53:37.635597
+1159	P.S. 013 Clement C. Moore	Dr. Yvonne Angelastro	\N	A	2016-02-16 15:53:37.636755	2016-02-16 15:53:37.636755
+1160	P.S. 014 Fairview	Rosemary Sklar	\N	B	2016-02-16 15:53:37.637971	2016-02-16 15:53:37.637971
+1161	P.S. Q016	Elaine Iodice	\N	B	2016-02-16 15:53:37.63925	2016-02-16 15:53:37.63925
+1162	P.S. 019 Marino Jeantet	Genie Calibar	\N	A	2016-02-16 15:53:37.640564	2016-02-16 15:53:37.640564
+1163	P.S. 28 - The Thomas Emanuel Early Childhood Cente	Laura Pessutti	\N	B	2016-02-16 15:53:37.641737	2016-02-16 15:53:37.641737
+1164	P.S. 049 Dorothy Bonawit Kole	Anthony Lombardi	\N	A	2016-02-16 15:53:37.642911	2016-02-16 15:53:37.642911
+1165	P.S. 58 - School of Heroes	Adelina V. Tripoli	\N	B	2016-02-16 15:53:37.644057	2016-02-16 15:53:37.644057
+1166	I.S. 061 Leonardo Da Vinci	Joseph J Lisa	\N	B	2016-02-16 15:53:37.645216	2016-02-16 15:53:37.645216
+1167	P.S. 068 Cambridge	Anne Marie Snadecky-Scalfaro	\N	B	2016-02-16 15:53:37.646392	2016-02-16 15:53:37.646392
+1168	P.S. 071 Forest	Walkydia Olivella	\N	C	2016-02-16 15:53:37.647557	2016-02-16 15:53:37.647557
+1169	I.S. 73 - The Frank Sansivieri Intermediate School	Camillo Turriciano	\N	B	2016-02-16 15:53:37.648686	2016-02-16 15:53:37.648686
+1170	I.S. 077	Joseph Miller	\N	B	2016-02-16 15:53:37.649865	2016-02-16 15:53:37.649865
+1171	P.S. 81Q Jean Paul Richter	Genevieve Ventura	\N	A	2016-02-16 15:53:37.651039	2016-02-16 15:53:37.651039
+1172	P.S. 087 Middle Village	Caryn Michaeli	\N	A	2016-02-16 15:53:37.652223	2016-02-16 15:53:37.652223
+1173	P.S. 088 Seneca	David Bishop	\N	B	2016-02-16 15:53:37.653421	2016-02-16 15:53:37.653421
+1174	P.S. 089 Elmhurst	Casper Cacioppo	\N	A	2016-02-16 15:53:37.654609	2016-02-16 15:53:37.654609
+1175	P.S. 091 Richard Arkwright	Victoria Catalano	\N	C	2016-02-16 15:53:37.655972	2016-02-16 15:53:37.655972
+1176	I.S. 093 Ridgewood	Edward Santos	\N	C	2016-02-16 15:53:37.657156	2016-02-16 15:53:37.657156
+1177	P.S. 102 Bayview	Anthony Pisacano	\N	A	2016-02-16 15:53:37.658253	2016-02-16 15:53:37.658253
+1178	P.S. 113 Isaac Chauncey	Anthony Pranzo	\N	B	2016-02-16 15:53:37.659309	2016-02-16 15:53:37.659309
+1179	I.S. 119 The Glendale	Dr. Jeanne Fagan	\N	A	2016-02-16 15:53:37.660449	2016-02-16 15:53:37.660449
+1180	I.S. 125 Thom J. McCann Woodside	Judy Mittler	\N	A	2016-02-16 15:53:37.661622	2016-02-16 15:53:37.661622
+1181	P.S. 128 Juniper Valley	John Lavelle	\N	B	2016-02-16 15:53:37.662785	2016-02-16 15:53:37.662785
+1182	P.S. 143 Louis Armstrong	Sheila Gorski	\N	C	2016-02-16 15:53:37.663949	2016-02-16 15:53:37.663949
+1183	P.S. 153 Maspeth Elem	Susan Bauer	\N	B	2016-02-16 15:53:37.665095	2016-02-16 15:53:37.665095
+1184	P.S. 199 Maurice A. Fitzgerald	Anthony Inzerillo	\N	A	2016-02-16 15:53:37.666198	2016-02-16 15:53:37.666198
+1185	P.S. 229 Emanuel Kaplan	Dr. Sibylle Ajwani	\N	A	2016-02-16 15:53:37.667396	2016-02-16 15:53:37.667396
+1186	P.S. 239	Robin Connolly	\N	C	2016-02-16 15:53:37.668804	2016-02-16 15:53:37.668804
+1187	Academy of Finance and Enterprise	Gilberto Vega	\N	A	2016-02-16 15:53:37.669987	2016-02-16 15:53:37.669987
+1188	High School of Applied Communication	Daniel Korb	\N	A	2016-02-16 15:53:37.671478	2016-02-16 15:53:37.671478
+1189	Civic Leadership Academy	Phuong Nguyen	\N	\N	2016-02-16 15:53:37.672671	2016-02-16 15:53:37.672671
+1190	Pan American International High School	Marcella Barros	\N	D	2016-02-16 15:53:37.674025	2016-02-16 15:53:37.674025
+1191	Bard High School Early College II	Valeri Thomson	\N	A	2016-02-16 15:53:37.675423	2016-02-16 15:53:37.675423
+1192	Learners and Leaders	Lynn Botfeld	\N	C	2016-02-16 15:53:37.676807	2016-02-16 15:53:37.676807
+1193	Pioneer Academy	Cecilia Jackson	\N	B	2016-02-16 15:53:37.678139	2016-02-16 15:53:37.678139
+1194	Newtown High School	John Ficalora	\N	C	2016-02-16 15:53:37.679391	2016-02-16 15:53:37.679391
+1195	HS Arts & Business Yabc	Jimmy Liu	\N	B	2016-02-16 15:53:37.680594	2016-02-16 15:53:37.680594
+1196	Grover Cleveland High School	Dominick Scarola	\N	C	2016-02-16 15:53:37.681859	2016-02-16 15:53:37.681859
+1197	Middle College High School at LaGuardia Community College	Linda Siegmund	\N	C	2016-02-16 15:53:37.683112	2016-02-16 15:53:37.683112
+1198	International High School at LaGuardia Community College	Lee Pan	\N	A	2016-02-16 15:53:37.684299	2016-02-16 15:53:37.684299
+1199	High School for Arts and Business	Ana R. Zambrano-Burakov	\N	A	2016-02-16 15:53:37.685471	2016-02-16 15:53:37.685471
+1200	Robert F. Wagner, Jr. Secondary School for Arts an	Ann Seifullah	\N	B	2016-02-16 15:53:37.686696	2016-02-16 15:53:37.686696
+1201	Robert F. Wagner, Jr. Secondary School for Arts and Technology	Ann Seifullah	\N	C	2016-02-16 15:53:37.687836	2016-02-16 15:53:37.687836
+1202	Queens Vocational and Technical High School	Melissa Burg	\N	B	2016-02-16 15:53:37.688965	2016-02-16 15:53:37.688965
+1203	Aviation Career & Technical Education High School	Deno Charalambous	\N	A	2016-02-16 15:53:37.690123	2016-02-16 15:53:37.690123
+1204	VOYAGES Preparatory	Joan Klingsberg	\N	B	2016-02-16 15:53:37.691318	2016-02-16 15:53:37.691318
+1205	The 51 Avenue Academy (The Path To Academic Excell	Digna Erstejn	\N	A	2016-02-16 15:53:37.692589	2016-02-16 15:53:37.692589
+1206	P.S. 020 John Bowne	Victoria Hart	\N	B	2016-02-16 15:53:37.693729	2016-02-16 15:53:37.693729
+1207	P.S. 021 Edward Hart	Debra Buszko	\N	A	2016-02-16 15:53:37.694909	2016-02-16 15:53:37.694909
+1208	P.S. 022 Thomas Jefferson	Priscilla Milito	\N	A	2016-02-16 15:53:37.696095	2016-02-16 15:53:37.696095
+1209	P.S. 024 Andrew Jackson	Lori Golan	\N	A	2016-02-16 15:53:37.697295	2016-02-16 15:53:37.697295
+1210	I.S. 025 Adrien Block	Maryellen Beirne	\N	B	2016-02-16 15:53:37.698485	2016-02-16 15:53:37.698485
+1211	P.S. 029 Queens	Jennifer Jones	\N	A	2016-02-16 15:53:37.699671	2016-02-16 15:53:37.699671
+1212	P.S. 032 State Street	Debra Errico	\N	C	2016-02-16 15:53:37.700935	2016-02-16 15:53:37.700935
+1213	P.S. 079 Francis Lewis	Paula Marron	\N	A	2016-02-16 15:53:37.702051	2016-02-16 15:53:37.702051
+1214	P.S. 107 Thomas A Dooley	James Phair	\N	A	2016-02-16 15:53:37.703297	2016-02-16 15:53:37.703297
+1215	P.S. 120 Queens	Joan Monroe	\N	C	2016-02-16 15:53:37.704661	2016-02-16 15:53:37.704661
+1216	P.S. 129 Patricia Larkin	Marilyn Alesi	\N	B	2016-02-16 15:53:37.705829	2016-02-16 15:53:37.705829
+1217	P.S. 130	Michelle Contratti	\N	A	2016-02-16 15:53:37.706975	2016-02-16 15:53:37.706975
+1218	P.S. 154 Queens	Danielle Giunta	\N	B	2016-02-16 15:53:37.708165	2016-02-16 15:53:37.708165
+1219	P.S. 163 Flushing Heights	Nicole Bullen	\N	A	2016-02-16 15:53:37.709344	2016-02-16 15:53:37.709344
+1220	P.S. 164 Queens Valley	Anne Alfonso	\N	B	2016-02-16 15:53:37.710735	2016-02-16 15:53:37.710735
+1221	P.S. 165 Edith K. Bergtraum	Raquel Victoria Demillio	\N	B	2016-02-16 15:53:37.711896	2016-02-16 15:53:37.711896
+1222	P.S. 169 Bay Terrace	Vanessa Rosa	\N	B	2016-02-16 15:53:37.713069	2016-02-16 15:53:37.713069
+1223	P.S. 184 Flushing Manor	Dora Pantelis	\N	A	2016-02-16 15:53:37.714367	2016-02-16 15:53:37.714367
+1224	J.H.S. 185 Edward Bleeker	Valerie Sawinski	\N	B	2016-02-16 15:53:37.715619	2016-02-16 15:53:37.715619
+1225	J.H.S. 189 Daniel Carter Beard	Cindy Diaz-Burgos	\N	C	2016-02-16 15:53:37.717021	2016-02-16 15:53:37.717021
+1226	P.S. 193 Alfred J. Kennedy	Joyce E. Bush	\N	B	2016-02-16 15:53:37.718244	2016-02-16 15:53:37.718244
+1227	J.H.S. 194 William Carr	Richard Garino	\N	B	2016-02-16 15:53:37.719367	2016-02-16 15:53:37.719367
+1228	PS/MS 200 - The Pomonok School & STAR Academy	Farrah Mckenna	\N	A	2016-02-16 15:53:37.720388	2016-02-16 15:53:37.720388
+1229	P.S. 201 The Discovery School for Inquiry and Rese	Rebecca Lozada	\N	B	2016-02-16 15:53:37.721477	2016-02-16 15:53:37.721477
+1230	P.S. 209 Clearview Gardens	Mary Mcdonnell	\N	A	2016-02-16 15:53:37.72265	2016-02-16 15:53:37.72265
+1231	P.S. 214 Cadwallader Colden	Denise Fuccillo	\N	A	2016-02-16 15:53:37.723934	2016-02-16 15:53:37.723934
+1232	P.S. 219 Paul Klapper	Frederick Wright	\N	A	2016-02-16 15:53:37.725147	2016-02-16 15:53:37.725147
+1233	I.S. 237	Judith Friedman	\N	B	2016-02-16 15:53:37.726461	2016-02-16 15:53:37.726461
+1234	P.S. 242 Leonard P. Stavisky Early Childhood Schoo	Patricia Costa	\N	A	2016-02-16 15:53:37.727963	2016-02-16 15:53:37.727963
+1235	The Active Learning Elementary School	Ivan Tolentino	\N	\N	2016-02-16 15:53:37.729545	2016-02-16 15:53:37.729545
+1236	I.S. 250 The Robert F. Kennedy Community Middle Sc	Marc Rosenberg	\N	C	2016-02-16 15:53:37.731059	2016-02-16 15:53:37.731059
+1237	Queens School of Inquiry, The	Meredith Rosenblatt	\N	C	2016-02-16 15:53:37.732479	2016-02-16 15:53:37.732479
+1238	Queens School of Inquiry, The	Meredith Rosenblatt	\N	\N	2016-02-16 15:53:37.73384	2016-02-16 15:53:37.73384
+1239	Flushing International High School	Joseph Luft	\N	B	2016-02-16 15:53:37.735067	2016-02-16 15:53:37.735067
+1240	East-West School of International Studies	Ben Sherman	\N	B	2016-02-16 15:53:37.73634	2016-02-16 15:53:37.73634
+1241	East-West School of International Studies	Ben Sherman	\N	B	2016-02-16 15:53:37.737538	2016-02-16 15:53:37.737538
+1242	World Journalism Preparatory: A College Board Scho	Cynthia Schneider	\N	B	2016-02-16 15:53:37.738695	2016-02-16 15:53:37.738695
+1243	World Journalism Preparatory: A College Board School	Cynthia Schneider	\N	A	2016-02-16 15:53:37.73994	2016-02-16 15:53:37.73994
+1244	BELL Academy	Cheryl Hatzidimitriou	\N	A	2016-02-16 15:53:37.741214	2016-02-16 15:53:37.741214
+1245	John Bowne High School	Howard Kwait	\N	B	2016-02-16 15:53:37.742408	2016-02-16 15:53:37.742408
+1246	Flushing High School	Carl Hudson	\N	D	2016-02-16 15:53:37.743522	2016-02-16 15:53:37.743522
+1247	Flushing Yabc	Siu Hei Szeto	\N	A	2016-02-16 15:53:37.744796	2016-02-16 15:53:37.744796
+1248	The Queens College School for Math, Science and Te	Helene Jacob	\N	A	2016-02-16 15:53:37.745976	2016-02-16 15:53:37.745976
+1249	Townsend Harris High School	Kenneth Bonamo	\N	A	2016-02-16 15:53:37.747718	2016-02-16 15:53:37.747718
+1250	Queens Academy High School	Beverly Short	\N	C	2016-02-16 15:53:37.749006	2016-02-16 15:53:37.749006
+1251	Robert F. Kennedy Community High School	Ira Pernick	\N	C	2016-02-16 15:53:37.750399	2016-02-16 15:53:37.750399
+1252	North Queens Community High School	Winston Mccarthy	\N	B	2016-02-16 15:53:37.751918	2016-02-16 15:53:37.751918
+1253	P.S. 018 Winchester	Kathleen Peknic	\N	A	2016-02-16 15:53:37.753308	2016-02-16 15:53:37.753308
+1254	P.S. 026 Rufus King	Dina Koski	\N	A	2016-02-16 15:53:37.754638	2016-02-16 15:53:37.754638
+1255	P.S. 031 Bayside	Terri Graybow	\N	B	2016-02-16 15:53:37.755935	2016-02-16 15:53:37.755935
+1256	P.S. 041 Crocheron	Sari Latto	\N	A	2016-02-16 15:53:37.757159	2016-02-16 15:53:37.757159
+1257	P.S. 046 Alley Pond	Marsha Goldberg	\N	A	2016-02-16 15:53:37.758252	2016-02-16 15:53:37.758252
+1258	J.H.S. 067 Louis Pasteur	Zoi Mcgrath	\N	A	2016-02-16 15:53:37.759411	2016-02-16 15:53:37.759411
+1259	J.H.S. 074 Nathaniel Hawthorne	Andrea Dapolito	\N	A	2016-02-16 15:53:37.760666	2016-02-16 15:53:37.760666
+1260	P.S. 094 David D. Porter	Joann Barbeosch	\N	B	2016-02-16 15:53:37.761854	2016-02-16 15:53:37.761854
+1261	P.S. 098 The Douglaston School	Sheila Huggins	\N	B	2016-02-16 15:53:37.763117	2016-02-16 15:53:37.763117
+1262	P.S. 115 Glen Oaks	James Ambrose	\N	C	2016-02-16 15:53:37.764341	2016-02-16 15:53:37.764341
+1263	P.S. 133 Queens	Shelley Steppel	\N	A	2016-02-16 15:53:37.765504	2016-02-16 15:53:37.765504
+1264	M.S. 158 Marie Curie	Marie Nappi	\N	B	2016-02-16 15:53:37.766737	2016-02-16 15:53:37.766737
+1265	P.S. 159	Marlene Zucker	\N	A	2016-02-16 15:53:37.768015	2016-02-16 15:53:37.768015
+1266	P.S. 162 John Golden	Joan Casale	\N	B	2016-02-16 15:53:37.769207	2016-02-16 15:53:37.769207
+1267	Irwin Altman Middle School 172	Jeffrey Slivko	\N	A	2016-02-16 15:53:37.770405	2016-02-16 15:53:37.770405
+1268	P.S. 173 Fresh Meadows	Molly Wang	\N	A	2016-02-16 15:53:37.771593	2016-02-16 15:53:37.771593
+1269	P.S./ IS 178 Holliswood	Jennifer Ambert	\N	A	2016-02-16 15:53:37.77275	2016-02-16 15:53:37.77275
+1270	P.S. 186 Castlewood	Dolores Troy-Quinn	\N	A	2016-02-16 15:53:37.773955	2016-02-16 15:53:37.773955
+1271	P.S. 188 Kingsbury	Janet Caraisco	\N	A	2016-02-16 15:53:37.775059	2016-02-16 15:53:37.775059
+1272	P.S. 191 Mayflower	Michael Ranieri	\N	A	2016-02-16 15:53:37.776321	2016-02-16 15:53:37.776321
+1273	P.S. 203 Oakland Gardens	Carole Nussbaum	\N	A	2016-02-16 15:53:37.777527	2016-02-16 15:53:37.777527
+1274	P.S. 205 Alexander Graham Bell	Karen Scott-Piazza	\N	A	2016-02-16 15:53:37.778858	2016-02-16 15:53:37.778858
+1275	P.S. 213 The Carl Ullman School	Kathleen Driscoll	\N	A	2016-02-16 15:53:37.77999	2016-02-16 15:53:37.77999
+1276	J.H.S. 216 George J. Ryan	Reginald Landeau	\N	B	2016-02-16 15:53:37.781181	2016-02-16 15:53:37.781181
+1277	P.S. 221 The North Hills School	Sheelia Twomey	\N	B	2016-02-16 15:53:37.78236	2016-02-16 15:53:37.78236
+1278	P.S. / I.S. 266	Nicole Scott	\N	A	2016-02-16 15:53:37.783523	2016-02-16 15:53:37.783523
+1279	Benjamin N. Cardozo High School	Gerald Martori	\N	B	2016-02-16 15:53:37.784629	2016-02-16 15:53:37.784629
+1280	Francis Lewis High School	Musa Ali Shama	\N	A	2016-02-16 15:53:37.785723	2016-02-16 15:53:37.785723
+1281	Martin Van Buren High School	Marilyn Shevell	\N	D	2016-02-16 15:53:37.786802	2016-02-16 15:53:37.786802
+1282	Bayside High School	Michael Athy	\N	A	2016-02-16 15:53:37.787973	2016-02-16 15:53:37.787973
+1283	Queens High School of Teaching, Liberal Arts and the Sciences	Eric Contreras	\N	B	2016-02-16 15:53:37.789124	2016-02-16 15:53:37.789124
+1284	P.S. 042 R. Vernam	Stephanie Martin Okoase	\N	C	2016-02-16 15:53:37.790289	2016-02-16 15:53:37.790289
+1285	P.S. 043	Gary Fairweather	\N	C	2016-02-16 15:53:37.791508	2016-02-16 15:53:37.791508
+1286	P.S. 045 Clarence Witherspoon	Samantha Severin	\N	B	2016-02-16 15:53:37.792712	2016-02-16 15:53:37.792712
+1287	P.S. 047 Chris Galas	Janet Donohue	\N	B	2016-02-16 15:53:37.793831	2016-02-16 15:53:37.793831
+1288	M.S. 053 Brian Piccolo	Jacqueline Boswell	\N	F	2016-02-16 15:53:37.79501	2016-02-16 15:53:37.79501
+1289	P.S. 056 Harry Eichler	Ann Leiter	\N	B	2016-02-16 15:53:37.796164	2016-02-16 15:53:37.796164
+1290	P.S. 060 Woodhaven	Frank Desario	\N	A	2016-02-16 15:53:37.797342	2016-02-16 15:53:37.797342
+1291	P.S. 062 Chester Park	Angela O'Dowd	\N	A	2016-02-16 15:53:37.79853	2016-02-16 15:53:37.79853
+1292	P.S. 063 Old South	Diane Marino Coleman	\N	B	2016-02-16 15:53:37.799644	2016-02-16 15:53:37.799644
+1293	P.S. 064 Joseph P. Addabbo	Nina Auster	\N	A	2016-02-16 15:53:37.800803	2016-02-16 15:53:37.800803
+1294	P.S. 65 - The Raymond York Elementary School	Rafael Morales	\N	B	2016-02-16 15:53:37.801941	2016-02-16 15:53:37.801941
+1295	P.S. 066 Jacqueline Kennedy Onassis	Phyllis Leinwand	\N	A	2016-02-16 15:53:37.803053	2016-02-16 15:53:37.803053
+1296	P.S. 090 Horace Mann	Adrienne Ubertini	\N	B	2016-02-16 15:53:37.804183	2016-02-16 15:53:37.804183
+1297	P.S. 096	Joyce Walker	\N	C	2016-02-16 15:53:37.805278	2016-02-16 15:53:37.805278
+1298	P.S. 097 Forest Park	Maureen Ingram	\N	B	2016-02-16 15:53:37.806444	2016-02-16 15:53:37.806444
+1299	P.S. 100 Glen Morris	Laureen Fromberg	\N	B	2016-02-16 15:53:37.807682	2016-02-16 15:53:37.807682
+1300	P.S. 104 The Bays Water	Katie Grady	\N	B	2016-02-16 15:53:37.808919	2016-02-16 15:53:37.808919
+1301	P.S. 105 The Bay School	Laurie Shapiro	\N	C	2016-02-16 15:53:37.810132	2016-02-16 15:53:37.810132
+1302	P.S. 106	Marcella Sills	\N	A	2016-02-16 15:53:37.811268	2016-02-16 15:53:37.811268
+1303	P.S. 108 Captain Vincent G. Fowler	Marie Biondollilo	\N	A	2016-02-16 15:53:37.812454	2016-02-16 15:53:37.812454
+1304	P.S. / M.S. 114 Belle Harbor	Stephen P. Grill	\N	B	2016-02-16 15:53:37.813631	2016-02-16 15:53:37.813631
+1305	P.S. 123	Cynthia Sumay-Eaton	\N	C	2016-02-16 15:53:37.814767	2016-02-16 15:53:37.814767
+1306	P.S. 124 Osmond A Church	Valarie Lewis	\N	B	2016-02-16 15:53:37.815878	2016-02-16 15:53:37.815878
+1307	M.S. 137 America's School of Heroes	Laura Mastrogiovanni	\N	B	2016-02-16 15:53:37.816963	2016-02-16 15:53:37.816963
+1308	P.S. 146 Howard Beach	James Mckeon	\N	B	2016-02-16 15:53:37.818014	2016-02-16 15:53:37.818014
+1309	P.S. 155	Dorothy Morris	\N	B	2016-02-16 15:53:37.819156	2016-02-16 15:53:37.819156
+1310	P.S. 183 Dr. Richard R. Green	Renee Peart	\N	A	2016-02-16 15:53:37.820293	2016-02-16 15:53:37.820293
+1311	P.S. 197 The Ocean School	Jean Mckeon	\N	C	2016-02-16 15:53:37.821482	2016-02-16 15:53:37.821482
+1312	J.H.S. 202 Robert H. Goddard	William Fitzgerald	\N	B	2016-02-16 15:53:37.82268	2016-02-16 15:53:37.82268
+1313	P.S. 207 Rockwood Park	Linda Spadaro	\N	C	2016-02-16 15:53:37.823879	2016-02-16 15:53:37.823879
+1314	J.H.S. 210 Elizabeth Blackwell	Rosalyn Allman-Manning	\N	C	2016-02-16 15:53:37.825008	2016-02-16 15:53:37.825008
+1315	P.S. 215 Lucretia Mott	Susan Rippe Hofmann	\N	F	2016-02-16 15:53:37.826122	2016-02-16 15:53:37.826122
+1316	P.S. 223 Lyndon B. Johnson	Deborah Otto	\N	D	2016-02-16 15:53:37.827187	2016-02-16 15:53:37.827187
+1317	P.S. 225 Seaside	Tammy Holloway	\N	\N	2016-02-16 15:53:37.828407	2016-02-16 15:53:37.828407
+1318	J.H.S. 226 Virgil I. Grissom	Rushell White	\N	C	2016-02-16 15:53:37.829666	2016-02-16 15:53:37.829666
+1319	P.S. 232 Lindenwood	Lisa Josephson	\N	B	2016-02-16 15:53:37.830888	2016-02-16 15:53:37.830888
+1320	P.S. 253	Robin Johnson	\N	D	2016-02-16 15:53:37.832139	2016-02-16 15:53:37.832139
+1321	P.S. 254	Naomi Drouillard	\N	A	2016-02-16 15:53:37.833327	2016-02-16 15:53:37.833327
+1322	Frederick Douglass Academy VI High School	Linda Alfred	\N	C	2016-02-16 15:53:37.834543	2016-02-16 15:53:37.834543
+1323	Channel View School for Research	Patricia J. Tubridy	\N	C	2016-02-16 15:53:37.835697	2016-02-16 15:53:37.835697
+1324	Channel View School for Research	Patricia J. Tubridy	\N	A	2016-02-16 15:53:37.836949	2016-02-16 15:53:37.836949
+1325	Knowledge and Power Preparatory Academy VI	Gary Dumornay	\N	A	2016-02-16 15:53:37.838197	2016-02-16 15:53:37.838197
+1326	Queens High School for Information, Research, and Technology	Michele Williams	\N	\N	2016-02-16 15:53:37.839321	2016-02-16 15:53:37.839321
+1327	New York City Academy for Discovery	Jennifer Flandro	\N	A	2016-02-16 15:53:37.840467	2016-02-16 15:53:37.840467
+1328	Robert H. Goddard High School of Communication Arts and Technology	Joseph Birgeles	\N	\N	2016-02-16 15:53:37.841831	2016-02-16 15:53:37.841831
+1329	Academy of Medical Technology: A College Board Sch	Jose Merced	\N	B	2016-02-16 15:53:37.843011	2016-02-16 15:53:37.843011
+1330	Academy of Medical Technology: A College Board School	Jose Merced	\N	\N	2016-02-16 15:53:37.844257	2016-02-16 15:53:37.844257
+1331	WATERSIDE CHILDREN'S STUDIO SCHOOL	Dana Gerendasi	\N	A	2016-02-16 15:53:37.845625	2016-02-16 15:53:37.845625
+1332	WATERSIDE SCHOOL FOR LEADERSHIP	Linda Munro	\N	B	2016-02-16 15:53:37.846945	2016-02-16 15:53:37.846945
+1333	VILLAGE ACADEMY	Doris Lee	\N	B	2016-02-16 15:53:37.848223	2016-02-16 15:53:37.848223
+1334	Scholars' Academy	Brian O'Connell	\N	A	2016-02-16 15:53:37.849451	2016-02-16 15:53:37.849451
+1335	Scholars' Academy	Brian O'connell	\N	A	2016-02-16 15:53:37.850625	2016-02-16 15:53:37.850625
+1336	ROCKAWAY PARK HIGH SCHOOL FOR ENVIRONMENTAL SUSTAINABILITY	Jennifer Connolly	\N	\N	2016-02-16 15:53:37.851797	2016-02-16 15:53:37.851797
+1337	Goldie Maple Academy	Angela Logan	\N	A	2016-02-16 15:53:37.852939	2016-02-16 15:53:37.852939
+1338	August Martin High School	Anthony Cromer	\N	D	2016-02-16 15:53:37.854185	2016-02-16 15:53:37.854185
+1339	Beach Channel High School	David Morris	\N	\N	2016-02-16 15:53:37.855588	2016-02-16 15:53:37.855588
+1340	Far Rockaway High School	Denise Hallett	\N	\N	2016-02-16 15:53:37.856751	2016-02-16 15:53:37.856751
+1341	Richmond Hill High School	Ms. Frances Desanctis	\N	D	2016-02-16 15:53:37.858073	2016-02-16 15:53:37.858073
+1342	John Adams High School	Grace Zwillenberg	\N	C	2016-02-16 15:53:37.859361	2016-02-16 15:53:37.859361
+1343	John Adams Yabc	Edita Volovodovskaya	\N	A	2016-02-16 15:53:37.860643	2016-02-16 15:53:37.860643
+1344	High School for Construction Trades, Engineering and Architecture	Lakeisha Johnson	\N	A	2016-02-16 15:53:37.861818	2016-02-16 15:53:37.861818
+1345	J.H.S. 008 Richard S. Grossley	Angela Green	\N	C	2016-02-16 15:53:37.863015	2016-02-16 15:53:37.863015
+1346	P.S. 030 Queens	Dwayne Crowder	\N	\N	2016-02-16 15:53:37.864203	2016-02-16 15:53:37.864203
+1347	P.S. 040 Samuel Huntington	Alison Branker	\N	B	2016-02-16 15:53:37.865362	2016-02-16 15:53:37.865362
+1348	P.S. 048 William Wordsworth	Patricia M. Mitchell	\N	D	2016-02-16 15:53:37.866584	2016-02-16 15:53:37.866584
+1349	P.S. 050 Talfourd Lawn Elementary School	Rina Manjarrez	\N	B	2016-02-16 15:53:37.867752	2016-02-16 15:53:37.867752
+1350	P.S. 054 Hillside	Anita Prashad	\N	C	2016-02-16 15:53:37.869008	2016-02-16 15:53:37.869008
+1351	P.S. 055 Maure	Ralph K Honore	\N	A	2016-02-16 15:53:37.87013	2016-02-16 15:53:37.87013
+1352	Catherine & Count Basie Middle School 72	Crystal Taylor Brown	\N	C	2016-02-16 15:53:37.871291	2016-02-16 15:53:37.871291
+1353	P.S. 080 Thurgood Marshall Magnet	Paulette Glenn	\N	F	2016-02-16 15:53:37.872555	2016-02-16 15:53:37.872555
+1354	P.S. 082 Hammond	Dr. Angela Boykin	\N	C	2016-02-16 15:53:37.873793	2016-02-16 15:53:37.873793
+1355	P.S. Q086	Karen Zuvic	\N	C	2016-02-16 15:53:37.875004	2016-02-16 15:53:37.875004
+1356	P.S. 099 Kew Gardens	Paulette Foglio	\N	A	2016-02-16 15:53:37.876152	2016-02-16 15:53:37.876152
+1357	P.S. 101 School in the Gardens	Valerie Capitulo-Saide	\N	C	2016-02-16 15:53:37.87734	2016-02-16 15:53:37.87734
+1358	P.S. 117 J. Keld / Briarwood School	Paula Cunningham	\N	C	2016-02-16 15:53:37.878584	2016-02-16 15:53:37.878584
+1359	P.S. 121 Queens	Henry Somers	\N	B	2016-02-16 15:53:37.87969	2016-02-16 15:53:37.87969
+1360	P.S. 139 Rego Park	Monica Bridget Powers-Meade	\N	B	2016-02-16 15:53:37.880883	2016-02-16 15:53:37.880883
+1361	P.S. 140 Edward K Ellington	David Norment	\N	C	2016-02-16 15:53:37.882058	2016-02-16 15:53:37.882058
+1362	P.S. 144 Col Jeromus Remsen	Reva Gluck Schneider	\N	A	2016-02-16 15:53:37.88318	2016-02-16 15:53:37.88318
+1363	J.H.S. 157 Stephen A. Halsey	Vincent Suraci	\N	B	2016-02-16 15:53:37.884235	2016-02-16 15:53:37.884235
+1364	J.H.S. 157 Stephen A. Halsey	Vincent Suraci	\N	\N	2016-02-16 15:53:37.88536	2016-02-16 15:53:37.88536
+1365	P.S. 160 Walter Francis Bishop	Jermaine Garden	\N	C	2016-02-16 15:53:37.886539	2016-02-16 15:53:37.886539
+1366	P.S. 161 Arthur Ashe School	Jill Hoder	\N	A	2016-02-16 15:53:37.887664	2016-02-16 15:53:37.887664
+1367	METROPOLITAN EXPEDITIONARY LEARNING SCHOOL	Damon Mccord	\N	\N	2016-02-16 15:53:37.888927	2016-02-16 15:53:37.888927
+1368	P.S. 174 William Sidney Mount	Karin Kelly	\N	C	2016-02-16 15:53:37.890061	2016-02-16 15:53:37.890061
+1369	P.S. 175 The Lynn Gross Discovery School	Linda Green	\N	B	2016-02-16 15:53:37.891306	2016-02-16 15:53:37.891306
+1370	P.S. 182 Samantha Smith	Andrew Todd Topol	\N	C	2016-02-16 15:53:37.892519	2016-02-16 15:53:37.892519
+1371	J.H.S. 190 Russell Sage	Marilyn Grant	\N	B	2016-02-16 15:53:37.893666	2016-02-16 15:53:37.893666
+1372	P.S. 196 Grand Central Parkway	Susan Migliano	\N	A	2016-02-16 15:53:37.894868	2016-02-16 15:53:37.894868
+1373	P.S. 206 The Horace Harding School	Nicholas Bologna	\N	B	2016-02-16 15:53:37.896049	2016-02-16 15:53:37.896049
+1374	J.H.S. 217 Robert A. Van Wyck	Patrick Michael Burns	\N	A	2016-02-16 15:53:37.897228	2016-02-16 15:53:37.897228
+1375	P.S. 220 Edward Mandel	Josette Pizarro	\N	C	2016-02-16 15:53:37.89837	2016-02-16 15:53:37.89837
+1376	York Early College Academy	Deborah Burnett	\N	C	2016-02-16 15:53:37.899587	2016-02-16 15:53:37.899587
+1377	York Early College Academy	Deborah Burnett	\N	\N	2016-02-16 15:53:37.900767	2016-02-16 15:53:37.900767
+1378	Queens Collegiate: A College Board School	Jaime Anne Dubei	\N	C	2016-02-16 15:53:37.901991	2016-02-16 15:53:37.901991
+1379	Queens Collegiate: A College Board School	Jaime Anne Dubei	\N	\N	2016-02-16 15:53:37.903196	2016-02-16 15:53:37.903196
+1380	HILLSIDE ARTS & LETTERS ACADEMY	Matthew C. Ritter	\N	\N	2016-02-16 15:53:37.904293	2016-02-16 15:53:37.904293
+1381	HIGH SCHOOL FOR COMMUNITY LEADERSHIP	Carlos Borrero	\N	\N	2016-02-16 15:53:37.90533	2016-02-16 15:53:37.90533
+1382	Queens Satellite High School for Opportunity	Mark Melkonian	\N	\N	2016-02-16 15:53:37.906509	2016-02-16 15:53:37.906509
+1383	Forest Hills High School	Saul Gootnick	\N	A	2016-02-16 15:53:37.908203	2016-02-16 15:53:37.908203
+1384	Jamaica High School	Walter Acham	\N	\N	2016-02-16 15:53:37.909367	2016-02-16 15:53:37.909367
+1385	Hillcrest High School	Stephen Duch	\N	A	2016-02-16 15:53:37.910613	2016-02-16 15:53:37.910613
+1386	Thomas A. Edison Career and Technical Education High School	Anthony D. Barbetta	\N	A	2016-02-16 15:53:37.911881	2016-02-16 15:53:37.911881
+1387	Queens Gateway to Health Sciences Secondary School	Dr. Cynthia Edwards	\N	C	2016-02-16 15:53:37.912959	2016-02-16 15:53:37.912959
+1388	Queens Gateway to Health Sciences Secondary School	Dr. Cynthia Edwards	\N	B	2016-02-16 15:53:37.914155	2016-02-16 15:53:37.914155
+1389	QUEENS METROPOLITAN HIGH SCHOOL	Marci Levy Maguire	\N	\N	2016-02-16 15:53:37.91537	2016-02-16 15:53:37.91537
+1390	Queens High School for the Sciences at York College	Jie Zhang	\N	A	2016-02-16 15:53:37.916477	2016-02-16 15:53:37.916477
+1391	High School for Law Enforcement and Public Safety	Diahann E. Malcolm	\N	B	2016-02-16 15:53:37.917682	2016-02-16 15:53:37.917682
+1392	Young Women's Leadership School, Queens	Avionne Gumbs	\N	C	2016-02-16 15:53:37.918865	2016-02-16 15:53:37.918865
+1393	Young Women's Leadership School, Queens	Avionne Gumbs	\N	C	2016-02-16 15:53:37.920029	2016-02-16 15:53:37.920029
+1394	P.S. 015 Jackie Robinson	Antonio K'Tori	\N	B	2016-02-16 15:53:37.921199	2016-02-16 15:53:37.921199
+1395	P.S. 033 Edward M. Funk	Erich Wagner	\N	C	2016-02-16 15:53:37.922329	2016-02-16 15:53:37.922329
+1396	P.S. 034 John Harvard	Pauline Shakespeare	\N	A	2016-02-16 15:53:37.923542	2016-02-16 15:53:37.923542
+1397	P.S. 035 Nathaniel Woodhull	Mark Dempsey	\N	D	2016-02-16 15:53:37.92471	2016-02-16 15:53:37.92471
+1398	P.S. 036 Saint Albans School	Lynn Staton	\N	B	2016-02-16 15:53:37.925796	2016-02-16 15:53:37.925796
+1399	Cynthia Jenkins School	Beverly Mitchell	\N	B	2016-02-16 15:53:37.926815	2016-02-16 15:53:37.926815
+1400	P.S. 038 Rosedale	Cassandra A. Hundley	\N	C	2016-02-16 15:53:37.927857	2016-02-16 15:53:37.927857
+1401	P.S. 052 Queens	Linda Pough	\N	B	2016-02-16 15:53:37.928929	2016-02-16 15:53:37.928929
+1402	I.S. 059 Springfield Gardens	Carleton Gordon	\N	C	2016-02-16 15:53:37.929944	2016-02-16 15:53:37.929944
+1403	P.S. 095 Eastwood	Dolores Reid-Barker	\N	B	2016-02-16 15:53:37.931148	2016-02-16 15:53:37.931148
+1404	Jean Nuzzi Intermediate School	Miatheresa Pate	\N	C	2016-02-16 15:53:37.932367	2016-02-16 15:53:37.932367
+1405	PS/IS 116 William C. Hughley	Barbara Fuller	\N	C	2016-02-16 15:53:37.933408	2016-02-16 15:53:37.933408
+1406	P.S. 118 Lorraine Hansberry	Cynthia Ofori-Feaster	\N	C	2016-02-16 15:53:37.934614	2016-02-16 15:53:37.934614
+1407	P.S. 131 Abigail Adams	Randolph Ford	\N	A	2016-02-16 15:53:37.93573	2016-02-16 15:53:37.93573
+1408	P.S. 132 Ralph Bunche	Alicia Davis	\N	C	2016-02-16 15:53:37.936973	2016-02-16 15:53:37.936973
+1409	P.S. 134 Hollis	Cheryl Marmon-Halm	\N	C	2016-02-16 15:53:37.938284	2016-02-16 15:53:37.938284
+1410	The Bellaire School	George Hadjoglou	\N	B	2016-02-16 15:53:37.939802	2016-02-16 15:53:37.939802
+1411	P.S. 136 Roy Wilkins	Tanya S.T. Walker	\N	B	2016-02-16 15:53:37.94126	2016-02-16 15:53:37.94126
+1412	P.S. 138 Sunrise	James Mc Enaney	\N	C	2016-02-16 15:53:37.942526	2016-02-16 15:53:37.942526
+1413	PS/MS 147 Ronald McNair	Anne Cohen	\N	C	2016-02-16 15:53:37.943742	2016-02-16 15:53:37.943742
+1414	P.S. 156 Laurelton	Noreen Little	\N	C	2016-02-16 15:53:37.944938	2016-02-16 15:53:37.944938
+1415	P.S. 176 Cambria Heights	Arlene Bartlett	\N	B	2016-02-16 15:53:37.946187	2016-02-16 15:53:37.946187
+1416	P.S. 181 Brookfield	Andrea Belcher	\N	D	2016-02-16 15:53:37.947302	2016-02-16 15:53:37.947302
+1417	I.S. 192 The Linden	Harriett Diaz	\N	C	2016-02-16 15:53:37.948371	2016-02-16 15:53:37.948371
+1418	P.S. 195 William Haberle	Beryl Bailey	\N	A	2016-02-16 15:53:37.949511	2016-02-16 15:53:37.949511
+1419	P.S. / I.S. 208	James Philemy	\N	B	2016-02-16 15:53:37.950654	2016-02-16 15:53:37.950654
+1420	I.S. 231 Magnetech 2000	Emmanuel Lubin	\N	\N	2016-02-16 15:53:37.9519	2016-02-16 15:53:37.9519
+1421	I.S. 238 Susan B Anthony	Joseph Gates	\N	B	2016-02-16 15:53:37.953039	2016-02-16 15:53:37.953039
+1422	Queens Preparatory Academy	Tashon Haywood	\N	A	2016-02-16 15:53:37.954089	2016-02-16 15:53:37.954089
+1423	P.S. 251 Queens	Edna Loncke	\N	B	2016-02-16 15:53:37.955158	2016-02-16 15:53:37.955158
+1424	Pathways College Preparatory School: A College Boa	Kimberly Mitchell	\N	C	2016-02-16 15:53:37.956385	2016-02-16 15:53:37.956385
+1425	Pathways College Preparatory School: A College Board School	Kimberly Mitchell	\N	B	2016-02-16 15:53:37.957688	2016-02-16 15:53:37.957688
+1426	Excelsior Preparatory High School	Lilly Lucas	\N	B	2016-02-16 15:53:37.958829	2016-02-16 15:53:37.958829
+1427	PS/IS 268	Lissa Grant-Stewart	\N	D	2016-02-16 15:53:37.959999	2016-02-16 15:53:37.959999
+1428	The Gordon Parks School	Eleanor S. Andrew	\N	C	2016-02-16 15:53:37.961294	2016-02-16 15:53:37.961294
+1429	George Washington Carver High School for the Sciences	Dr. Janice M. Sutton	\N	B	2016-02-16 15:53:37.962629	2016-02-16 15:53:37.962629
+1430	Preparatory Academy for Writers: A College Board S	Charles Anderson	\N	A	2016-02-16 15:53:37.963822	2016-02-16 15:53:37.963822
+1431	Preparatory Academy for Writers: A College Board School	Charles Anderson	\N	C	2016-02-16 15:53:37.965034	2016-02-16 15:53:37.965034
+1432	P.S./I.S. 295	Angela Thompson	\N	A	2016-02-16 15:53:37.9662	2016-02-16 15:53:37.9662
+1433	CAMBRIA HEIGHTS ACADEMY	Melissa Menake	\N	\N	2016-02-16 15:53:37.967396	2016-02-16 15:53:37.967396
+1434	EAGLE ACADEMY FOR YOUNG MEN III	Kenyatte Reid	\N	\N	2016-02-16 15:53:37.96846	2016-02-16 15:53:37.96846
+1435	Mathematics, Science Research and Technology Magnet High School	Jose Cruz	\N	C	2016-02-16 15:53:37.969553	2016-02-16 15:53:37.969553
+1436	Law, Government and Community Service High School	Donna Delfyett White	\N	D	2016-02-16 15:53:37.97073	2016-02-16 15:53:37.97073
+1437	Business, Computer Applications & Entrepreneurship High School	Herman Guy	\N	C	2016-02-16 15:53:37.971861	2016-02-16 15:53:37.971861
+1438	Humanities & Arts Magnet High School	Rosemarie Omard	\N	B	2016-02-16 15:53:37.973056	2016-02-16 15:53:37.973056
+1439	P.S. 002 Alfred Zimberg	Joseph Taddeo	\N	B	2016-02-16 15:53:37.974353	2016-02-16 15:53:37.974353
+1440	I.S. 010 Horace Greeley	Clemente Lopes	\N	A	2016-02-16 15:53:37.975764	2016-02-16 15:53:37.975764
+1441	P.S. 011 Kathryn Phelan	Anna Efkarpides	\N	A	2016-02-16 15:53:37.976851	2016-02-16 15:53:37.976851
+1442	P.S. 017 Henry David Thoreau	Cynthia Dickman	\N	A	2016-02-16 15:53:37.978076	2016-02-16 15:53:37.978076
+1443	P.S. 069 Jackson Heights	Martha Vazquez	\N	A	2016-02-16 15:53:37.979387	2016-02-16 15:53:37.979387
+1444	P.S. 070 Queens	Donna Geller	\N	B	2016-02-16 15:53:37.980733	2016-02-16 15:53:37.980733
+1445	P.S. 076 William Hallet	Mary Schafenberg	\N	B	2016-02-16 15:53:37.98236	2016-02-16 15:53:37.98236
+1446	P.S. 078	Louis Pavone	\N	B	2016-02-16 15:53:37.983643	2016-02-16 15:53:37.983643
+1447	P.S. 084 Steinway	John Buffa	\N	B	2016-02-16 15:53:37.984771	2016-02-16 15:53:37.984771
+1448	P.S. 085 Judge Charles Vallone	Ann Gordon-Chang	\N	C	2016-02-16 15:53:37.9859	2016-02-16 15:53:37.9859
+1449	P.S. 092 Harry T. Stewart Sr.	Pasquale Baratta	\N	B	2016-02-16 15:53:37.987005	2016-02-16 15:53:37.987005
+1450	P.S. 111 Jacob Blackwell	Randy Seabrook	\N	C	2016-02-16 15:53:37.98816	2016-02-16 15:53:37.98816
+1451	P.S. 112 Dutch Kills	Rafael Campos-Gatjens	\N	C	2016-02-16 15:53:37.989358	2016-02-16 15:53:37.989358
+1452	P.S. 122 Mamie Fay	Pamela Sabel	\N	A	2016-02-16 15:53:37.990722	2016-02-16 15:53:37.990722
+1453	Albert Shanker School for Visual and Performing Ar	Alexander Angueira	\N	B	2016-02-16 15:53:37.991847	2016-02-16 15:53:37.991847
+1454	P.S. 127 Aerospace Science Magne	Evita Sanabria	\N	B	2016-02-16 15:53:37.993062	2016-02-16 15:53:37.993062
+1455	I.S. 141 The Steinway	Miranda Pavlou	\N	A	2016-02-16 15:53:37.994271	2016-02-16 15:53:37.994271
+1456	I.S. 145 Joseph Pulitzer	Dolores Beckham	\N	B	2016-02-16 15:53:37.99567	2016-02-16 15:53:37.99567
+1457	P.S. 148 Queens	Andrew Paccione Jr.	\N	D	2016-02-16 15:53:37.997025	2016-02-16 15:53:37.997025
+1458	P.S. 149 Christa Mcauliffe	Esther Salorio	\N	A	2016-02-16 15:53:37.998117	2016-02-16 15:53:37.998117
+1459	P.S. 150 Queens	Carmen Parache	\N	A	2016-02-16 15:53:37.999179	2016-02-16 15:53:37.999179
+1460	P.S. 151 Mary D. Carter	Jason Goldner	\N	D	2016-02-16 15:53:38.000324	2016-02-16 15:53:38.000324
+1461	Q152 - P.S. 152 Gwendoline N. Alleyne School	Vincent Vitolo	\N	A	2016-02-16 15:53:38.001449	2016-02-16 15:53:38.001449
+1462	P.S. 166 Henry Gradstein	Janet Farrell	\N	B	2016-02-16 15:53:38.002688	2016-02-16 15:53:38.002688
+1463	P.S. 171 Peter G. Van Alst	Anne Bussel	\N	B	2016-02-16 15:53:38.003849	2016-02-16 15:53:38.003849
+1464	I.S. 204 Oliver W. Holmes	Yvonne Leimsider	\N	C	2016-02-16 15:53:38.005026	2016-02-16 15:53:38.005026
+1465	P.S. 212	Carin Ilene Ellis	\N	A	2016-02-16 15:53:38.006192	2016-02-16 15:53:38.006192
+1466	P.S. Q222 - Fire Fighter Christopher A. Santora Sc	Yvonne Marrero	\N	B	2016-02-16 15:53:38.007327	2016-02-16 15:53:38.007327
+1467	I.S. 227 Louis Armstrong	William Fahey	\N	A	2016-02-16 15:53:38.008502	2016-02-16 15:53:38.008502
+1468	P.S. 228 Early Childhood Magnet School of the Arts	Olga Guzman	\N	A	2016-02-16 15:53:38.009806	2016-02-16 15:53:38.009806
+1469	I.S. 230	Sharon Terry	\N	B	2016-02-16 15:53:38.011252	2016-02-16 15:53:38.011252
+1470	P.S. 234	Thea Pallos	\N	C	2016-02-16 15:53:38.012437	2016-02-16 15:53:38.012437
+1471	Academy for New Americans	Carmen Rivera	\N	A	2016-02-16 15:53:38.013592	2016-02-16 15:53:38.013592
+1472	Young Women's Leadership School, Astoria	Laura A Mitchell	\N	B	2016-02-16 15:53:38.014754	2016-02-16 15:53:38.014754
+1473	Young Women's Leadership School, Astoria	Laura A Mitchell	\N	\N	2016-02-16 15:53:38.015998	2016-02-16 15:53:38.015998
+1474	Academy for Careers in Television and Film	Mark Dunetz	\N	\N	2016-02-16 15:53:38.017189	2016-02-16 15:53:38.017189
+1475	William Cullen Bryant High School	Aaron M. Perez	\N	C	2016-02-16 15:53:38.018307	2016-02-16 15:53:38.018307
+1476	Long Island City High School	Maria Mamo Vacacela	\N	C	2016-02-16 15:53:38.019468	2016-02-16 15:53:38.019468
+1477	Frank Sinatra School of the Arts High School	Donna Finn	\N	B	2016-02-16 15:53:38.020629	2016-02-16 15:53:38.020629
+1478	Information Technology High School	Dr. Nancy E. Casella	\N	B	2016-02-16 15:53:38.021753	2016-02-16 15:53:38.021753
+1479	Newcomers High School	Orlando Sarmiento	\N	A	2016-02-16 15:53:38.022844	2016-02-16 15:53:38.022844
+1480	Academy of American Studies	Ellen Sherman	\N	B	2016-02-16 15:53:38.024061	2016-02-16 15:53:38.024061
+1481	Baccalaureate School for Global Education	Kelly Joan Johnson	\N	B	2016-02-16 15:53:38.02524	2016-02-16 15:53:38.02524
+1482	Baccalaureate School for Global Education	Kelly Joan Johnson	\N	B	2016-02-16 15:53:38.026402	2016-02-16 15:53:38.026402
+1483	P.S. 001 Tottenville	Diane Gordin	\N	B	2016-02-16 15:53:38.027576	2016-02-16 15:53:38.027576
+1484	I.S. R002 George L. Egbert	Adrienne Stallone	\N	C	2016-02-16 15:53:38.028771	2016-02-16 15:53:38.028771
+1485	P.S. 003 The Margaret Gioiosa School	Judith Wilson	\N	C	2016-02-16 15:53:38.02994	2016-02-16 15:53:38.02994
+1486	P.S. 004 Maurice Wollin	Mr. Marc A. Harris	\N	C	2016-02-16 15:53:38.031116	2016-02-16 15:53:38.031116
+1487	P.S. 005 Huguenot	Lisa Arcuri	\N	C	2016-02-16 15:53:38.032238	2016-02-16 15:53:38.032238
+1488	P.S. 6 Corporal Allan F. Kivlehan School	Cynthia Difolco	\N	C	2016-02-16 15:53:38.033384	2016-02-16 15:53:38.033384
+1489	I.S. 007 Elias Bernstein	Dr. Nora De Rosa-Karby	\N	B	2016-02-16 15:53:38.03453	2016-02-16 15:53:38.03453
+1490	P.S. 8 Shirlee Solomon	Lisa Esposito	\N	A	2016-02-16 15:53:38.035717	2016-02-16 15:53:38.035717
+1491	P.S. 11 Thomas Dongan School	Erica Mattera	\N	C	2016-02-16 15:53:38.036893	2016-02-16 15:53:38.036893
+1492	P.S. 013 M. L. Lindemeyer	Paul Martuccio	\N	B	2016-02-16 15:53:38.038027	2016-02-16 15:53:38.038027
+1493	P.S. 014 Cornelius Vanderbilt	Nancy Hargett	\N	D	2016-02-16 15:53:38.039162	2016-02-16 15:53:38.039162
+1494	P.S. 016 John J. Driscoll	Vincenza Gallassio	\N	C	2016-02-16 15:53:38.040366	2016-02-16 15:53:38.040366
+1495	P.S. 018 John G. Whittier	Robert Rodriguez	\N	C	2016-02-16 15:53:38.041677	2016-02-16 15:53:38.041677
+1496	P.S. 019 The Curtis School	Mary Petrone	\N	A	2016-02-16 15:53:38.042865	2016-02-16 15:53:38.042865
+1497	P.S. 020 Port Richmond	Marie Munoz	\N	C	2016-02-16 15:53:38.044064	2016-02-16 15:53:38.044064
+1498	P.S. 21 Margaret Emery-Elm Park	Gina Moreno	\N	C	2016-02-16 15:53:38.045223	2016-02-16 15:53:38.045223
+1499	P.S. 022 Graniteville	Melissa Lamb Donath	\N	C	2016-02-16 15:53:38.046354	2016-02-16 15:53:38.046354
+1500	P.S. 023 Richmondtown	Frank Campagna	\N	A	2016-02-16 15:53:38.047482	2016-02-16 15:53:38.047482
+1501	I.S. 024 Myra S. Barnes	Lenny Santamaria	\N	B	2016-02-16 15:53:38.048579	2016-02-16 15:53:38.048579
+1502	P.S. 026 The Carteret School	Laura Kump/Joanne Mecane	\N	B	2016-02-16 15:53:38.049803	2016-02-16 15:53:38.049803
+1503	I.S. 027 Anning S. Prall	Tracey Kornish	\N	C	2016-02-16 15:53:38.050983	2016-02-16 15:53:38.050983
+1504	P.S. 029 Bardwell	Mrs. Linda Manfredi	\N	B	2016-02-16 15:53:38.052543	2016-02-16 15:53:38.052543
+1505	P.S. 030 Westerleigh	Mrs. Denise N. Spina	\N	B	2016-02-16 15:53:38.05395	2016-02-16 15:53:38.05395
+1506	P.S. 031 William T. Davis	Patricia Covington	\N	B	2016-02-16 15:53:38.055462	2016-02-16 15:53:38.055462
+1507	P.S. 032 The Gifford School	Nancy Spataro	\N	B	2016-02-16 15:53:38.056912	2016-02-16 15:53:38.056912
+1508	I.S. 034 Tottenville	Jeff Preston	\N	C	2016-02-16 15:53:38.058129	2016-02-16 15:53:38.058129
+1509	P.S. 35 The Clove Valley School	Melissa Garofalo	\N	C	2016-02-16 15:53:38.059365	2016-02-16 15:53:38.059365
+1510	P.S. 036 J. C. Drumgoole	Barbara Bellafatto	\N	B	2016-02-16 15:53:38.060592	2016-02-16 15:53:38.060592
+1511	P.S. 038 George Cromwell	Everlidys Robles	\N	C	2016-02-16 15:53:38.061723	2016-02-16 15:53:38.061723
+1512	P.S. 39 Francis J. Murphy Jr.	Tracey Wright	\N	C	2016-02-16 15:53:38.062934	2016-02-16 15:53:38.062934
+1513	P.S. 041 New Dorp	Elise Feldman	\N	C	2016-02-16 15:53:38.064079	2016-02-16 15:53:38.064079
+1514	P.S. 042 Eltingville	Brian Sharkey	\N	B	2016-02-16 15:53:38.065195	2016-02-16 15:53:38.065195
+1515	P.S. 044 Thomas C. Brown	Joseph Miller	\N	C	2016-02-16 15:53:38.066375	2016-02-16 15:53:38.066375
+1516	P.S. 045 John Tyler	Christine Chavez	\N	B	2016-02-16 15:53:38.067585	2016-02-16 15:53:38.067585
+1517	P.S. 046 Albert V. Maniscalco	Andrea Maffeo	\N	B	2016-02-16 15:53:38.068831	2016-02-16 15:53:38.068831
+1518	CSI High School for International Studies	Joseph Canale	\N	A	2016-02-16 15:53:38.070163	2016-02-16 15:53:38.070163
+1519	P.S. 048 William C. Wilcox	Jacqueline Mammolito	\N	B	2016-02-16 15:53:38.071534	2016-02-16 15:53:38.071534
+1520	I.S. 49 Berta A. Dreyfus	Linda Hill	\N	B	2016-02-16 15:53:38.074273	2016-02-16 15:53:38.074273
+1521	P.S. 050 Frank Hankinson	Sharon Fine	\N	B	2016-02-16 15:53:38.075899	2016-02-16 15:53:38.075899
+1522	I.S. 051 Edwin Markham	Nicholas Mele	\N	B	2016-02-16 15:53:38.077155	2016-02-16 15:53:38.077155
+1523	P.S. 052 John C. Thompson	Jane Mccord	\N	D	2016-02-16 15:53:38.078345	2016-02-16 15:53:38.078345
+1524	P.S. 053 Bay Terrace	Annette Esposito	\N	B	2016-02-16 15:53:38.079572	2016-02-16 15:53:38.079572
+1525	P.S. 054 Charles W. Leng	Anna Castley	\N	D	2016-02-16 15:53:38.08086	2016-02-16 15:53:38.08086
+1526	P.S. 055 Henry M. Boehm	Sharon Fishman	\N	C	2016-02-16 15:53:38.082117	2016-02-16 15:53:38.082117
+1527	P.S. 56 The Louis Desario School	Dean Scali	\N	C	2016-02-16 15:53:38.083611	2016-02-16 15:53:38.083611
+1528	P.S. 057 Hubert H. Humphrey	Sandra Barnes	\N	C	2016-02-16 15:53:38.084979	2016-02-16 15:53:38.084979
+1529	Space Shuttle Columbia School	Roseann Mezzacappa	\N	B	2016-02-16 15:53:38.086353	2016-02-16 15:53:38.086353
+1530	P.S. 060 Alice Austen	Bonnie Ferretti	\N	D	2016-02-16 15:53:38.087592	2016-02-16 15:53:38.087592
+1531	I.S. 061 William A Morris	Mr. Richard J. Gallo	\N	C	2016-02-16 15:53:38.088801	2016-02-16 15:53:38.088801
+1532	Marsh Avenue School for Expeditionary Learning	Jessica Jenkins-Milona	\N	B	2016-02-16 15:53:38.089949	2016-02-16 15:53:38.089949
+1533	Gaynor McCown Expeditionary Learning School	Traci Frey	\N	\N	2016-02-16 15:53:38.091394	2016-02-16 15:53:38.091394
+1534	P.S. 65 The Academy of Innovative Learning	Sophie Scamardella	\N	B	2016-02-16 15:53:38.0926	2016-02-16 15:53:38.0926
+1535	P.S. 069 Daniel D. Tompkins	Doreen Murphy	\N	C	2016-02-16 15:53:38.0938	2016-02-16 15:53:38.0938
+1536	I.S. 072 Rocco Laurie	Peter Macellari	\N	B	2016-02-16 15:53:38.095003	2016-02-16 15:53:38.095003
+1537	I.S. 075 Frank D. Paulo	Mark Cannizzaro	\N	B	2016-02-16 15:53:38.096235	2016-02-16 15:53:38.096235
+1538	The Michael J. Petrides School	Joanne Buckheit	\N	C	2016-02-16 15:53:38.097347	2016-02-16 15:53:38.097347
+1539	The Michael J. Petrides School	Joanne Buckheit	\N	A	2016-02-16 15:53:38.098552	2016-02-16 15:53:38.098552
+1540	New Dorp High School	Ms. Deirdre Deangelis	\N	A	2016-02-16 15:53:38.099839	2016-02-16 15:53:38.099839
+1541	Port Richmond High School	Timothy M. Gannon	\N	C	2016-02-16 15:53:38.101094	2016-02-16 15:53:38.101094
+1542	Curtis High School	Aurelia Curtis	\N	B	2016-02-16 15:53:38.10232	2016-02-16 15:53:38.10232
+1543	Tottenville High School	John P. Tuminaro	\N	B	2016-02-16 15:53:38.103478	2016-02-16 15:53:38.103478
+1544	Susan E. Wagner High School	Mr. Gary M. Giordano	\N	A	2016-02-16 15:53:38.104624	2016-02-16 15:53:38.104624
+1545	Concord High School	Ron Gorsky	\N	A	2016-02-16 15:53:38.105776	2016-02-16 15:53:38.105776
+1546	Ralph R. McKee Career and Technical Education High School	Sharon Alicia Henry	\N	B	2016-02-16 15:53:38.107101	2016-02-16 15:53:38.107101
+1547	Staten Island Technical High School	Vincent Maniscalco	\N	A	2016-02-16 15:53:38.108589	2016-02-16 15:53:38.108589
+1548	Staten Island Yabc	Joann Calabro	\N	B	2016-02-16 15:53:38.109947	2016-02-16 15:53:38.109947
+1549	Staten Island School of Civic Leadership	Rose Kerr	\N	A	2016-02-16 15:53:38.111468	2016-02-16 15:53:38.111468
+1550	P.S. 045 Horace E. Greene	Tracey Lott-Davis	\N	B	2016-02-16 15:53:38.112678	2016-02-16 15:53:38.112678
+1551	P.S. 075 Mayda Cortiella	Christopher Tricarico	\N	B	2016-02-16 15:53:38.113914	2016-02-16 15:53:38.113914
+1552	P.S. 086 The Irvington	Mabel Sarduy	\N	B	2016-02-16 15:53:38.115118	2016-02-16 15:53:38.115118
+1553	P.S. 106 Edward Everett Hale	Robert Flores	\N	C	2016-02-16 15:53:38.116214	2016-02-16 15:53:38.116214
+1554	P.S. 116 Elizabeth L Farrell	Seiw Kong	\N	A	2016-02-16 15:53:38.1174	2016-02-16 15:53:38.1174
+1555	P.S. 123 Suydam	Veronica Greene	\N	B	2016-02-16 15:53:38.11863	2016-02-16 15:53:38.11863
+1556	P.S. 145 Andrew Jackson	Marilyn Torres	\N	C	2016-02-16 15:53:38.119967	2016-02-16 15:53:38.119967
+1557	P.S. 151 Lyndon B. Johnson	Maria Anaya	\N	D	2016-02-16 15:53:38.121167	2016-02-16 15:53:38.121167
+1558	J.H.S. 162 The Willoughby	Barbara Demartino	\N	C	2016-02-16 15:53:38.122396	2016-02-16 15:53:38.122396
+1559	P.S. 274 Kosciusko	Maritza Ollivierra-Jones	\N	C	2016-02-16 15:53:38.123636	2016-02-16 15:53:38.123636
+1560	J.H.S. 291 Roland Hayes	Sean Walsh	\N	C	2016-02-16 15:53:38.124808	2016-02-16 15:53:38.124808
+1561	J.H.S. 296 The Halsey School	Maria Barreto	\N	F	2016-02-16 15:53:38.126003	2016-02-16 15:53:38.126003
+1562	P.S. 299 Thomas Warren Field	Wilma Kanova Kirk	\N	D	2016-02-16 15:53:38.127109	2016-02-16 15:53:38.127109
+1563	I.S. 347 School of Humanities	John Barbella	\N	C	2016-02-16 15:53:38.128223	2016-02-16 15:53:38.128223
+1564	I.S. 349 Math, Science & Tech.	Rogelio Parris	\N	C	2016-02-16 15:53:38.129371	2016-02-16 15:53:38.129371
+1565	P.S. 376	Maria Vera	\N	C	2016-02-16 15:53:38.130606	2016-02-16 15:53:38.130606
+1566	P.S. 377 Alejandrina B. De Gautier	Dominic Zagami	\N	F	2016-02-16 15:53:38.131769	2016-02-16 15:53:38.131769
+1567	J.H.S. 383 Philippa Schuyler	Barbara Sanders	\N	B	2016-02-16 15:53:38.132948	2016-02-16 15:53:38.132948
+1568	P.S. /I.S. 384 Frances E. Carter	Brunhilda Perez	\N	B	2016-02-16 15:53:38.134221	2016-02-16 15:53:38.134221
+1569	Academy for Environmental Leadership	Nilda Gomez-Katz	\N	A	2016-02-16 15:53:38.135407	2016-02-16 15:53:38.135407
+1570	EBC High School for Public Service - Bushwick	Barnaby Spring	\N	F	2016-02-16 15:53:38.136618	2016-02-16 15:53:38.136618
+1571	Bushwick School for Social Justice	Mark Rush	\N	A	2016-02-16 15:53:38.137808	2016-02-16 15:53:38.137808
+1572	Academy of Urban Planning	Rodney Orji	\N	B	2016-02-16 15:53:38.138996	2016-02-16 15:53:38.138996
+1573	All City Leadership Secondary School	Elvis Estevez	\N	A	2016-02-16 15:53:38.140195	2016-02-16 15:53:38.140195
+1574	All City Leadership Secondary School	Elvis Estevez	\N	A	2016-02-16 15:53:38.14138	2016-02-16 15:53:38.14138
+1575	Bushwick Leaders High School for Academic Excellence	Catherine Reilly	\N	C	2016-02-16 15:53:38.142531	2016-02-16 15:53:38.142531
+1576	Bushwick Community High School	Tira Randall	\N	C	2016-02-16 15:53:38.143629	2016-02-16 15:53:38.143629
+1577	P.S. 36	Johanna Schneider	\N	A	2016-02-16 15:53:38.144765	2016-02-16 15:53:38.144765
+1578	P.S. K053	Heather Leykam	\N	A	2016-02-16 15:53:38.145859	2016-02-16 15:53:38.145859
+1579	P.S. K140	Michelle Carpenter	\N	F	2016-02-16 15:53:38.14693	2016-02-16 15:53:38.14693
+1580	P.S. K141	Michele Thornton Mannix	\N	C	2016-02-16 15:53:38.14809	2016-02-16 15:53:38.14809
+1581	P.S. K231	Christina Foti	\N	B	2016-02-16 15:53:38.149349	2016-02-16 15:53:38.149349
+1582	P.S. 368	Joycelyn Nedd	\N	B	2016-02-16 15:53:38.150684	2016-02-16 15:53:38.150684
+1583	P.S. K369 - Coy L. Cox School	Rudy Giuliani	\N	B	2016-02-16 15:53:38.1519	2016-02-16 15:53:38.1519
+1584	P.S. 372 -The Children's School	Arthur Mattia	\N	A	2016-02-16 15:53:38.153026	2016-02-16 15:53:38.153026
+1585	P.S. K771	Denise D'Anna	\N	B	2016-02-16 15:53:38.15421	2016-02-16 15:53:38.15421
+1586	P.S. M094	Ronnie Shuster	\N	D	2016-02-16 15:53:38.155414	2016-02-16 15:53:38.155414
+1587	P.S. M169 - Robert F. Kennedy	Susan Finn	\N	B	2016-02-16 15:53:38.156546	2016-02-16 15:53:38.156546
+1588	P.S. M811 - Mickey Mantle School	Barry Daub	\N	C	2016-02-16 15:53:38.15769	2016-02-16 15:53:38.15769
+1589	P.S. Q004	Marcy Berger	\N	A	2016-02-16 15:53:38.159046	2016-02-16 15:53:38.159046
+1590	P.S. 009	Robert Wojnarowski	\N	A	2016-02-16 15:53:38.160262	2016-02-16 15:53:38.160262
+1591	P.S. Q023 @ Queens Children Center	Jacqueline Jones	\N	B	2016-02-16 15:53:38.161472	2016-02-16 15:53:38.161472
+1592	Robert E. Peary School	Brenda Gallashaw	\N	A	2016-02-16 15:53:38.16259	2016-02-16 15:53:38.16259
+1593	P.S. Q224	Desmond Park	\N	B	2016-02-16 15:53:38.163785	2016-02-16 15:53:38.163785
+1594	P.S. Q256	Oswaldo Roman	\N	A	2016-02-16 15:53:38.16509	2016-02-16 15:53:38.16509
+1595	South Richmond High School I.S./P.S. 25	James Mckeon	\N	C	2016-02-16 15:53:38.166357	2016-02-16 15:53:38.166357
+1596	P.S. R373	Ilene Goldstein- Harn	\N	A	2016-02-16 15:53:38.167706	2016-02-16 15:53:38.167706
+1597	P.S. X010	Barbara Hanson	\N	B	2016-02-16 15:53:38.169146	2016-02-16 15:53:38.169146
+1598	P.S. X017	Robin Cohen	\N	A	2016-02-16 15:53:38.170471	2016-02-16 15:53:38.170471
+1599	P.S. 168	Rosa Nieves Greene	\N	C	2016-02-16 15:53:38.171957	2016-02-16 15:53:38.171957
+1600	P186X Walter J. Damrosch School	Ava Cara Kaplan	\N	C	2016-02-16 15:53:38.173374	2016-02-16 15:53:38.173374
+1601	P.S. X188	Shanie Johnson	\N	D	2016-02-16 15:53:38.174786	2016-02-16 15:53:38.174786
+1602	The Vida Bogart School for All Children	Lourdes Mendez	\N	C	2016-02-16 15:53:38.176022	2016-02-16 15:53:38.176022
+1603	P.S. 723	Christine Walsh	\N	B	2016-02-16 15:53:38.177361	2016-02-16 15:53:38.177361
+1604	Williamsburg Collegiate Charter School	J.T. Leaird	\N	A	2016-02-16 15:53:38.178751	2016-02-16 15:53:38.178751
+1605	Williamsburg Collegiate Charter School	J.T. Leaird	\N	\N	2016-02-16 15:53:38.180308	2016-02-16 15:53:38.180308
+1606	Achievement First- Crown Heights Charter School	Camilla Lopez/Wells Blanchard	\N	A	2016-02-16 15:53:38.181663	2016-02-16 15:53:38.181663
+1607	Achievement First- Crown Heights Charter School	Paul Adler	\N	\N	2016-02-16 15:53:38.183055	2016-02-16 15:53:38.183055
+1608	KIPP AMP Charter School	Ky Adderley/Natalie Webb	\N	B	2016-02-16 15:53:38.184483	2016-02-16 15:53:38.184483
+1609	Achievement First East New York School	Hilary Cymrot/David Hardy	\N	A	2016-02-16 15:53:38.185868	2016-02-16 15:53:38.185868
+1610	The Uft Charter School	Michelle Bodden-White	\N	C	2016-02-16 15:53:38.187363	2016-02-16 15:53:38.187363
+1611	The Uft Charter School	Michelle Bodden-White	\N	\N	2016-02-16 15:53:38.188856	2016-02-16 15:53:38.188856
+1612	Hellenic Classical Charter School	Christina Tettonis	\N	B	2016-02-16 15:53:38.190324	2016-02-16 15:53:38.190324
+1613	Williamsburg Charter High School	Marsha Spampinato	\N	C	2016-02-16 15:53:38.191905	2016-02-16 15:53:38.191905
+1614	Achievement First Endeavor Charter School	Tom Kaiser/Paul Adler	\N	A	2016-02-16 15:53:38.193373	2016-02-16 15:53:38.193373
+1615	Leadership Prep Bedford Stuyvesant Charter School	Sultanna Noormuhammad	\N	B	2016-02-16 15:53:38.194794	2016-02-16 15:53:38.194794
+1616	Community Roots Charter School	Allison Keil/Sara Stone	\N	C	2016-02-16 15:53:38.196186	2016-02-16 15:53:38.196186
+1617	Achievement First Bushwick Charter School	Amy D'Angelo	\N	A	2016-02-16 15:53:38.197458	2016-02-16 15:53:38.197458
+1618	Excellence Charter School of Bedford Stuyvesant	Jabali Sawicki/	\N	A	2016-02-16 15:53:38.198687	2016-02-16 15:53:38.198687
+1619	Kings Collegiate Charter School	Scott Schuster	\N	B	2016-02-16 15:53:38.19985	2016-02-16 15:53:38.19985
+1620	ACHIEVEMENT FIRST BROWNSVILLE CHARTER SCHOOL	Gina Ribeiro	\N	B	2016-02-16 15:53:38.201208	2016-02-16 15:53:38.201208
+1621	Bedford Stuyvesant Collegiate Charter School	Mabel Lajes-Guiteras	\N	A	2016-02-16 15:53:38.202746	2016-02-16 15:53:38.202746
+1622	La Cima Charter School	Andrea Zayas	\N	D	2016-02-16 15:53:38.204076	2016-02-16 15:53:38.204076
+1623	PAVE Academy Charter School	Spencer Robertson/Ashley Ferguson	\N	C	2016-02-16 15:53:38.205573	2016-02-16 15:53:38.205573
+1624	Brooklyn Ascend Charter School	Keisha Sykes/Brandon Sorlie	\N	C	2016-02-16 15:53:38.20703	2016-02-16 15:53:38.20703
+1625	Believe Northside Charter High School	Reshma Baig	\N	\N	2016-02-16 15:53:38.208351	2016-02-16 15:53:38.208351
+1626	Believe Southside Charter High School	Shannon Browne	\N	\N	2016-02-16 15:53:38.209831	2016-02-16 15:53:38.209831
+1627	Brooklyn Charter School	Omigbade Escayg	\N	A	2016-02-16 15:53:38.219738	2016-02-16 15:53:38.219738
+1628	Community Partnership Charter	Melaine Bryon	\N	B	2016-02-16 15:53:38.22158	2016-02-16 15:53:38.22158
+1629	Beginning With Children Charter School	Timothy Gembka	\N	C	2016-02-16 15:53:38.22317	2016-02-16 15:53:38.22317
+1630	Explore Charter School	Tracy Rebe/	\N	C	2016-02-16 15:53:38.224705	2016-02-16 15:53:38.224705
+1631	Brooklyn Prospect Charter School	Lanolia Omowanile	\N	A	2016-02-16 15:53:38.226196	2016-02-16 15:53:38.226196
+1632	Brownsville Collegiate Charter School	Jessica Simmons	\N	A	2016-02-16 15:53:38.227616	2016-02-16 15:53:38.227616
+1633	Fahari Academy Charter School	Catina Venning	\N	D	2016-02-16 15:53:38.229055	2016-02-16 15:53:38.229055
+1634	Summit Academy Charter School	Shahara Jackson	\N	C	2016-02-16 15:53:38.230503	2016-02-16 15:53:38.230503
+1635	Brooklyn Excelsior Charter	Tom Demarco	\N	B	2016-02-16 15:53:38.232044	2016-02-16 15:53:38.232044
+1636	Brooklyn Scholars Charter School	Desiree Kirton	\N	B	2016-02-16 15:53:38.23346	2016-02-16 15:53:38.23346
+1637	Explore Empower Charter School	Beth Doyle	\N	B	2016-02-16 15:53:38.234857	2016-02-16 15:53:38.234857
+1638	Coney Island Preparatory Public Charter School	Jacob Mnookin	\N	A	2016-02-16 15:53:38.236341	2016-02-16 15:53:38.236341
+1639	Ocean Hill Collegiate Charter School	Hannah Soloman	\N	\N	2016-02-16 15:53:38.237738	2016-02-16 15:53:38.237738
+1640	Brooklyn East Collegiate Charter School	Eric Green	\N	\N	2016-02-16 15:53:38.239283	2016-02-16 15:53:38.239283
+1641	Bedford Stuyvesant New Beginnings Charter School	Joshua Morales/Karen Jones	\N	\N	2016-02-16 15:53:38.240688	2016-02-16 15:53:38.240688
+1642	Brooklyn Dreams Charter School	Yvette Wilds	\N	\N	2016-02-16 15:53:38.242178	2016-02-16 15:53:38.242178
+1643	The Opportunity Charter School	Marya Baker	\N	B	2016-02-16 15:53:38.24367	2016-02-16 15:53:38.24367
+1644	The Opportunity Charter School	Marya Baker	\N	\N	2016-02-16 15:53:38.245171	2016-02-16 15:53:38.245171
+1645	Harlem Children's Zone/Promise Academy Charter Sch	Tonya White/Dennis Mckesey	\N	C	2016-02-16 15:53:38.246676	2016-02-16 15:53:38.246676
+1646	Harlem Children's Zone/Promise Academy Charter School	Tonya White/Dennis Mckesey	\N	\N	2016-02-16 15:53:38.248067	2016-02-16 15:53:38.248067
+1647	Manhattan Charter School	Genie Depolo	\N	A	2016-02-16 15:53:38.249395	2016-02-16 15:53:38.249395
+1648	Harlem Link Charter School	Steven Evangelista/Margaret Ryan	\N	C	2016-02-16 15:53:38.250788	2016-02-16 15:53:38.250788
+1649	Girls Preparatory Charter School of New York	Anne Lackritz/Ian Rowe	\N	C	2016-02-16 15:53:38.252224	2016-02-16 15:53:38.252224
+1650	Harlem Village Academies Leadership Charter School	Sam Fragomeni	\N	A	2016-02-16 15:53:38.253586	2016-02-16 15:53:38.253586
+1651	Harlem Village Academies Leadership Charter School	Sam Fragomeni	\N	\N	2016-02-16 15:53:38.254855	2016-02-16 15:53:38.254855
+1652	KIPP Infinity Charter School	Joseph Negron	\N	A	2016-02-16 15:53:38.256225	2016-02-16 15:53:38.256225
+1653	Harlem Children's Zone/Promise Academy II	Kathleen Fernald/Sheryl Ragland	\N	B	2016-02-16 15:53:38.25757	2016-02-16 15:53:38.25757
+1654	Democracy Preparatory Charter School	Lisa Friscia/Elizabeth Raji	\N	A	2016-02-16 15:53:38.258825	2016-02-16 15:53:38.258825
+1655	Democracy Preparatory Charter School	Lisa Friscia/Elizabeth Raji	\N	\N	2016-02-16 15:53:38.259968	2016-02-16 15:53:38.259968
+1656	Harlem Success Academy 1 Charter School	Jackie Albers	\N	A	2016-02-16 15:53:38.26106	2016-02-16 15:53:38.26106
+1657	New Heights Academy Charter School	Lisa Hackett/Kaye Houlihan	\N	B	2016-02-16 15:53:38.262371	2016-02-16 15:53:38.262371
+1658	New Heights Academy Charter School	Lisa Hackett/Kaye Houlihan	\N	A	2016-02-16 15:53:38.263931	2016-02-16 15:53:38.263931
+1659	Ross Global Academy Charter School	 Cristina Alvarez	\N	\N	2016-02-16 15:53:38.265455	2016-02-16 15:53:38.265455
+1660	DREAM Charter School	Eve Colavito	\N	C	2016-02-16 15:53:38.266635	2016-02-16 15:53:38.266635
+1661	Harlem Success Academy 2 Charter School	Jim Manly	\N	A	2016-02-16 15:53:38.267814	2016-02-16 15:53:38.267814
+1662	Harlem Success Academy 3 Charter School	Emily Rodriguez	\N	A	2016-02-16 15:53:38.269112	2016-02-16 15:53:38.269112
+1663	Harlem Success Academy 4 Charter School	Danique Loving	\N	A	2016-02-16 15:53:38.270259	2016-02-16 15:53:38.270259
+1664	St. HOPE Leadership Academy Charter School	Ventura Rodriguez	\N	C	2016-02-16 15:53:38.271588	2016-02-16 15:53:38.271588
+1665	The Equity Project Charter School (TEP)	Zeke Vanderhoek	\N	B	2016-02-16 15:53:38.272792	2016-02-16 15:53:38.272792
+1666	The Renaissance Charter High School for Innovation	Nicholas Tishuk	\N	\N	2016-02-16 15:53:38.274062	2016-02-16 15:53:38.274062
+1667	Inwood Academy for Leadership Charter School	Christina Reyes	\N	\N	2016-02-16 15:53:38.275319	2016-02-16 15:53:38.275319
+1668	Democracy Preparatory Harlem Charter School	Emmanuel George	\N	\N	2016-02-16 15:53:38.276517	2016-02-16 15:53:38.276517
+1669	The Sisulu-Walker Charter School of Harlem	Dawn Cejas	\N	C	2016-02-16 15:53:38.277655	2016-02-16 15:53:38.277655
+1670	Harbor Sciences and Arts Charter School	Joanne Hunt	\N	B	2016-02-16 15:53:38.27882	2016-02-16 15:53:38.27882
+1671	Amber Charter School	Vasthi Acosta	\N	B	2016-02-16 15:53:38.280018	2016-02-16 15:53:38.280018
+1672	John V. Lindsay Wildcat Academy Charter School	Ron Tabano/Marc Donald	\N	B	2016-02-16 15:53:38.281347	2016-02-16 15:53:38.281347
+1673	Harlem Day Charter School	Curtis Palmore	\N	D	2016-02-16 15:53:38.28252	2016-02-16 15:53:38.28252
+1674	Harlem Village Academy Charter School	Laurie Warner/Ray Ankrum	\N	A	2016-02-16 15:53:38.283708	2016-02-16 15:53:38.283708
+1675	Harlem Village Academy Charter School	Laurie Warner/Ray Ankrum	\N	B	2016-02-16 15:53:38.284874	2016-02-16 15:53:38.284874
+1676	KIPP S.T.A.R. Charter School	Orpheus Williams/Natalie Webb	\N	B	2016-02-16 15:53:38.285982	2016-02-16 15:53:38.285982
+1677	Future Leaders Institute Charter School	Peter Anderson	\N	F	2016-02-16 15:53:38.28716	2016-02-16 15:53:38.28716
+1678	Peninsula Preparatory Academy Charter School	Ericka K. Wala	\N	C	2016-02-16 15:53:38.288338	2016-02-16 15:53:38.288338
+1679	VOICE Charter School of New York	Frank Headley	\N	B	2016-02-16 15:53:38.28953	2016-02-16 15:53:38.28953
+1680	Riverton Street Charter School	Verone Kennedy	\N	\N	2016-02-16 15:53:38.290765	2016-02-16 15:53:38.290765
+1681	Merrick Academy Charter School	Carolyn Thomas	\N	F	2016-02-16 15:53:38.291967	2016-02-16 15:53:38.291967
+1682	Renaissance Charter School, The	Stacey Gauthier	\N	C	2016-02-16 15:53:38.293145	2016-02-16 15:53:38.293145
+1683	Renaissance Charter School, The	Stacey Gauthier	\N	B	2016-02-16 15:53:38.294311	2016-02-16 15:53:38.294311
+1684	Our World Neighborhood Charter	Brian Ferguson	\N	B	2016-02-16 15:53:38.295474	2016-02-16 15:53:38.295474
+1685	John W. Lavelle Preparatory Charter School	Evelyn Finn	\N	A	2016-02-16 15:53:38.296612	2016-02-16 15:53:38.296612
+1686	New World Preparatory Charter School	Jamie V. Esperon	\N	\N	2016-02-16 15:53:38.297738	2016-02-16 15:53:38.297738
+1687	Grand Concourse Charter School	Ira Victor	\N	B	2016-02-16 15:53:38.298909	2016-02-16 15:53:38.298909
+1688	The Bronx Lighthouse Charter School	Meghan Kimpton (K-4)/Mathias Guishard (5-8)	\N	D	2016-02-16 15:53:38.300464	2016-02-16 15:53:38.300464
+1689	Bronx Charter School for Excellence	Charlene Reid	\N	A	2016-02-16 15:53:38.30197	2016-02-16 15:53:38.30197
+1690	South Bronx Charter School For Int'L Culture & The	Evelyn Hey	\N	B	2016-02-16 15:53:38.303267	2016-02-16 15:53:38.303267
+1691	Hyde Leadership Charter School	Betsy Olney	\N	B	2016-02-16 15:53:38.304666	2016-02-16 15:53:38.304666
+1692	Hyde Leadership Charter School	Betsy Olney	\N	\N	2016-02-16 15:53:38.305947	2016-02-16 15:53:38.305947
+1693	South Bronx Classical Charter School	Lester Long	\N	A	2016-02-16 15:53:38.307013	2016-02-16 15:53:38.307013
+1694	International Leadership Charter School	Elaine Ruiz Lopez	\N	A	2016-02-16 15:53:38.308241	2016-02-16 15:53:38.308241
+1695	Icahn Charter School 2	Brenda Carrasquillo	\N	A	2016-02-16 15:53:38.309388	2016-02-16 15:53:38.309388
+1696	Bronx Global Learning Institute for Girls Charter	Celia Domenech	\N	C	2016-02-16 15:53:38.310615	2016-02-16 15:53:38.310615
+1697	Green Dot NY Charter School	Ashish Kapadia	\N	\N	2016-02-16 15:53:38.311819	2016-02-16 15:53:38.311819
+1698	Mott Haven Academy Charter School	Jessica Nauiokas	\N	D	2016-02-16 15:53:38.312912	2016-02-16 15:53:38.312912
+1699	NYC CHARTER HIGH SCHOOL FOR ARCHITECTURE, ENGINEERING AND CONSTRUCTION INDUSTRIES	Eugene Foley	\N	\N	2016-02-16 15:53:38.314096	2016-02-16 15:53:38.314096
+1700	Bronx Community Charter School	Martha Andrews/Sasha Wilson	\N	C	2016-02-16 15:53:38.315192	2016-02-16 15:53:38.315192
+1701	Bronx Charter School for Children	Kristina Jelinek	\N	D	2016-02-16 15:53:38.316272	2016-02-16 15:53:38.316272
+1702	Bronx Academy of Promise Charter School	Catherine Jackvony	\N	F	2016-02-16 15:53:38.317357	2016-02-16 15:53:38.317357
+1703	Icahn Charter School 3	Midga Agosto	\N	D	2016-02-16 15:53:38.318603	2016-02-16 15:53:38.318603
+1704	Dr. Izquierdo Health and Science Charter School	John Xavier	\N	\N	2016-02-16 15:53:38.319859	2016-02-16 15:53:38.319859
+1705	The Equality Charter School	Caitlin Franco	\N	C	2016-02-16 15:53:38.321133	2016-02-16 15:53:38.321133
+1706	Icahn Charter School 4	Michelle Allen	\N	A	2016-02-16 15:53:38.322939	2016-02-16 15:53:38.322939
+1707	Bronx Prep Charter School	Jacqueline King-Robinson	\N	C	2016-02-16 15:53:38.324804	2016-02-16 15:53:38.324804
+1708	Bronx Prep Charter School	Jacqueline King-Robinson	\N	C	2016-02-16 15:53:38.326363	2016-02-16 15:53:38.326363
+1709	KIPP NYC College Prep	Natalie Webb	\N	A	2016-02-16 15:53:38.327842	2016-02-16 15:53:38.327842
+1710	KIPP NYC College Prep	Natalie Webb	\N	\N	2016-02-16 15:53:38.329167	2016-02-16 15:53:38.329167
+1711	Family Life Academy Charter School	Marilyn Calo	\N	B	2016-02-16 15:53:38.330437	2016-02-16 15:53:38.330437
+1712	Harriet Tubman Charter School	Cleveland Person	\N	C	2016-02-16 15:53:38.331753	2016-02-16 15:53:38.331753
+1713	Icahn Charter School	Daniel Garcia	\N	A	2016-02-16 15:53:38.332979	2016-02-16 15:53:38.332979
+1714	Bronx Charter School for Better Learning	Shubert Jacobs	\N	C	2016-02-16 15:53:38.334076	2016-02-16 15:53:38.334076
+1715	Bronx Charter School for Arts	Christina Brown	\N	D	2016-02-16 15:53:38.335129	2016-02-16 15:53:38.335129
+\.
+
+
+--
+-- Name: scores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: QT
+--
+
+SELECT pg_catalog.setval('scores_id_seq', 1715, true);
+
+
+--
+-- Name: scores_pkey; Type: CONSTRAINT; Schema: public; Owner: QT; Tablespace: 
+--
+
+ALTER TABLE ONLY scores
+    ADD CONSTRAINT scores_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: QT; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: QT
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM "QT";
+GRANT ALL ON SCHEMA public TO "QT";
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
