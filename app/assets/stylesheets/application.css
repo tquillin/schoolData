@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+ body {
+   background-color: blue;
+ }
+#title{
+  position: absolute;
+  left: 45%;
+}
+#description{
+  position: absolute;
+  top: 10%;
+  left: 45%;
+}
+#search{
+  position: absolute;
+  left: 50%;
+  top: 20%;
+}
+#results{
+  position: relative;
+  left: -10%;
+  top: 30%;
+}

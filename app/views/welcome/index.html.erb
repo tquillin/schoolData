@@ -1,5 +1,5 @@
 
-<section ng-controller="ScoresController">
+<section id="search" ng-controller="ScoresController">
 
   <h3> {{ search }} </h3>
 
@@ -8,11 +8,11 @@
     <input type="submit">
   </form>
 
-  <ul>
+  <ul id="results">
 
     <img ng-show="loading" src="https://media.giphy.com/media/CD1tWaGFs5teM/giphy.gif" alt="" />
 
-    <li ng-repeat="score in scores">
+    <li  ng-repeat="score in scores">
       <h3>{{ score.name }}</h3>
       <p>
         Principal:{{ score.admin }}<br />
