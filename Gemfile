@@ -8,6 +8,7 @@ gem 'rails', '4.2.5'
 
   # gem 'coffee-rails'
 
+gem 'seed_dump'
 
 group :production do
   gem 'pg', '~> 0.15'
