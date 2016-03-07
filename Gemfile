@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 
+gem 'pry'
 
   # gem 'coffee-rails'
 

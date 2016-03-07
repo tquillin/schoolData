@@ -16,3 +16,17 @@
 //= require controllers/scoresController
 //= require app
 // require('dotenv').load();
+
+console.log("on est là");
+
+$(document).ready(function(){
+
+  // gets value of scroll
+  $(window).on("scroll", function(){
+      var $scrolled = $(window).scrollTop();
+      console.log($scrolled);
+  });
+
+
+});
+// end of document ready function

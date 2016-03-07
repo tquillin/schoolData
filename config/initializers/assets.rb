@@ -12,3 +12,7 @@ Rails.application.config.assets.version = '1.0'
 
 
 Rails.application.config.assets.precompile += %w( bridge.jpg )
+
+Rails.application.config.assets.precompile += %w( street.jpg )
+
+Rails.application.config.assets.precompile += %w( school.jpg )
