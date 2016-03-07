@@ -7,7 +7,7 @@ ctrl.controller('ScoresController', ['$scope', 'ScoresApi',
 
     $scope.scores = [];
     $scope.page = 0;
-    $scope.limit = 10;
+    $scope.limit = 50;
 
     $scope.loadMore = function(){
       ScoresApi.getAll($scope.page, $scope.limit).then(function(response){
