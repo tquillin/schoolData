@@ -19,7 +19,7 @@ class Api::ScoresController < ApplicationController
 # end
 def index
 
-  limit = (params[:limit] || 10).to_i
+  limit = (params[:limit] || 100).to_i
 
   if params[:search]
     search_term = params[:search]
