@@ -7,6 +7,7 @@ gem 'rails', '4.2.5'
 
 gem 'pry'
 
+
   # gem 'coffee-rails'
 
 gem 'seed_dump'
