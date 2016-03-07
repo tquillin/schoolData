@@ -1,3 +1,5 @@
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 <section id="search" ng-controller="ScoresController">
@@ -22,15 +24,20 @@
     <img ng-show="loading" src="https://media.giphy.com/media/CD1tWaGFs5teM/giphy.gif" alt="" />
 
     <li  ng-repeat="score in scores">
-      <h3>{{ score.name }}</h3>
-      <p>
-        Principal:{{ score.admin }}<br />
-        Progress Report Type: {{ score.intervention }}<br />
-        Grade Level:{{ score.level }}<br />
-        Peer Index:{{score.peer}}<br />
-        2010-2011 Overall Grade:{{ score.grade }}<br />
-        2010-2011 Overall Score : {{score.gradeNum}}<br />
-      </p>
+      <div class="blurb">
+      <h3 class="">{{ score.name }}</h3>
+
+
+
+        <p class="">
+          Principal:{{ score.admin }}<br />
+          Progress Report Type: {{ score.intervention }}<br />
+          Grade Level:{{ score.level }}<br />
+          Peer Index:{{score.peer}}<br />
+          2010-2011 Overall Grade:{{ score.grade }}<br />
+          2010-2011 Overall Score : {{score.gradeNum}}<br />
+        </p>
+      </div>
 
     </li>
     <li><button class="load" ng-click="loadMore()">Load More</button></li>
