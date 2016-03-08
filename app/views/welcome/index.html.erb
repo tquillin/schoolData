@@ -10,7 +10,7 @@
 
   <form class="form" ng-submit="sendSearch()">
     <input type="text" ng-model="search_term" placeholder="...school name">
-    <input type="submit">
+    <input class="submit" type="submit">
   </form>
 
   <!-- <div class="bridge">
@@ -20,6 +20,7 @@
 <!-- <img class="bridge" src="/assets/images/bridge.jpg" alt="" /> -->
 
   <ul id="results">
+    <li><button class="load" ng-click="loadMore()">Load More</button></li>
 
     <img ng-show="loading" src="https://media.giphy.com/media/CD1tWaGFs5teM/giphy.gif" alt="" />
 
@@ -27,20 +28,39 @@
       <div class="blurb">
       <h3 class="">{{ score.name }}</h3>
 
+      <div class="CSSTableGenerator">
+        <table>
+          <tr>
+            <td class="principal">
+              Principal:{{ score.admin }} 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Progress Report Type: {{ score.intervention }}
+            </td>
+            <td>
+              2010-2011 Overall Grade:{{ score.grade }}
+            </td>
+            <td>
+              2010-2011 Overall Score : {{score.gradeNum}}
+            </td>
+          </tr>
+        </table>
+        <hr>
+      </div>
 
-
-        <p class="">
-          Principal:{{ score.admin }}<br />
-          Progress Report Type: {{ score.intervention }}<br />
-          Grade Level:{{ score.level }}<br />
-          Peer Index:{{score.peer}}<br />
-          2010-2011 Overall Grade:{{ score.grade }}<br />
-          2010-2011 Overall Score : {{score.gradeNum}}<br />
-        </p>
+        <!-- <p class="">
+          <h4>Principal:  {{ score.admin }}</h4><br />
+          Progress Report Type:<br /> {{ score.intervention }}<br />
+          <!-- Grade Level:{{ score.level }}<br />
+          Peer Index:{{score.peer}}<br /> -->
+          <!-- 2010-2011 Overall Grade:<br />{{ score.grade }}<br />
+          2010-2011 Overall Score :<br /> {{score.gradeNum}}<br />
+        </p> -->
       </div>
 
     </li>
-    <li><button class="load" ng-click="loadMore()">Load More</button></li>
   </ul>
 
 
@@ -50,12 +70,3 @@
 
 
 <%= image_tag "school.jpg", class: 'bridge'%>
-
-
-<!-- t.string :name
-t.string :admin
-t.string :intervention
-t.string :level
-t.integer :peer
-t.string :grade
-t.integer :gradeNum -->
