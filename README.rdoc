@@ -7,20 +7,35 @@ Things you may want to cover:
 
 * Ruby version
 
+Ruby version 2.2.3. Rails version 4.2.5 
+
 * System dependencies
+  Ruby, Rails, SQL, Angular, JavaScript, Materialize a CSS framework. 
+
 
 * Configuration
 
+
+Some of the command-line commands use:
+rails new postgresql -d -T, bundle, rails controller, rails s. 
+
+Angular:
+Controllers, Services and Factories.
+
+Using the code that searches for names, limits results to 50 and loads new results, the ScoresApp is the link to all these behaviors running smoothly. My main controller performs the 'heavy lifting' of a search request while the service processes whatever client data is sent to the back-end. 
+
 * Database creation
+The application is running on Heroku using Rails. One table exists called "Scores" which has the name, admin, intervention, level, peer and grade column. 
 
 * Database initialization
+Used Heroku documentation to initialize a rails app for their platform : https://devcenter.heroku.com/articles/getting-started-with-rails4. 
 
 * How to run the test suite
 
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
+Used Heroku documentation to deploy a rails app to their platform : https://devcenter.heroku.com/articles/getting-started-with-rails4. 
 * ...
 
 
